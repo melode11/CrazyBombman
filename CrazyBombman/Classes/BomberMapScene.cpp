@@ -17,6 +17,7 @@ CCSprite* spawnPlayer(CCTMXTiledMap *tileMap,CCLayer* layer)
     CCDictionary *spawn = group->objectNamed("PlayerSpawn");
     float x = ((CCString*)spawn->objectForKey("x"))->floatValue();
     float y = ((CCString*)spawn->objectForKey("y"))->floatValue();
+    //sample 352,416
     CCSprite *player = CCSprite::create("Player.png");
     player->setPosition(ccp(x, y));
     layer->addChild(player);
@@ -25,7 +26,7 @@ CCSprite* spawnPlayer(CCTMXTiledMap *tileMap,CCLayer* layer)
 
 void setViewPointCenter(CCLayer* layer, const CCPoint& position,const CCSize& mapSize, const CCSize& tileSize)
 {
-    CCSize winSize = CCDirector::sharedDirector()->getWinSizeInPixels();
+    CCSize winSize = CCDirector::sharedDirector()->getWinSize();
     int x = MAX(position.x, winSize.width/2);
     int y = MAX(position.y, winSize.height/2);
     x = MIN(x, (mapSize.width * tileSize.width) - winSize.width / 2);
@@ -40,14 +41,28 @@ void setViewPointCenter(CCLayer* layer, const CCPoint& position,const CCSize& ma
 
 bool BomberMapScene::init()
 {
+    if(!CCLayer::init())
+    {
+        return false;
+    }
     this->_tileMap = CCTMXTiledMap::create("bombermap.tmx");
+    this->_tileMap->retain();
     this->addChild(this->_tileMap,-1);
+
+    this->_tileMap->setContentSize(CCDirector::sharedDirector()->getWinSize());
     CCSprite *playerNode = spawnPlayer(this->_tileMap, this);
-    this->_tileMap->setContentSize(CCDirector::sharedDirector()->getWinSizeInPixels());
     setViewPointCenter(this,playerNode->getPosition(),_tileMap->getMapSize(),_tileMap->getTileSize());
-    _player = Simulation::Player::create();
-    _player->setPlayerNode(playerNode);
-    _player->retain();
+    
+
+    
+    Simulation::Player *player = Simulation::Player::create();
+    player->setPlayerNode(playerNode);
+
+    _env = Simulation::Environment::create();
+    _env->retain();
+    _env -> setPlayer(player);
+    _env->setTileMap(this->_tileMap);
+    CCDirector::sharedDirector()->getScheduler()->scheduleUpdateForTarget(_env, 0, false);
     lastTime = 0;
     this->setAccelerometerEnabled(true);
     return true;
@@ -70,25 +85,25 @@ CCScene* BomberMapScene::scene()
 
 void BomberMapScene::didAccelerate(CCAcceleration* pAccelerationValue)
 {
-    if(!_player)
+    if(!_env || !_env->getPlayer())
     {
         return;
     }
+    Simulation::Player *player = _env -> getPlayer();
     double x = pAccelerationValue->x;
     double y = pAccelerationValue->y;
 //    double zabs = fabs(pAccelerationValue->z);
     if(fabs(x) > fabs(y) && fabs(x)>0.05)
     {
-        this->_player->setDirection(x>0?Simulation::eRight:Simulation::eLeft);
-
+        player->setDirection(x>0?Simulation::eRight:Simulation::eLeft);
     }
     else if(fabs(y) > 0.05)
     {
-        this->_player->setDirection(y>0?Simulation::eUp:Simulation::eDown);
+        player->setDirection(y>0?Simulation::eUp:Simulation::eDown);
     }
     else
     {
-        this->_player->setDirection(Simulation::eNone);
+        player->setDirection(Simulation::eNone);
     }
     if(lastTime==0)
     {
@@ -96,8 +111,8 @@ void BomberMapScene::didAccelerate(CCAcceleration* pAccelerationValue)
     }
     else
     {
-        this->_player->update(pAccelerationValue->timestamp - lastTime);
-        setViewPointCenter(this, this->_player->getPlayerPosition(),_tileMap->getMapSize(), _tileMap->getTileSize());
+//        _env->update(pAccelerationValue->timestamp - lastTime);
+        setViewPointCenter(this, player->getPlayerPosition(),_tileMap->getMapSize(), _tileMap->getTileSize());
         lastTime = pAccelerationValue->timestamp;
     }
     
@@ -105,7 +120,7 @@ void BomberMapScene::didAccelerate(CCAcceleration* pAccelerationValue)
 
 BomberMapScene::~BomberMapScene()
 {
-    CC_SAFE_RELEASE(_player);
-//    CC_SAFE_RELEASE(_tileMap);
+    CC_SAFE_RELEASE(_env);
+    CC_SAFE_RELEASE(_tileMap);
 }
 

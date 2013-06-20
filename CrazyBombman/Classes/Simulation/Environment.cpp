@@ -33,38 +33,27 @@ namespace Simulation
     
     void Environment::update(float dt)
     {
+        CCObject::update(dt);
+        
+        CCPoint p = _player->getPlayerPosition();
+        _player ->update(dt);
+        CCPoint newP = _player->getPlayerPosition();
+        if(checkCollision(newP))
+        {//collision happen, back to the old position.
+            _player->getPlayerNode()->setPosition(p);
+        }
         
     }
     
-//    Player* Environment::getPlayer()
-//    {
-//        return _player;
-//    }
-    
-    bool Environment::checkCollision()
-    {
-        Direction dir = _player->getDirection();
-        int y = 0,x = 0;
-        switch (dir) {
-            case eUp:
-                y = -1;
-                break;
-            case eDown:
-                y = 1;
-                break;
-            case eLeft:
-                x = -1;
-            case eRight:
-                x = 1;
-            default:
-                return false;
-        }
 
-        CCPoint p = _player->getPlayerPosition();
+    bool Environment::checkCollision(CCPoint& p)
+    {
+        int y = 0,x = 0;
+
         CCSize tileSize = _tileMap->getTileSize();
         CCTMXLayer *blocks = _tileMap->layerNamed("Blocks");
-        y += ((_tileMap->getMapSize().height * tileSize.height) - p.y) / tileSize.height;
-        x += p.x/tileSize.width;
+        y = ((_tileMap->getMapSize().height * tileSize.height) - p.y) / tileSize.height;
+        x = p.x/tileSize.width;
         //calculate heading tile
        
         int gid = blocks->tileGIDAt(ccp(x, y));
@@ -99,6 +88,8 @@ namespace Simulation
         }
         return false;
     }
+    
+    
     
     
 }

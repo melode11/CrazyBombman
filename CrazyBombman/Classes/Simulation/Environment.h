@@ -34,7 +34,7 @@ namespace Simulation
     private:
         cocos2d::CCTMXTiledMap *_tileMap;
     protected:
-        bool checkCollision();
+        bool checkCollision(cocos2d::CCPoint& postion);
     public:
         Environment(){};
         

@@ -12,12 +12,13 @@
 #include <iostream>
 #include "cocos2d.h"
 #include "Player.h"
-#endif /* defined(__CrazyBomber__BomberMapScene__) */
+#include "Environment.h"
+
 class BomberMapScene : public cocos2d::CCLayer
 {
 private:
     cocos2d::CCTMXTiledMap *_tileMap;
-    Simulation::Player *_player;
+    Simulation::Environment *_env;
     
 public:
     virtual bool init();
@@ -30,3 +31,5 @@ public:
     
     CREATE_FUNC(BomberMapScene);
 };
+
+#endif /* defined(__CrazyBomber__BomberMapScene__) */
