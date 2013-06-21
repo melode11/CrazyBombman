@@ -62,6 +62,7 @@ bool BomberMapScene::init()
     _env->retain();
     _env -> setPlayer(player);
     _env->setTileMap(this->_tileMap);
+    _env->setPlayerPositionDelegate(this);
     CCDirector::sharedDirector()->getScheduler()->scheduleUpdateForTarget(_env, 0, false);
     lastTime = 0;
     this->setAccelerometerEnabled(true);
@@ -112,10 +113,15 @@ void BomberMapScene::didAccelerate(CCAcceleration* pAccelerationValue)
     else
     {
 //        _env->update(pAccelerationValue->timestamp - lastTime);
-        setViewPointCenter(this, player->getPlayerPosition(),_tileMap->getMapSize(), _tileMap->getTileSize());
+//        setViewPointCenter(this, player->getPlayerPosition(),_tileMap->getMapSize(), _tileMap->getTileSize());
         lastTime = pAccelerationValue->timestamp;
     }
     
+}
+
+void BomberMapScene::updatePlayerPostion(CCPoint &postion)
+{
+    setViewPointCenter(this, postion, _tileMap->getMapSize(), _tileMap->getTileSize());
 }
 
 BomberMapScene::~BomberMapScene()

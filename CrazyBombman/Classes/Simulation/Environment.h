@@ -12,6 +12,7 @@
 #include <iostream>
 #include "cocos2d.h"
 #include "Player.h"
+#include "PlayerPositionDelegate.h"
 
 
 namespace Simulation
@@ -36,7 +37,8 @@ namespace Simulation
     protected:
         bool checkCollision(cocos2d::CCPoint& postion);
     public:
-        Environment(){};
+        Environment():_player(0),_ppDelegate(0),_tileMap(0)
+        {};
         
         ~Environment(){};
         
@@ -49,6 +51,8 @@ namespace Simulation
         
         CC_SYNTHESIZE_RETAIN(Player*, _player, Player);
 
+        CC_SYNTHESIZE(PlayerPositionDelegate*, _ppDelegate, PlayerPositionDelegate);
+        
         CREATE_FUNC(Environment);
     };
 }

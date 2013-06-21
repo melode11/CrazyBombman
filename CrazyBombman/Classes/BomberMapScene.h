@@ -13,8 +13,9 @@
 #include "cocos2d.h"
 #include "Player.h"
 #include "Environment.h"
+#include "PlayerPositionDelegate.h"
 
-class BomberMapScene : public cocos2d::CCLayer
+class BomberMapScene : public cocos2d::CCLayer, public Simulation::PlayerPositionDelegate
 {
 private:
     cocos2d::CCTMXTiledMap *_tileMap;
@@ -24,6 +25,8 @@ public:
     virtual bool init();
     
     virtual void didAccelerate(cocos2d::CCAcceleration* pAccelerationValue);
+    
+    virtual void updatePlayerPostion(cocos2d::CCPoint& postion);
     
     static cocos2d::CCScene* scene();
     

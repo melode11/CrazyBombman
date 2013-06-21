@@ -8,6 +8,7 @@
 
 #include "Environment.h"
 #include "Player.h"
+#include "TileUtils.h"
 
 using namespace cocos2d;
 
@@ -15,9 +16,6 @@ namespace Simulation
 {
     bool Environment::init()
     {
-        _player = Player::create();
-        _player -> retain();
-        _tileMap = NULL;
         return true;
     }
     
@@ -42,21 +40,21 @@ namespace Simulation
         {//collision happen, back to the old position.
             _player->getPlayerNode()->setPosition(p);
         }
+        else if(_ppDelegate)
+        {
+            _ppDelegate -> updatePlayerPostion(newP);
+        }
         
     }
     
 
     bool Environment::checkCollision(CCPoint& p)
     {
-        int y = 0,x = 0;
 
-        CCSize tileSize = _tileMap->getTileSize();
         CCTMXLayer *blocks = _tileMap->layerNamed("Blocks");
-        y = ((_tileMap->getMapSize().height * tileSize.height) - p.y) / tileSize.height;
-        x = p.x/tileSize.width;
         //calculate heading tile
-       
-        int gid = blocks->tileGIDAt(ccp(x, y));
+        CCPoint mapCoord = Utility::GetMapCoords(_tileMap, p);
+        int gid = blocks->tileGIDAt(mapCoord);
     
         CCLOGINFO("tileGid %d",gid);
         if(gid)
@@ -77,7 +75,7 @@ namespace Simulation
             }
             if(material == eDestroyable || material == eSolid)
             {
-                CCSprite *tile = blocks -> tileAt(ccp(x,y));
+                CCSprite *tile = blocks -> tileAt(mapCoord);
                 CCRect tileRect = getCCRect(tile);
                 CCRect playerRect = getCCRect(_player->getPlayerNode());
                 if(tileRect.intersectsRect(playerRect))
