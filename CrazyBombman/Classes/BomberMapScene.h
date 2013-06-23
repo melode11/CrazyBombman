@@ -22,13 +22,15 @@ private:
     Simulation::Environment *_env;
     
 public:
+    static cocos2d::CCScene* scene();
+    
     virtual bool init();
     
     virtual void didAccelerate(cocos2d::CCAcceleration* pAccelerationValue);
     
     virtual void updatePlayerPostion(cocos2d::CCPoint& postion);
     
-    static cocos2d::CCScene* scene();
+    virtual void ccTouchesEnded(cocos2d::CCSet *pTouch, cocos2d::CCEvent *pEvent);
     
     ~BomberMapScene();
     

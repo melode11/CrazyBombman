@@ -9,6 +9,10 @@
 #ifndef CrazyBomber_Simulation_h
 #define CrazyBomber_Simulation_h
 
+#define PLAYER_VELOCITY 80.0
+
+#define BOMB_DURATION 3.0
+
 namespace Simulation
 {
     typedef enum _Direction

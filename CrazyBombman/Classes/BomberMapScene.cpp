@@ -7,6 +7,9 @@
 //
 
 #include "BomberMapScene.h"
+#define Z_PLAYER 2
+#define Z_BOMB 1
+
 using namespace cocos2d;
 
 static double lastTime;
@@ -20,7 +23,7 @@ CCSprite* spawnPlayer(CCTMXTiledMap *tileMap,CCLayer* layer)
     //sample 352,416
     CCSprite *player = CCSprite::create("Player.png");
     player->setPosition(ccp(x, y));
-    layer->addChild(player);
+    layer->addChild(player,Z_PLAYER);
     return player;
 }
 
@@ -66,6 +69,7 @@ bool BomberMapScene::init()
     CCDirector::sharedDirector()->getScheduler()->scheduleUpdateForTarget(_env, 0, false);
     lastTime = 0;
     this->setAccelerometerEnabled(true);
+    this->setTouchEnabled(true);
     return true;
 }
 
@@ -122,6 +126,17 @@ void BomberMapScene::didAccelerate(CCAcceleration* pAccelerationValue)
 void BomberMapScene::updatePlayerPostion(CCPoint &postion)
 {
     setViewPointCenter(this, postion, _tileMap->getMapSize(), _tileMap->getTileSize());
+}
+
+void BomberMapScene::ccTouchesEnded(cocos2d::CCSet *pTouch, cocos2d::CCEvent *pEvent)
+{
+    CCSprite* bombNode = CCSprite::create("bomb.png");
+    CCPoint position = _env->getPlayer()->getPlayerPosition();
+    bombNode->setPosition(position);
+    Simulation::Bomb *bomb = Simulation::Bomb::create();
+    bomb->setNode(bombNode);
+    _env->addBomb(bomb);
+    this->addChild(bombNode, Z_BOMB);
 }
 
 BomberMapScene::~BomberMapScene()

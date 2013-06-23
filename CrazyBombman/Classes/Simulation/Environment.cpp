@@ -16,6 +16,8 @@ namespace Simulation
 {
     bool Environment::init()
     {
+        _bombs = CCArray::create();
+        _bombs->retain();
         return true;
     }
     
@@ -33,6 +35,8 @@ namespace Simulation
     {
         CCObject::update(dt);
         
+        updateBombs(dt);
+        
         CCPoint p = _player->getPlayerPosition();
         _player ->update(dt);
         CCPoint newP = _player->getPlayerPosition();
@@ -47,11 +51,32 @@ namespace Simulation
         
     }
     
+    void Environment::updateBombs(float dt)
+    {
+        std::vector<int> indecies;
+        for (int i = 0;i<_bombs->count();i++) {
+            Bomb* bomb = (Bomb*)(_bombs->objectAtIndex(i));
+
+            bomb->update(dt);
+            if(bomb->isExplode())
+            {
+                //FIXME add explosion
+                //remove bomb node
+                CCNode* bombNode = bomb->getNode();
+                bombNode->getParent()->removeChild(bombNode);
+                indecies.push_back(i);
+            }
+        }
+        for(std::vector<int>::iterator it = indecies.begin();it!=indecies.end();it++)
+        {
+            _bombs->removeObjectAtIndex(*it);
+        }
+    }
 
     bool Environment::checkCollision(CCPoint& p)
     {
-
         CCTMXLayer *blocks = _tileMap->layerNamed("Blocks");
+
         //calculate heading tile
         CCPoint mapCoord = Utility::GetMapCoords(_tileMap, p);
         int gid = blocks->tileGIDAt(mapCoord);
@@ -75,19 +100,22 @@ namespace Simulation
             }
             if(material == eDestroyable || material == eSolid)
             {
-                CCSprite *tile = blocks -> tileAt(mapCoord);
-                CCRect tileRect = getCCRect(tile);
-                CCRect playerRect = getCCRect(_player->getPlayerNode());
-                if(tileRect.intersectsRect(playerRect))
-                {
-                    return true;
-                }
+                return true;
             }
         }
         return false;
     }
     
     
+    void Environment::addBomb(Simulation::Bomb *bomb)
+    {
+        _bombs->addObject(bomb);
+    }
     
+    Environment::~Environment()
+    {
+        CC_SAFE_RELEASE(_player);
+        CC_SAFE_RELEASE(_bombs);
+    }
     
 }

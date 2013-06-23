@@ -12,7 +12,7 @@
 #include <iostream>
 #include "cocos2d.h"
 #include "Simulation.h"
-#define PLAYER_VELOCITY 80.0
+
 
 namespace Simulation{
     class Player : public cocos2d::CCObject
