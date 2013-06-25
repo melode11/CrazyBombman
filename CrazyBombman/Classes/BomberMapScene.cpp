@@ -59,7 +59,7 @@ bool BomberMapScene::init()
 
     
     Simulation::Player *player = Simulation::Player::create();
-    player->setPlayerNode(playerNode);
+    player->setNode(playerNode);
 
     _env = Simulation::Environment::create();
     _env->retain();

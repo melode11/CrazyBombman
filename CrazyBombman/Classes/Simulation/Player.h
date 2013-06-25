@@ -20,18 +20,15 @@ namespace Simulation{
 //    private:
 //        Direction _direction;
 //        cocos2d::CCNode *_playerNode;
-    CC_PROPERTY(cocos2d::CCNode*, _playerNode, PlayerNode);
+    CC_PROPERTY(cocos2d::CCNode*, _node, Node);
         
     public:
         
         bool init();
 
-        Player(){};
+        Player();
         
-        ~Player()
-        {
-            CC_SAFE_RELEASE(this->_playerNode);
-        };
+        ~Player();
         
 //        void setPlayerNode(cocos2d::CCNode *playerNode);
         

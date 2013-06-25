@@ -48,13 +48,19 @@ namespace Simulation
     private:
         cocos2d::CCTMXTiledMap *_tileMap;
         cocos2d::CCArray *_bombs;
+        cocos2d::CCArray *_explosions;
+        //hide copy constructor
+        Environment(Environment const &env);
+        Environment& operator= (Environment const &env);
         
     protected:
         void updateBombs(float dt);
+        void updateExplosions(float dt);
         bool checkCollision(cocos2d::CCPoint& postion);
     public:
         Environment():_player(0),_ppDelegate(0),_tileMap(0),_bombs(0)
         {};
+        
         
         ~Environment();
         

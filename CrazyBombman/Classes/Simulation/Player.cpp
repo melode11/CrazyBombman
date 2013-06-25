@@ -9,17 +9,24 @@
 #include "Player.h"
 namespace Simulation
 {
-    bool Player::init()
+    Player::Player():_node(0),_direction(eNone)
     {
         
-            this->_playerNode = NULL;
-            this->_direction = eNone;
-            return true;
+    }
+    
+    Player::~Player()
+    {
+        CC_SAFE_RELEASE(this->_node);
+    }
+    
+    bool Player::init()
+    {
+        return true;
     }
     
     void Player::update(float time_inteval)
     {
-        if(!_playerNode)
+        if(!_node)
             return;
         double dx = 0,dy = 0;
         switch (_direction) {
@@ -39,31 +46,31 @@ namespace Simulation
             default:
                 break;
         }
-        cocos2d::CCPoint p = _playerNode -> getPosition();
+        cocos2d::CCPoint p = _node -> getPosition();
         p.x += dx;
         p.y += dy;
-        _playerNode->setPosition(p);
+        _node->setPosition(p);
         
     }
     
-    cocos2d::CCNode* Player::getPlayerNode()
+    cocos2d::CCNode* Player::getNode()
     {
-        return _playerNode;
+        return _node;
     }
     
-    void Player::setPlayerNode(cocos2d::CCNode *playerNode)
+    void Player::setNode(cocos2d::CCNode *playerNode)
     {
         
-        if(_playerNode!=playerNode)
+        if(_node!=playerNode)
         {
-            CC_SAFE_RELEASE(_playerNode);
+            CC_SAFE_RELEASE(_node);
             CC_SAFE_RETAIN(playerNode);
-            _playerNode = playerNode;
+            _node = playerNode;
         }
     }
     
     cocos2d::CCPoint Player::getPlayerPosition()
     {
-        return this->_playerNode->getPosition();
+        return this->_node->getPosition();
     }
 }

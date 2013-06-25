@@ -9,6 +9,7 @@
 #include "Environment.h"
 #include "Player.h"
 #include "TileUtils.h"
+#include "Explosion.h"
 
 using namespace cocos2d;
 
@@ -18,6 +19,8 @@ namespace Simulation
     {
         _bombs = CCArray::create();
         _bombs->retain();
+        _explosions = CCArray::create();
+        _explosions->retain();
         return true;
     }
     
@@ -42,13 +45,22 @@ namespace Simulation
         CCPoint newP = _player->getPlayerPosition();
         if(checkCollision(newP))
         {//collision happen, back to the old position.
-            _player->getPlayerNode()->setPosition(p);
+            _player->getNode()->setPosition(p);
         }
         else if(_ppDelegate)
         {
             _ppDelegate -> updatePlayerPostion(newP);
         }
         
+    }
+    
+    void Environment::updateExplosions(float dt)
+    {
+        for (int i = 0;i<_explosions->count();i++)
+        {
+            Explosion* exp = (Explosion*)_explosions->objectAtIndex(i);
+            exp->update(dt);
+        }
     }
     
     void Environment::updateBombs(float dt)
@@ -116,6 +128,7 @@ namespace Simulation
     {
         CC_SAFE_RELEASE(_player);
         CC_SAFE_RELEASE(_bombs);
+        CC_SAFE_RELEASE(_explosions);
     }
     
 }

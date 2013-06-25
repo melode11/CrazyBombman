@@ -13,6 +13,8 @@
 
 #define BOMB_DURATION 3.0
 
+#define EXPLOSION_RANGE 64.0
+
 namespace Simulation
 {
     typedef enum _Direction

@@ -10,6 +10,8 @@
 #define CrazyBombman_TileUtils_h
 
 #include "cocos2d.h"
+#include <vector>
+
 namespace Utility{
     using namespace cocos2d;
     static inline CCPoint GetMapCoords(CCTMXTiledMap *tileMap,CCPoint& point)
@@ -19,6 +21,8 @@ namespace Utility{
         int x = point.x/tileSize.width;
         return ccp(x,y);
     }
+    
+    
     
 }
 
