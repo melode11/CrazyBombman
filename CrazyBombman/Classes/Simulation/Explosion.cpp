@@ -11,7 +11,7 @@
 
 namespace Simulation
 {
-    Explosion::Explosion():_animateNodes(),_range(EXPLOSION_RANGE)
+    Explosion::Explosion():_animateNodes(),_range(EXPLOSION_RANGE),_isFinished(false)
     {
         
     }
@@ -23,20 +23,30 @@ namespace Simulation
     
     void Explosion::update(float dt)
     {
-        
-        for (std::vector<AnimatedNode>::iterator it=_animateNodes.begin(); it!=_animateNodes.end(); it++) {
+        bool isFinished = true;
+        for (std::vector<AnimatedNode>::iterator it=_animateNodes.begin(); it!=_animateNodes.end();) {
             cocos2d::CCNode* node =  it->getNode();
             cocos2d::CCAction *anim = it->getAction();
             if(!it->isAnimated && anim && node)
             {
+                node->setVisible(true);
                 node->runAction(anim);
+                it->isAnimated = true;
+                isFinished = false;
             }
             else if(anim && anim->isDone())
             {
                 node->getParent()->removeChild(node);
-                _animateNodes.erase(it);
+                it = _animateNodes.erase(it);
+                continue;
             }
+            else
+            {
+                isFinished = false;
+            }
+            it++;
         }
+        _isFinished = isFinished;
         
     }
     
@@ -62,15 +72,31 @@ namespace Simulation
                 {
                     explode = CCSprite::createWithSpriteFrame(frame);
                     explode->setPosition(center);
+                    explode->setVisible(false);
                 }
             }
         }
-        CCAnimation *animation = CCAnimation::create();
-        animation->createWithSpriteFrames(frames,0.1);
+        CCAnimation *animation = CCAnimation::createWithSpriteFrames(frames,0.1);
+
         CCAnimate* action = CCAnimate::create(animation);
         AnimatedNode node;
         node.setAction(action);
         node.setNode(explode);
         _animateNodes.push_back(node);
+    }
+    
+    unsigned int Explosion::getNodesCount()
+    {
+        return _animateNodes.size();
+    }
+    
+    cocos2d::CCNode* Explosion::getNodeAt(unsigned int index)
+    {
+        return _animateNodes[index].getNode();
+    }
+    
+    bool Explosion::isFinished()
+    {
+        return _isFinished;
     }
 }

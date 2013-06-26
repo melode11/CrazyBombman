@@ -39,7 +39,7 @@ namespace Simulation
         CCObject::update(dt);
         
         updateBombs(dt);
-        
+        updateExplosions(dt);
         CCPoint p = _player->getPlayerPosition();
         _player ->update(dt);
         CCPoint newP = _player->getPlayerPosition();
@@ -56,10 +56,19 @@ namespace Simulation
     
     void Environment::updateExplosions(float dt)
     {
+        std::vector<int> indecies;
         for (int i = 0;i<_explosions->count();i++)
         {
             Explosion* exp = (Explosion*)_explosions->objectAtIndex(i);
             exp->update(dt);
+            if(exp->isFinished())
+            {
+                indecies.push_back(i);
+            }
+        }
+        for(std::vector<int>::iterator it = indecies.begin();it!=indecies.end();it++)
+        {
+            _explosions->removeObjectAtIndex(*it);
         }
     }
     
@@ -77,6 +86,13 @@ namespace Simulation
                 CCNode* bombNode = bomb->getNode();
                 bombNode->getParent()->removeChild(bombNode);
                 indecies.push_back(i);
+                Explosion *exp = Explosion::create();
+                exp->createNodesAt(bombNode->getPosition());
+                _explosions->addObject(exp);
+                for(int i =0;i<exp->getNodesCount();i++)
+                {
+                    _ppDelegate->addNode(exp->getNodeAt(i), 1);
+                }
             }
         }
         for(std::vector<int>::iterator it = indecies.begin();it!=indecies.end();it++)

@@ -13,10 +13,13 @@
 #include "cocos2d.h"
 namespace Simulation
 {
-    class PlayerPositionDelegate
+    
+    class GameModelDelegate
     {
     public:
         virtual void updatePlayerPostion(cocos2d::CCPoint& postion) = 0;
+        virtual void addNode(cocos2d::CCNode *node,int z_order) = 0;
+        virtual void removeNode(cocos2d::CCNode *node) = 0;
     };
 }
 

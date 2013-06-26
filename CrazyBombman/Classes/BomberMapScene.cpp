@@ -65,7 +65,7 @@ bool BomberMapScene::init()
     _env->retain();
     _env -> setPlayer(player);
     _env->setTileMap(this->_tileMap);
-    _env->setPlayerPositionDelegate(this);
+    _env->setDelegate(this);
     CCDirector::sharedDirector()->getScheduler()->scheduleUpdateForTarget(_env, 0, false);
     lastTime = 0;
     this->setAccelerometerEnabled(true);
@@ -128,6 +128,22 @@ void BomberMapScene::updatePlayerPostion(CCPoint &postion)
     setViewPointCenter(this, postion, _tileMap->getMapSize(), _tileMap->getTileSize());
 }
 
+void BomberMapScene::addNode(cocos2d::CCNode *node, int z_order)
+{
+    if(node)
+    {
+        this->addChild(node, z_order);
+    }
+}
+
+void BomberMapScene::removeNode(cocos2d::CCNode *node)
+{
+    if(node)
+    {
+        this->removeNode(node);
+    }
+}
+
 void BomberMapScene::ccTouchesEnded(cocos2d::CCSet *pTouch, cocos2d::CCEvent *pEvent)
 {
     CCSprite* bombNode = CCSprite::create("bomb.png");
@@ -141,6 +157,10 @@ void BomberMapScene::ccTouchesEnded(cocos2d::CCSet *pTouch, cocos2d::CCEvent *pE
 
 BomberMapScene::~BomberMapScene()
 {
+    if(_env->getDelegate() == this)
+    {
+        _env->setDelegate(NULL);
+    }
     CC_SAFE_RELEASE(_env);
     CC_SAFE_RELEASE(_tileMap);
 }

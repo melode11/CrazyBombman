@@ -281,7 +281,7 @@
 		818A40BC1771395F0015431F /* bombermap.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 818A40B91771395E0015431F /* bombermap.tmx */; };
 		818A40BD1771395F0015431F /* Player.png in Resources */ = {isa = PBXBuildFile; fileRef = 818A40BA1771395F0015431F /* Player.png */; };
 		818A40BE1771395F0015431F /* tmw_desert_spacing.png in Resources */ = {isa = PBXBuildFile; fileRef = 818A40BB1771395F0015431F /* tmw_desert_spacing.png */; };
-		818A41041774AF3A0015431F /* PlayerPositionDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818A41021774AF380015431F /* PlayerPositionDelegate.cpp */; };
+		818A41041774AF3A0015431F /* Delegations.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818A41021774AF380015431F /* Delegations.cpp */; };
 		818A41061776FDF00015431F /* bomb.png in Resources */ = {isa = PBXBuildFile; fileRef = 818A41051776FDF00015431F /* bomb.png */; };
 		818A41091777225A0015431F /* Bomb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818A4107177722580015431F /* Bomb.cpp */; };
 		818A410C177722B20015431F /* Explosion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818A410A177722B00015431F /* Explosion.cpp */; };
@@ -884,8 +884,8 @@
 		818A40BA1771395F0015431F /* Player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Player.png; path = Resources/Player.png; sourceTree = "<group>"; };
 		818A40BB1771395F0015431F /* tmw_desert_spacing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tmw_desert_spacing.png; path = Resources/tmw_desert_spacing.png; sourceTree = "<group>"; };
 		818A41011774AB750015431F /* TileUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TileUtils.h; sourceTree = "<group>"; };
-		818A41021774AF380015431F /* PlayerPositionDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerPositionDelegate.cpp; sourceTree = "<group>"; };
-		818A41031774AF390015431F /* PlayerPositionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerPositionDelegate.h; sourceTree = "<group>"; };
+		818A41021774AF380015431F /* Delegations.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Delegations.cpp; sourceTree = "<group>"; };
+		818A41031774AF390015431F /* Delegations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Delegations.h; sourceTree = "<group>"; };
 		818A41051776FDF00015431F /* bomb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bomb.png; path = Resources/bomb.png; sourceTree = "<group>"; };
 		818A4107177722580015431F /* Bomb.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Bomb.cpp; sourceTree = "<group>"; };
 		818A4108177722590015431F /* Bomb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bomb.h; sourceTree = "<group>"; };
@@ -2131,8 +2131,8 @@
 				818A40B2177139310015431F /* Player.cpp */,
 				818A40B3177139310015431F /* Player.h */,
 				818A40B4177139310015431F /* Simulation.h */,
-				818A41021774AF380015431F /* PlayerPositionDelegate.cpp */,
-				818A41031774AF390015431F /* PlayerPositionDelegate.h */,
+				818A41021774AF380015431F /* Delegations.cpp */,
+				818A41031774AF390015431F /* Delegations.h */,
 				818A4107177722580015431F /* Bomb.cpp */,
 				818A4108177722590015431F /* Bomb.h */,
 				818A410A177722B00015431F /* Explosion.cpp */,
@@ -2474,7 +2474,7 @@
 				818A40B6177139310015431F /* BomberMapScene.cpp in Sources */,
 				818A40B7177139310015431F /* Environment.cpp in Sources */,
 				818A40B8177139310015431F /* Player.cpp in Sources */,
-				818A41041774AF3A0015431F /* PlayerPositionDelegate.cpp in Sources */,
+				818A41041774AF3A0015431F /* Delegations.cpp in Sources */,
 				818A41091777225A0015431F /* Bomb.cpp in Sources */,
 				818A410C177722B20015431F /* Explosion.cpp in Sources */,
 			);

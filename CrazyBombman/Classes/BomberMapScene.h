@@ -13,9 +13,9 @@
 #include "cocos2d.h"
 #include "Player.h"
 #include "Environment.h"
-#include "PlayerPositionDelegate.h"
+#include "Delegations.h"
 
-class BomberMapScene : public cocos2d::CCLayer, public Simulation::PlayerPositionDelegate
+class BomberMapScene : public cocos2d::CCLayer, public Simulation::GameModelDelegate
 {
 private:
     cocos2d::CCTMXTiledMap *_tileMap;
@@ -29,6 +29,10 @@ public:
     virtual void didAccelerate(cocos2d::CCAcceleration* pAccelerationValue);
     
     virtual void updatePlayerPostion(cocos2d::CCPoint& postion);
+    
+    virtual void addNode(cocos2d::CCNode *node,int z_order);
+    
+    virtual void removeNode(cocos2d::CCNode *node);
     
     virtual void ccTouchesEnded(cocos2d::CCSet *pTouch, cocos2d::CCEvent *pEvent);
     

@@ -22,6 +22,19 @@ namespace Simulation {
     public:
         bool isAnimated;
         
+        AnimatedNode(AnimatedNode const& node):_node(node._node),_action(node._action)
+        {
+            CC_SAFE_RETAIN(_node);
+            CC_SAFE_RETAIN(_action);
+        }
+        
+        AnimatedNode& operator=(AnimatedNode const& node)
+        {
+            this->setAction(node.getAction());
+            this->setNode(node.getNode());
+            return *this;
+        }
+        
         AnimatedNode():_node(0),_action(0)
         {
             
@@ -38,9 +51,13 @@ namespace Simulation {
     {
     private:
         std::vector<AnimatedNode> _animateNodes;
-        
+        bool _isFinished;
     public:
         void createNodesAt(cocos2d::CCPoint const & center);
+        
+        unsigned int getNodesCount();
+        
+        cocos2d::CCNode* getNodeAt(unsigned int index);
         
         Explosion();
         
@@ -49,6 +66,8 @@ namespace Simulation {
         virtual bool init();
         
         virtual void update(float dt);
+        
+        bool isFinished();
         
         CC_SYNTHESIZE(float, _range, Range);
         

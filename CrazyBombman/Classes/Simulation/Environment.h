@@ -12,36 +12,38 @@
 #include <iostream>
 #include "cocos2d.h"
 #include "Player.h"
-#include "PlayerPositionDelegate.h"
+#include "Delegations.h"
 #include <vector>
 #include "Bomb.h"
 
 namespace Simulation
 {
     
-    static inline cocos2d::CCRect getCCRectForCenterAligned(cocos2d::CCNode* node)
+    static inline cocos2d::CCRect getCCRect(cocos2d::CCNode* node)
     {
         if(node)
         {
             cocos2d::CCSize size = node->getContentSize();
             cocos2d::CCPoint p = node->getPosition();
+            cocos2d::CCPoint anchor;
+            anchor.operator=(node->getAnchorPoint());
             using namespace cocos2d;
-            return CCRectMake(p.x - size.width/2, p.y - size.height/2, size.width, size.height);
+            return CCRectMake(p.x - anchor.x, p.y - anchor.y, size.width, size.height);
         }
         return cocos2d::CCRectZero;
     }
     
-    static inline cocos2d::CCRect getCCRectForLeftBottomAligned(cocos2d::CCNode* node)
-    {
-        if(node)
-        {
-            cocos2d::CCSize size = node->getContentSize();
-            cocos2d::CCPoint p = node->getPosition();
-            using namespace cocos2d;
-            return CCRectMake(p.x, p.y, size.width, size.height);
-        }
-        return cocos2d::CCRectZero;
-    }
+//    static inline cocos2d::CCRect getCCRectForLeftBottomAligned(cocos2d::CCNode* node)
+//    {
+//        if(node)
+//        {
+//            cocos2d::CCSize size = node->getContentSize();
+//            cocos2d::CCPoint p = node->getPosition();
+//            using namespace cocos2d;
+//            return CCRectMake(p.x, p.y, size.width, size.height);
+//        }
+//        return cocos2d::CCRectZero;
+//    }
     
     class Environment :public cocos2d::CCObject
     {
@@ -74,7 +76,7 @@ namespace Simulation
         
         CC_SYNTHESIZE_RETAIN(Player*, _player, Player);
 
-        CC_SYNTHESIZE(PlayerPositionDelegate*, _ppDelegate, PlayerPositionDelegate);
+        CC_SYNTHESIZE(GameModelDelegate*, _ppDelegate, Delegate);
         
         CREATE_FUNC(Environment);
     };
