@@ -107,6 +107,12 @@ namespace Simulation
 
         //calculate heading tile
         CCPoint mapCoord = Utility::GetMapCoords(_tileMap, p);
+        CCSize mapSize = blocks->getLayerSize();
+        if(mapCoord.x<0||mapCoord.x>=mapSize.width || mapCoord.y<0 || mapCoord.y>=mapSize.height)
+        {
+            //collide with map border.
+            return true;
+        }
         int gid = blocks->tileGIDAt(mapCoord);
     
         CCLOGINFO("tileGid %d",gid);
