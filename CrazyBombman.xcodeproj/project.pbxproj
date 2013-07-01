@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8163EFD9177D65A600B92A00 /* TileUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8163EFD8177D65A600B92A00 /* TileUtils.cpp */; };
 		818A3CFE1771380D0015431F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 818A3CFD1771380D0015431F /* QuartzCore.framework */; };
 		818A3D001771380D0015431F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 818A3CFF1771380D0015431F /* OpenGLES.framework */; };
 		818A3D021771380D0015431F /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 818A3D011771380D0015431F /* OpenAL.framework */; };
@@ -289,6 +290,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8163EFD8177D65A600B92A00 /* TileUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TileUtils.cpp; sourceTree = "<group>"; };
 		818A3CFA1771380D0015431F /* CrazyBombman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrazyBombman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		818A3CFD1771380D0015431F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		818A3CFF1771380D0015431F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -2145,6 +2147,7 @@
 			isa = PBXGroup;
 			children = (
 				818A41011774AB750015431F /* TileUtils.h */,
+				8163EFD8177D65A600B92A00 /* TileUtils.cpp */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -2477,6 +2480,7 @@
 				818A41041774AF3A0015431F /* Delegations.cpp in Sources */,
 				818A41091777225A0015431F /* Bomb.cpp in Sources */,
 				818A410C177722B20015431F /* Explosion.cpp in Sources */,
+				8163EFD9177D65A600B92A00 /* TileUtils.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
