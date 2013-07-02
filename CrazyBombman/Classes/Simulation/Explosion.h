@@ -22,7 +22,7 @@ namespace Simulation {
     public:
         bool isAnimated;
         
-        AnimatedNode(AnimatedNode const& node):_node(node._node),_action(node._action)
+        AnimatedNode(AnimatedNode const& node):_node(node._node),_action(node._action),isAnimated(node.isAnimated)
         {
             CC_SAFE_RETAIN(_node);
             CC_SAFE_RETAIN(_action);
@@ -35,7 +35,7 @@ namespace Simulation {
             return *this;
         }
         
-        AnimatedNode():_node(0),_action(0)
+        AnimatedNode():_node(0),_action(0),isAnimated(false)
         {
             
         }

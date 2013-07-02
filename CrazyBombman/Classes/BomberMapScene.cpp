@@ -8,9 +8,7 @@
 
 #include "BomberMapScene.h"
 #include "TileUtils.h"
-
-#define Z_PLAYER 2
-#define Z_BOMB 1
+#include "Simulation.h"
 
 using namespace cocos2d;
 

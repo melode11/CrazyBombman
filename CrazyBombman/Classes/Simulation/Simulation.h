@@ -13,7 +13,11 @@
 
 #define BOMB_DURATION 3.0
 
-#define EXPLOSION_RANGE 64.0
+#define EXPLOSION_RANGE 128.0
+
+#define Z_EXPLOSION 3
+#define Z_PLAYER 2
+#define Z_BOMB 1
 
 namespace Simulation
 {

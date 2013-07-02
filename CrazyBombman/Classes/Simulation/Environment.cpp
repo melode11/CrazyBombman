@@ -91,7 +91,7 @@ namespace Simulation
                 _explosions->addObject(exp);
                 for(int i =0;i<exp->getNodesCount();i++)
                 {
-                    _ppDelegate->addNode(exp->getNodeAt(i), 1);
+                    _ppDelegate->addNode(exp->getNodeAt(i), Z_EXPLOSION);
                 }
             }
         }

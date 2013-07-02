@@ -8,6 +8,7 @@
 
 #include "Explosion.h"
 #include "Simulation.h"
+#include "TileUtils.h"
 
 namespace Simulation
 {
@@ -77,12 +78,34 @@ namespace Simulation
             }
         }
         CCAnimation *animation = CCAnimation::createWithSpriteFrames(frames,0.1);
-
+        
         CCAnimate* action = CCAnimate::create(animation);
         AnimatedNode node;
         node.setAction(action);
         node.setNode(explode);
         _animateNodes.push_back(node);
+        
+
+        for(int d = 0;d < 4;d++)
+        {//4 direction.
+            CCPoint p = center;
+            float* property = (d%2) == 0? &(p.x) : &(p.y);
+            int sign = (d/2) == 0? -1:1;
+            for (int radius = 1,end = (_range - 16)/16; radius <= end; radius ++) {
+                (*property)+= (sign * 16);
+                
+                CCAnimate* action = CCAnimate::create(animation);
+                CCSequence* seq = CCSequence::create(CCDelayTime::create(radius*0.05),action,NULL);
+                
+                CCSprite* expSprite = CCSprite::create();
+                expSprite -> setPosition(p);
+                expSprite->setVisible(false);
+                node.setAction(seq);
+                node.setNode(expSprite);
+                _animateNodes.push_back(node);
+            }
+       
+        }
     }
     
     unsigned int Explosion::getNodesCount()
