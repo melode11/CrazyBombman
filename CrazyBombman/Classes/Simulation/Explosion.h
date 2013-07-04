@@ -51,9 +51,13 @@ namespace Simulation {
     {
     private:
         std::vector<AnimatedNode> _animateNodes;
+        std::vector<cocos2d::CCPoint> _destroyMapcoords;
         bool _isFinished;
+        void removeTile(cocos2d::CCNode *tile, void* blockLayer);
     public:
-        void createNodesAt(cocos2d::CCPoint const & center);
+        void createNodesAt(cocos2d::CCPoint const& center, cocos2d::CCTMXTiledMap *tileMap);
+        
+        void destroyBlocks(cocos2d::CCTMXTiledMap *tileMap);
         
         unsigned int getNodesCount();
         

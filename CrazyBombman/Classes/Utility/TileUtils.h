@@ -15,7 +15,22 @@
 namespace Utility{
     using namespace cocos2d;
     
+    static inline CCPoint GetGLPosition(const CCTMXTiledMap *tileMap,const CCPoint& point)
+    {
+        CCSize tileSize = tileMap->getTileSize();
+        int y = (tileMap->getMapSize().height * tileSize.height) - point.y;
+        int x = point.x;
+        return ccp(x,y);
+    }
    
+    static inline CCPoint GetMapPosition(const CCTMXTiledMap *tileMap,const CCPoint& point)
+    {
+        CCSize tileSize = tileMap->getTileSize();
+        int y = (tileMap->getMapSize().height * tileSize.height) - point.y;
+        int x = point.x;
+        return ccp(x,y);
+    }
+    
     static inline CCPoint GetMapCoords(const CCTMXTiledMap *tileMap,const CCPoint& point)
     {
         CCSize tileSize = tileMap->getTileSize();

@@ -61,6 +61,7 @@ namespace Simulation
         {
             Explosion* exp = (Explosion*)_explosions->objectAtIndex(i);
             exp->update(dt);
+            exp->destroyBlocks(_tileMap);
             if(exp->isFinished())
             {
                 indecies.push_back(i);
@@ -87,7 +88,7 @@ namespace Simulation
                 bombNode->getParent()->removeChild(bombNode);
                 indecies.push_back(i);
                 Explosion *exp = Explosion::create();
-                exp->createNodesAt(bombNode->getPosition());
+                exp->createNodesAt(bombNode->getPosition(),_tileMap);
                 _explosions->addObject(exp);
                 for(int i =0;i<exp->getNodesCount();i++)
                 {
@@ -120,18 +121,7 @@ namespace Simulation
         {
             CCDictionary *dictionary = _tileMap->propertiesForGID(gid);
             CCString* mat = (CCString*)dictionary->objectForKey("material");
-            Material material = ePlain;
-            switch(mat->intValue())
-            {
-                case 2:
-                    material = eDestroyable;
-                    break;
-                case 3:
-                    material = eSolid;
-                    break;
-                default:
-                    ;
-            }
+            Material material = static_cast<Material>(mat->intValue());
             if(material == eDestroyable || material == eSolid)
             {
                 return true;
