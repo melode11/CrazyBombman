@@ -112,11 +112,11 @@ void BomberMapScene::didAccelerate(CCAcceleration* pAccelerationValue)
     double x = pAccelerationValue->x;
     double y = pAccelerationValue->y;
 //    double zabs = fabs(pAccelerationValue->z);
-    if(fabs(x) > fabs(y) && fabs(x)>0.05)
+    if(fabs(x) > fabs(y) && fabs(x)>0.1)
     {
         player->setDirection(x>0?Simulation::eRight:Simulation::eLeft);
     }
-    else if(fabs(y) > 0.05)
+    else if(fabs(y) > 0.1)
     {
         player->setDirection(y>0?Simulation::eUp:Simulation::eDown);
     }
@@ -151,11 +151,11 @@ void BomberMapScene::ccTouchesEnded(cocos2d::CCSet *pTouch, cocos2d::CCEvent *pE
 {
     CCSprite* bombNode = CCSprite::create("bomb.png");
     CCPoint position = _env->getPlayer()->getPlayerPosition();
-    bombNode->setPosition(position);
+    CCSize size = _tileMap->getTileSize();
+    bombNode->setPosition(ccp(((int)(position.x/size.width) + 0.5)*size.width, (ceil(position.y/size.height)-0.5)*size.width));
     Simulation::Bomb *bomb = Simulation::Bomb::create();
     bomb->setNode(bombNode);
     _env->addBomb(bomb);
-    this->addChild(bombNode, Z_BOMB);
 }
 
 

@@ -61,7 +61,6 @@ namespace Simulation
         {
             Explosion* exp = (Explosion*)_explosions->objectAtIndex(i);
             exp->update(dt);
-            exp->destroyBlocks(_tileMap);
             if(exp->isFinished())
             {
                 indecies.push_back(i);
@@ -89,6 +88,7 @@ namespace Simulation
                 indecies.push_back(i);
                 Explosion *exp = Explosion::create();
                 exp->createNodesAt(bombNode->getPosition(),_tileMap);
+                exp->destroyBlocks(_tileMap);
                 _explosions->addObject(exp);
                 for(int i =0;i<exp->getNodesCount();i++)
                 {
@@ -133,7 +133,16 @@ namespace Simulation
     
     void Environment::addBomb(Simulation::Bomb *bomb)
     {
+        CCObject *b;
+        CCARRAY_FOREACH(_bombs, b)
+        {
+            if(((Bomb*)b)->getNode()->getPosition().equals(bomb->getNode()->getPosition()))
+            {
+                return;
+            }
+        }
         _bombs->addObject(bomb);
+        _ppDelegate->addNode(bomb->getNode(), Z_BOMB);
     }
     
     Environment::~Environment()
