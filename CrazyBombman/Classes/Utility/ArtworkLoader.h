@@ -30,14 +30,14 @@ namespace Utility
         
         static cocos2d::CCSprite* playerSprite()
         {
-            CCTextureCache::sharedTextureCache() -> addImage("bombman.png");
-            CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("bombman.plist");
-            return cocos2d::CCSprite::createWithSpriteFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("ds-01.png"));
+            cocos2d::CCTextureCache::sharedTextureCache() -> addImage("bombman.png");
+            cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("bombman.plist");
+            return cocos2d::CCSprite::createWithSpriteFrame(cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("ds-01.png"));
         }
         
         static cocos2d::CCSprite* bombSprite()
         {
-            return CCSprite::create("bomb.png");
+            return cocos2d::CCSprite::create("bomb.png");
         };
     };
 }
