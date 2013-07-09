@@ -33,6 +33,7 @@ namespace Simulation
     typedef enum _Material
     {
         ePlain = 0,
+        eNonBlock = 1,
         eDestroyable = 2,
         eSolid = 3
     } Material;

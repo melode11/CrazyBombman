@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="30" height="30" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32">
+  <image source="tilesetpack.png" width="256" height="256"/>
+  <tile id="61">
+   <properties>
+    <property name="M" value="1"/>
+   </properties>
+  </tile>
+  <tile id="62">
+   <properties>
+    <property name="M" value="2"/>
+   </properties>
+  </tile>
+  <tile id="63">
+   <properties>
+    <property name="M" value="3"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Background" width="30" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztzysOgDAUBdGnGiBg6qjhY2hRsP/NcUUFIQ15Ka0hVxw9GSMihoiosIPdz06FCUYFl9FvoE3oYIZFYc3o9jAkWPAQoq1wV+vtvWb3/v60V+wSEdG/Xdf/HJw=
+  </data>
+ </layer>
+ <layer name="Blocks" width="30" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztlkkKgDAMRVO0d/L+JxMXgkiNP1Mjkg/ZpbxMbUpU4rQJzJupjQ/1s+S0XIwYX01dOPbB60Fc7pwkX81cSPuIqIF+aBxv3LM+Gu4ojiwu0rt2Mw9uhrzfLlS9uL/mZs2VN9O6K7V71/qvWB8suidf4s6YwYxcR9xZ9y3y31vK1w7Qyxmd
+  </data>
+ </layer>
+ <layer name="Material" width="30" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztlksOwCAIRDkZ9f6n6qqJMQQdfraNk7BDHyCKREeaLsCimdb4Vv08OXFnpPha6qKxM7naOoRr6Qv0HFfEcxcojhl3rFEz8CVWNRft/+h8e7Vgk7jWu+Lh8ge5SAx/46KKnokIN3o/z6y0zl3vv2J8nx7LPpM3cSt6cEeuErfqvmX+e4/26wZvpzdr
+  </data>
+ </layer>
+ <objectgroup name="Obj" width="30" height="30">
+  <object name="Spawn" x="290" y="245" width="27" height="27"/>
+ </objectgroup>
+</map>

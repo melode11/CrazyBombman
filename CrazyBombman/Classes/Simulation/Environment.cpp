@@ -19,8 +19,8 @@ namespace Simulation
     {
         Player* player = Player::create();
         player->createNode();
-        CCTMXObjectGroup *group = _tileMap->objectGroupNamed("Objects");
-        CCDictionary *spawn = group->objectNamed("PlayerSpawn");
+        CCTMXObjectGroup *group = _tileMap->objectGroupNamed(TILE_MAP_OBJ_LAYER);
+        CCDictionary *spawn = group->objectNamed(TILE_MAP_SPAWN_OBJ);
         float x = ((CCString*)spawn->objectForKey("x"))->floatValue();
         float y = ((CCString*)spawn->objectForKey("y"))->floatValue();
         //sample 357,800
@@ -120,7 +120,7 @@ namespace Simulation
 
     bool Environment::checkCollision(CCPoint& p)
     {
-        CCTMXLayer *blocks = _tileMap->layerNamed("Blocks");
+        CCTMXLayer *blocks = _tileMap->layerNamed(TILE_MAP_MATERIAL_LAYER);
 
         //calculate heading tile
         CCPoint mapCoord = Utility::GetMapCoords(_tileMap, p);
@@ -136,11 +136,14 @@ namespace Simulation
         if(gid)
         {
             CCDictionary *dictionary = _tileMap->propertiesForGID(gid);
-            CCString* mat = (CCString*)dictionary->objectForKey("material");
-            Material material = static_cast<Material>(mat->intValue());
-            if(material == eDestroyable || material == eSolid)
+            CCString* mat = (CCString*)dictionary->objectForKey(TILE_MAP_MATERIAL_KEY);
+            if(mat)
             {
-                return true;
+                Material material = static_cast<Material>(mat->intValue());
+                if(material == eDestroyable || material == eSolid)
+                {
+                    return true;
+                }
             }
         }
         return false;

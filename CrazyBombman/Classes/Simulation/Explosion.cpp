@@ -73,7 +73,7 @@ namespace Simulation
             cocos2d::CCDictionary* properties = tileMap->propertiesForGID(gid);
             if(properties)
             {
-                cocos2d::CCObject *val = properties->objectForKey("material");
+                cocos2d::CCObject *val = properties->objectForKey(TILE_MAP_MATERIAL_KEY);
                 if(val)
                 {
                     int material = static_cast<cocos2d::CCString*>(val) ->intValue();
@@ -98,7 +98,7 @@ namespace Simulation
         node.setAction(action);
         node.setNode(explode);
         _animateNodes.push_back(node);
-        cocos2d::CCTMXLayer *blockLayer = tileMap->layerNamed("Blocks");
+        cocos2d::CCTMXLayer *blockLayer = tileMap->layerNamed(TILE_MAP_MATERIAL_LAYER);
         cocos2d::CCPoint mapCoord;
         for(int d = 0;d < 4;d++)
         {//4 direction.
@@ -116,7 +116,7 @@ namespace Simulation
                     {
                         break;
                     }
-                    else if(mat == eDestroyable)
+                    else if(mat == eDestroyable || mat == eNonBlock)
                     {
                         _destroyMapcoords.push_back(mapCoord);
                     }
@@ -140,11 +140,12 @@ namespace Simulation
     void Explosion::destroyBlocks(cocos2d::CCTMXTiledMap *tileMap)
     {
         using namespace cocos2d;
-        CCTMXLayer *layer = tileMap->layerNamed("Blocks");
+        CCTMXLayer *layer = tileMap->layerNamed(TILE_MAP_MATERIAL_LAYER);
+        CCTMXLayer *blockLayer = tileMap->layerNamed(TILE_MAP_BLOCKS_LAYER);
         printf("destroy size:%ld\n",_destroyMapcoords.size());
         for (std::vector<CCPoint>::iterator it = _destroyMapcoords.begin(); it < _destroyMapcoords.end(); ++it)
         {
-            CCSprite *tile = layer ->tileAt(*it);
+            CCSprite *tile = blockLayer ->tileAt(*it);
             if(tile)
             {
                 printf("destory tile(%d,%d) with animation, tile addr:%d\n",(int)(*it).x,(int)(*it).y, reinterpret_cast<unsigned int>(tile));
@@ -152,6 +153,7 @@ namespace Simulation
 //                callbackinfo->retain();
 //                CCSequence* seq = CCSequence::create(CCDelayTime::create(0.3),CCCallFuncND::create(this, callfuncND_selector(Simulation::Explosion::removeTile), callbackinfo),NULL);
 //                tile->runAction(seq);
+                blockLayer->removeTileAt(*it);
                 layer->removeTileAt(*it);
             }
         }

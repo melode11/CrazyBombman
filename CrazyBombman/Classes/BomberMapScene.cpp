@@ -54,8 +54,9 @@ bool BomberMapScene::init()
     {
         return false;
     }
-    this->_tileMap = CCTMXTiledMap::create("bombermap.tmx");
+    this->_tileMap = CCTMXTiledMap::create(TILE_MAP_FILE);
     this->_tileMap->retain();
+    this->_tileMap->layerNamed(TILE_MAP_MATERIAL_LAYER)->setVisible(false);
     this->addChild(this->_tileMap,-1);
 
     this->_tileMap->setContentSize(CCDirector::sharedDirector()->getWinSize());
