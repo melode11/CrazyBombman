@@ -15,6 +15,22 @@ using namespace cocos2d;
 
 namespace Simulation
 {
+    void Environment::spawnPlayer()
+    {
+        Player* player = Player::create();
+        player->createNode();
+        CCTMXObjectGroup *group = _tileMap->objectGroupNamed("Objects");
+        CCDictionary *spawn = group->objectNamed("PlayerSpawn");
+        float x = ((CCString*)spawn->objectForKey("x"))->floatValue();
+        float y = ((CCString*)spawn->objectForKey("y"))->floatValue();
+        //sample 357,800
+        CCPoint p = ccp(x,y);
+        player->getNode()->setPosition(p);
+        _ppDelegate->addNode(player->getNode(),Z_PLAYER);
+        _ppDelegate->updatePlayerPostion(p);
+        setPlayer(player);
+    }
+    
     bool Environment::init()
     {
         _bombs = CCArray::create();

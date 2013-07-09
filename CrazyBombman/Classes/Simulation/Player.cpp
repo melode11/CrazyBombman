@@ -7,6 +7,8 @@
 //
 
 #include "Player.h"
+#include "AnimationLoader.h"
+
 namespace Simulation
 {
     Player::Player():_node(0),_direction(eNone)
@@ -29,6 +31,7 @@ namespace Simulation
         if(!_node)
             return;
         double dx = 0,dy = 0;
+
         switch (_direction) {
             case eLeft:
                 dx = - (time_inteval* PLAYER_VELOCITY);
@@ -69,8 +72,36 @@ namespace Simulation
         }
     }
     
+    void Player::setDirection(Direction var)
+    {
+        if(_node&&var!= _direction)
+        {
+            cocos2d::CCAnimation *anim = Utility::AnimationLoader::walkingAnimation(var);
+            if(anim)
+            {
+                cocos2d::CCRepeatForever* act = cocos2d::CCRepeatForever::create(cocos2d::CCAnimate::create(anim));
+                _node->stopAllActions();
+                _node->runAction(act);
+            }
+            else
+            {
+                _node->stopAllActions();
+            }
+        }
+        _direction = var;
+    }
+    
     cocos2d::CCPoint Player::getPlayerPosition()
     {
         return this->_node->getPosition();
+    }
+    
+    void Player::createNode()
+    {
+        using namespace cocos2d;
+        CCTextureCache::sharedTextureCache() -> addImage("bombman.png");
+        CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("bombman.plist");
+        CCSprite* sprite = cocos2d::CCSprite::createWithSpriteFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("ds-01.png"));
+        setNode(sprite);
     }
 }

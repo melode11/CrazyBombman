@@ -74,6 +74,8 @@ namespace Simulation
         
         void addBomb(Bomb* bomb);
         
+        void spawnPlayer();
+        
         CC_SYNTHESIZE_RETAIN(Player*, _player, Player);
 
         CC_SYNTHESIZE(GameModelDelegate*, _ppDelegate, Delegate);

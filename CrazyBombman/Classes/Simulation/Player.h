@@ -36,9 +36,11 @@ namespace Simulation{
         
         virtual void update(float dt);
         
-
+        CC_SYNTHESIZE_READONLY(Direction, _direction, Direction);
         
-        CC_SYNTHESIZE(Direction, _direction, Direction);
+        void setDirection(Direction var);
+        
+        void createNode();
         
         CREATE_FUNC(Player);
     };

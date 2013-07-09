@@ -30,18 +30,7 @@ using namespace cocos2d;
 //}
 
 
-CCSprite* spawnPlayer(CCTMXTiledMap *tileMap,CCLayer* layer)
-{
-    CCTMXObjectGroup *group = tileMap->objectGroupNamed("Objects");
-    CCDictionary *spawn = group->objectNamed("PlayerSpawn");
-    float x = ((CCString*)spawn->objectForKey("x"))->floatValue();
-    float y = ((CCString*)spawn->objectForKey("y"))->floatValue();
-    //sample 357,800
-    CCSprite *player = CCSprite::create("Player.png");
-    player->setPosition(ccp(x, y));
-    layer->addChild(player,Z_PLAYER);
-    return player;
-}
+
 
 void setViewPointCenter(CCLayer* layer, const CCPoint& position,const CCSize& mapSize, const CCSize& tileSize)
 {
@@ -69,18 +58,12 @@ bool BomberMapScene::init()
     this->addChild(this->_tileMap,-1);
 
     this->_tileMap->setContentSize(CCDirector::sharedDirector()->getWinSize());
-    CCSprite *playerNode = spawnPlayer(this->_tileMap, this);
-    setViewPointCenter(this,playerNode->getPosition(),_tileMap->getMapSize(),_tileMap->getTileSize());
-
-    
-    Simulation::Player *player = Simulation::Player::create();
-    player->setNode(playerNode);
 
     _env = Simulation::Environment::create();
     _env->retain();
-    _env -> setPlayer(player);
     _env->setTileMap(this->_tileMap);
     _env->setDelegate(this);
+    _env->spawnPlayer();
     CCDirector::sharedDirector()->getScheduler()->scheduleUpdateForTarget(_env, 0, false);
     this->setAccelerometerEnabled(true);
     this->setTouchEnabled(true);
