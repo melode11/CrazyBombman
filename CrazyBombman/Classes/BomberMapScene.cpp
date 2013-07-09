@@ -9,6 +9,7 @@
 #include "BomberMapScene.h"
 #include "TileUtils.h"
 #include "Simulation.h"
+#include "ArtworkLoader.h"
 
 using namespace cocos2d;
 
@@ -132,7 +133,7 @@ void BomberMapScene::removeNode(cocos2d::CCNode *node)
 
 void BomberMapScene::ccTouchesEnded(cocos2d::CCSet *pTouch, cocos2d::CCEvent *pEvent)
 {
-    CCSprite* bombNode = CCSprite::create("bomb.png");
+    CCSprite* bombNode = Utility::ArtworkLoader::bombSprite();
     CCPoint position = _env->getPlayer()->getPlayerPosition();
     CCSize size = _tileMap->getTileSize();
     bombNode->setPosition(ccp(((int)(position.x/size.width) + 0.5)*size.width, (ceil(position.y/size.height)-0.5)*size.width));

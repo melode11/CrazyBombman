@@ -9,7 +9,7 @@
 #include "Explosion.h"
 #include "Simulation.h"
 #include "TileUtils.h"
-#include "AnimationLoader.h"
+#include "ArtworkLoader.h"
 
 namespace Simulation
 {
@@ -91,7 +91,7 @@ namespace Simulation
         CCSprite *explode = CCSprite::create();
         explode->setPosition(center);
         explode->setVisible(false);
-        CCAnimation *animation = Utility::AnimationLoader::explosionAnimation();
+        CCAnimation *animation = Utility::ArtworkLoader::explosionAnimation();
         
         CCAnimate* action = CCAnimate::create(animation);
         AnimatedNode node;

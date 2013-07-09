@@ -7,7 +7,7 @@
 //
 
 #include "Player.h"
-#include "AnimationLoader.h"
+#include "ArtworkLoader.h"
 
 namespace Simulation
 {
@@ -76,7 +76,7 @@ namespace Simulation
     {
         if(_node&&var!= _direction)
         {
-            cocos2d::CCAnimation *anim = Utility::AnimationLoader::walkingAnimation(var);
+            cocos2d::CCAnimation *anim = Utility::ArtworkLoader::walkingAnimation(var);
             if(anim)
             {
                 cocos2d::CCRepeatForever* act = cocos2d::CCRepeatForever::create(cocos2d::CCAnimate::create(anim));
@@ -98,10 +98,7 @@ namespace Simulation
     
     void Player::createNode()
     {
-        using namespace cocos2d;
-        CCTextureCache::sharedTextureCache() -> addImage("bombman.png");
-        CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("bombman.plist");
-        CCSprite* sprite = cocos2d::CCSprite::createWithSpriteFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("ds-01.png"));
+        cocos2d::CCSprite* sprite = Utility::ArtworkLoader::playerSprite();
         setNode(sprite);
     }
 }

@@ -1,21 +1,21 @@
 //
-//  AnimationLoader.cpp
+//  ArtworkLoader.cpp
 //  CrazyBombman
 //
 //  Created by Yao Melo on 7/3/13.
 //
 //
 
-#include "AnimationLoader.h"
+#include "ArtworkLoader.h"
 namespace Utility
 {
-    cocos2d::CCAnimation* AnimationLoader::moveUpAnimation = NULL;
+    cocos2d::CCAnimation* ArtworkLoader::moveUpAnimation = NULL;
     
-    cocos2d::CCAnimation* AnimationLoader::moveDownAnimation = NULL;
+    cocos2d::CCAnimation* ArtworkLoader::moveDownAnimation = NULL;
     
-    cocos2d::CCAnimation* AnimationLoader::moveLeftAnimation = NULL;
+    cocos2d::CCAnimation* ArtworkLoader::moveLeftAnimation = NULL;
     
-    cocos2d::CCAnimation* AnimationLoader::moveRightAnimation = NULL;
+    cocos2d::CCAnimation* ArtworkLoader::moveRightAnimation = NULL;
     
     using namespace cocos2d;
     
@@ -40,7 +40,7 @@ namespace Utility
         return arr;
     }
     
-    CCAnimation* AnimationLoader::explosionAnimation()
+    CCAnimation* ArtworkLoader::explosionAnimation()
     {
         CCArray *frames = CCArray::create();
         for(int i = 0;i<4;i++)
@@ -55,7 +55,7 @@ namespace Utility
         return CCAnimation::createWithSpriteFrames(frames,0.1);
     }
     
-    CCAnimation* AnimationLoader::walkingAnimation(Simulation::Direction dir)
+    CCAnimation* ArtworkLoader::walkingAnimation(Simulation::Direction dir)
     {
         CCTextureCache::sharedTextureCache() -> addImage("bombman.png");
         CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("bombman.plist");
