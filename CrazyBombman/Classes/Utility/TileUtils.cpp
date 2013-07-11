@@ -16,6 +16,7 @@ namespace Utility {
     
     typedef void (*FP_INTERSECTION_HANDLER)(float variable, float co_variable, void* userObj);
     
+    
     static inline void push_back(std::vector<CCPoint>& v, CCPoint const& p)
     {
         v.push_back(p);

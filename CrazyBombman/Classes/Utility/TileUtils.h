@@ -15,6 +15,12 @@
 namespace Utility{
     using namespace cocos2d;
     
+    //axis-align bounding box intersection.
+    static inline bool AABBContains(CCRect const& rectA,CCRect const& rectB)
+    {
+
+    }
+    
     static inline CCPoint GetGLPosition(const CCTMXTiledMap *tileMap,const CCPoint& point)
     {
         CCSize tileSize = tileMap->getTileSize();
