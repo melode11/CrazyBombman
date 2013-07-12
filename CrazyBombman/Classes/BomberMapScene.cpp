@@ -10,7 +10,7 @@
 #include "TileUtils.h"
 #include "Simulation.h"
 #include "ArtworkLoader.h"
-
+#include "SceneLevelParams.h"
 
 using namespace cocos2d;
 
@@ -65,7 +65,7 @@ bool BomberMapScene::init()
 
     this->_tileMap->setContentSize(CCDirector::sharedDirector()->getWinSize());
 
-    _env = Simulation::Environment::create();
+    _env = Simulation::Environment::create(*(Simulation::SceneLevelParams::globalSceneLevelParams()));
     _env->retain();
     _env->setTileMap(this->_tileMap);
     _env->setDelegate(this);

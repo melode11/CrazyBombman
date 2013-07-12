@@ -13,8 +13,16 @@
 
 #define BOMB_DURATION 3.0
 
-#define EXPLOSION_RANGE 128.0
+//initial SLPs
+#define INITIAL_EXPLOSION_RANGE 128.0
 
+#define INITIAL_BOMB_AMOUNT 20
+
+#define INITIAL_HITPOINT 1
+
+#define INITIAL_TIMELIMIT 120.0
+
+//z_order
 #define Z_EXPLOSION 3
 #define Z_PLAYER 2
 #define Z_BOMB 1

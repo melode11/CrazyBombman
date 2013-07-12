@@ -54,6 +54,7 @@
 		812A946D178E464B00393812 /* b2WheelJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 812A943D178E464B00393812 /* b2WheelJoint.cpp */; };
 		812A946E178E464B00393812 /* b2Rope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 812A9440178E464B00393812 /* b2Rope.cpp */; };
 		812A9472178E7FC900393812 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 812A9471178E7FC900393812 /* Default-568h@2x.png */; };
+		812A9475178FADFD00393812 /* SceneLevelParams.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 812A9473178FADFD00393812 /* SceneLevelParams.cpp */; };
 		8163EFD9177D65A600B92A00 /* TileUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8163EFD8177D65A600B92A00 /* TileUtils.cpp */; };
 		818A3CFE1771380D0015431F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 818A3CFD1771380D0015431F /* QuartzCore.framework */; };
 		818A3D001771380D0015431F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 818A3CFF1771380D0015431F /* OpenGLES.framework */; };
@@ -404,6 +405,8 @@
 		812A9440178E464B00393812 /* b2Rope.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = b2Rope.cpp; sourceTree = "<group>"; };
 		812A9441178E464B00393812 /* b2Rope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = b2Rope.h; sourceTree = "<group>"; };
 		812A9471178E7FC900393812 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		812A9473178FADFD00393812 /* SceneLevelParams.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SceneLevelParams.cpp; sourceTree = "<group>"; };
+		812A9474178FADFD00393812 /* SceneLevelParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneLevelParams.h; sourceTree = "<group>"; };
 		8163EFD8177D65A600B92A00 /* TileUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TileUtils.cpp; sourceTree = "<group>"; };
 		818A3CFA1771380D0015431F /* CrazyBombman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrazyBombman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		818A3CFD1771380D0015431F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -2250,6 +2253,8 @@
 				818A4108177722590015431F /* Bomb.h */,
 				818A410A177722B00015431F /* Explosion.cpp */,
 				818A410B177722B10015431F /* Explosion.h */,
+				812A9473178FADFD00393812 /* SceneLevelParams.cpp */,
+				812A9474178FADFD00393812 /* SceneLevelParams.h */,
 			);
 			path = Simulation;
 			sourceTree = "<group>";
@@ -2614,6 +2619,7 @@
 				812A946C178E464B00393812 /* b2WeldJoint.cpp in Sources */,
 				812A946D178E464B00393812 /* b2WheelJoint.cpp in Sources */,
 				812A946E178E464B00393812 /* b2Rope.cpp in Sources */,
+				812A9475178FADFD00393812 /* SceneLevelParams.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
