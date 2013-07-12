@@ -53,6 +53,7 @@
 		812A946C178E464B00393812 /* b2WeldJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 812A943B178E464B00393812 /* b2WeldJoint.cpp */; };
 		812A946D178E464B00393812 /* b2WheelJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 812A943D178E464B00393812 /* b2WheelJoint.cpp */; };
 		812A946E178E464B00393812 /* b2Rope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 812A9440178E464B00393812 /* b2Rope.cpp */; };
+		812A9472178E7FC900393812 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 812A9471178E7FC900393812 /* Default-568h@2x.png */; };
 		8163EFD9177D65A600B92A00 /* TileUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8163EFD8177D65A600B92A00 /* TileUtils.cpp */; };
 		818A3CFE1771380D0015431F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 818A3CFD1771380D0015431F /* QuartzCore.framework */; };
 		818A3D001771380D0015431F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 818A3CFF1771380D0015431F /* OpenGLES.framework */; };
@@ -402,6 +403,7 @@
 		812A943E178E464B00393812 /* b2WheelJoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = b2WheelJoint.h; sourceTree = "<group>"; };
 		812A9440178E464B00393812 /* b2Rope.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = b2Rope.cpp; sourceTree = "<group>"; };
 		812A9441178E464B00393812 /* b2Rope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = b2Rope.h; sourceTree = "<group>"; };
+		812A9471178E7FC900393812 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		8163EFD8177D65A600B92A00 /* TileUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TileUtils.cpp; sourceTree = "<group>"; };
 		818A3CFA1771380D0015431F /* CrazyBombman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrazyBombman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		818A3CFD1771380D0015431F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -1132,6 +1134,7 @@
 		818A3CF11771380D0015431F = {
 			isa = PBXGroup;
 			children = (
+				812A9471178E7FC900393812 /* Default-568h@2x.png */,
 				818A3D0D1771380D0015431F /* CrazyBombman */,
 				818A3CFC1771380D0015431F /* Frameworks */,
 				818A3CFB1771380D0015431F /* Products */,
@@ -2328,6 +2331,7 @@
 				81DA8350178B9B2400E80037 /* bombman.png in Resources */,
 				81DA83BD178C546A00E80037 /* tilemap.tmx in Resources */,
 				81DA83BE178C546A00E80037 /* tilesetpack.png in Resources */,
+				812A9472178E7FC900393812 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2628,7 +2632,7 @@
 					"COCOS2D_DEBUG=1",
 					USE_FILE32API,
 					CC_TARGET_OS_IPHONE,
-					"CC_ENABLE_CHIPMUNK_INTEGRATION=1",
+					"CC_ENABLE_BOX2D_INTEGRATION=1",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -2658,7 +2662,7 @@
 					NDEBUG,
 					USE_FILE32API,
 					CC_TARGET_OS_IPHONE,
-					"CC_ENABLE_CHIPMUNK_INTEGRATION=1",
+					"CC_ENABLE_BOX2D_INTEGRATION=1",
 				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;

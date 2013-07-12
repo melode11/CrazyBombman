@@ -19,19 +19,6 @@
 namespace Simulation
 {
     
-    static inline cocos2d::CCRect getCCRect(cocos2d::CCNode* node)
-    {
-        if(node)
-        {
-            cocos2d::CCSize size = node->getContentSize();
-            cocos2d::CCPoint p = node->getPosition();
-            cocos2d::CCPoint anchor;
-            anchor.operator=(node->getAnchorPoint());
-            using namespace cocos2d;
-            return CCRectMake(p.x - anchor.x, p.y - anchor.y, size.width, size.height);
-        }
-        return cocos2d::CCRectZero;
-    }
     
 //    static inline cocos2d::CCRect getCCRectForLeftBottomAligned(cocos2d::CCNode* node)
 //    {
@@ -58,7 +45,7 @@ namespace Simulation
     protected:
         void updateBombs(float dt);
         void updateExplosions(float dt);
-        bool checkCollision(cocos2d::CCPoint& postion);
+        bool checkCollision(cocos2d::CCPoint& newP, cocos2d::CCPoint const& prevP);
     public:
         Environment():_player(0),_ppDelegate(0),_tileMap(0),_bombs(0)
         {};

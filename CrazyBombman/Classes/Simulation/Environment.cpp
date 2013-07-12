@@ -59,13 +59,17 @@ namespace Simulation
         CCPoint p = _player->getPlayerPosition();
         _player ->update(dt);
         CCPoint newP = _player->getPlayerPosition();
-        if(checkCollision(newP))
+        if(!p.equals(newP))
         {//collision happen, back to the old position.
-            _player->getNode()->setPosition(p);
-        }
-        else if(_ppDelegate)
-        {
-            _ppDelegate -> updatePlayerPostion(newP);
+            if(checkCollision(newP, p))
+            {
+                _player->getNode()->setPosition(newP);
+            }
+            
+            if(_ppDelegate)
+            {
+                _ppDelegate -> updatePlayerPostion(newP);
+            }
         }
         
     }
@@ -117,36 +121,81 @@ namespace Simulation
             _bombs->removeObjectAtIndex(*it);
         }
     }
-
-    bool Environment::checkCollision(CCPoint& p)
+    
+    bool testTileCollidable(CCTMXTiledMap *tilemap,CCPoint const& mapCoord,CCRect* tileRect)
     {
-        CCTMXLayer *blocks = _tileMap->layerNamed(TILE_MAP_MATERIAL_LAYER);
-
-        //calculate heading tile
-        CCPoint mapCoord = Utility::GetMapCoords(_tileMap, p);
+        CCTMXLayer *blocks = tilemap->layerNamed(TILE_MAP_MATERIAL_LAYER);
         CCSize mapSize = blocks->getLayerSize();
         if(mapCoord.x<0||mapCoord.x>=mapSize.width || mapCoord.y<0 || mapCoord.y>=mapSize.height)
         {
+            if(tileRect)
+            {
+                *tileRect = CCRectZero;
+            }
             //collide with map border.
             return true;
         }
         int gid = blocks->tileGIDAt(mapCoord);
-    
-        CCLOGINFO("tileGid %d",gid);
+        
+
         if(gid)
         {
-            CCDictionary *dictionary = _tileMap->propertiesForGID(gid);
+            CCDictionary *dictionary = tilemap->propertiesForGID(gid);
             CCString* mat = (CCString*)dictionary->objectForKey(TILE_MAP_MATERIAL_KEY);
             if(mat)
             {
                 Material material = static_cast<Material>(mat->intValue());
                 if(material == eDestroyable || material == eSolid)
                 {
+                    if(tileRect)
+                    {
+                        *tileRect = Utility::GetBoundingBox(blocks->tileAt(mapCoord));
+                    }
                     return true;
                 }
             }
         }
         return false;
+    }
+
+    bool Environment::checkCollision(CCPoint& p, CCPoint const& prevP)
+    {
+//        CCTMXLayer *blocks = _tileMap->layerNamed(TILE_MAP_MATERIAL_LAYER);
+//
+//        //calculate heading tile
+//        CCPoint mapCoord = Utility::GetMapCoords(_tileMap, p);
+//        CCSize mapSize = blocks->getLayerSize();
+//        if(mapCoord.x<0||mapCoord.x>=mapSize.width || mapCoord.y<0 || mapCoord.y>=mapSize.height)
+//        {
+//            //collide with map border.
+//            return true;
+//        }
+//        int gid = blocks->tileGIDAt(mapCoord);
+//    
+//        CCLOGINFO("tileGid %d",gid);
+//        if(gid)
+//        {
+//            CCDictionary *dictionary = _tileMap->propertiesForGID(gid);
+//            CCString* mat = (CCString*)dictionary->objectForKey(TILE_MAP_MATERIAL_KEY);
+//            if(mat)
+//            {
+//                Material material = static_cast<Material>(mat->intValue());
+//                if(material == eDestroyable || material == eSolid)
+//                {
+//                    return true;
+//                }
+//            }
+//        }
+//        return false;
+        CCPoint dir = p- prevP;
+        CCSize playerSize = _player->getNode()->getContentSize();
+        CCPoint playerVec = ccp(playerSize.width/2,playerSize.height/2);
+        float dot = dir.dot(playerVec);
+        dir = dir * (fabs(dot)/dir.getLengthSq());
+        CCPoint contactVec;
+        bool collide = Utility::TestSegCollision(_tileMap, p, p+dir, testTileCollidable,&contactVec);
+        p = p+contactVec;
+        return collide;
     }
     
     

@@ -11,6 +11,7 @@
 #include "Simulation.h"
 #include "ArtworkLoader.h"
 
+
 using namespace cocos2d;
 
 
@@ -32,14 +33,17 @@ using namespace cocos2d;
 
 
 
-
 void setViewPointCenter(CCLayer* layer, const CCPoint& position,const CCSize& mapSize, const CCSize& tileSize)
 {
+    int mapW = mapSize.width * tileSize.width;
+    int mapH = mapSize.height * tileSize.height;
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
-    int x = MAX(position.x, winSize.width/2);
-    int y = MAX(position.y, winSize.height/2);
-    x = MIN(x, (mapSize.width * tileSize.width) - winSize.width / 2);
-    y = MIN(y, (mapSize.height * tileSize.height) - winSize.height/2);
+    int offsetX = MAX(0,(winSize.width - mapW)/2);
+    int offsetY = MAX(0,(winSize.height - mapH)/2);
+    int x = MIN(position.x, mapW - winSize.width / 2 + offsetX);
+    int y = MIN(position.y, mapH - winSize.height/2 + offsetY);
+    x = MAX(x, winSize.width/2 - offsetX);
+    y = MAX(y, winSize.height/2- offsetY);
     CCPoint actualPosition = ccp(x, y);
     
     CCPoint centerOfView = ccp(winSize.width/2, winSize.height/2);
