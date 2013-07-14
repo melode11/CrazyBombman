@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Mon_01_01.png</key>
+            <key>Mon_01.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{24,32}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_02.png</key>
+            <key>Mon_02.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{28,2},{24,30}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_03.png</key>
+            <key>Mon_03.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{54,2},{26,32}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_04.png</key>
+            <key>Mon_04.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{82,2},{26,32}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_05.png</key>
+            <key>Mon_05.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{110,2},{24,32}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_06.png</key>
+            <key>Mon_06.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{136,2},{24,30}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_07.png</key>
+            <key>Mon_07.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{162,2},{26,26}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_08.png</key>
+            <key>Mon_08.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{190,2},{26,26}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_09.png</key>
+            <key>Mon_09.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{218,2},{24,26}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_10.png</key>
+            <key>Mon_10.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,36},{24,26}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_11.png</key>
+            <key>Mon_11.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{28,36},{24,26}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_12.png</key>
+            <key>Mon_12.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{54,36},{26,24}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_13.png</key>
+            <key>Mon_13.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{82,36},{16,28}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_14.png</key>
+            <key>Mon_14.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{100,36},{16,28}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_15.png</key>
+            <key>Mon_15.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{118,36},{16,26}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_16.png</key>
+            <key>Mon_16.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{136,36},{14,26}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_17.png</key>
+            <key>Mon_17.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{152,36},{16,28}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_18.png</key>
+            <key>Mon_18.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{170,36},{16,28}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_19.png</key>
+            <key>Mon_19.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{188,36},{20,22}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_20.png</key>
+            <key>Mon_20.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{210,36},{20,22}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_21.png</key>
+            <key>Mon_21.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,66},{26,24}}</string>
@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_22.png</key>
+            <key>Mon_22.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{30,66},{28,26}}</string>
@@ -290,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_23.png</key>
+            <key>Mon_23.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{60,66},{18,24}}</string>
@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_24.png</key>
+            <key>Mon_24.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{80,66},{16,26}}</string>
@@ -316,7 +316,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_25.png</key>
+            <key>Mon_25.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{98,66},{28,30}}</string>
@@ -329,7 +329,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_26.png</key>
+            <key>Mon_26.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{128,66},{28,30}}</string>
@@ -342,7 +342,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_27.png</key>
+            <key>Mon_27.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{158,66},{28,30}}</string>
@@ -355,7 +355,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_28.png</key>
+            <key>Mon_28.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{188,66},{28,30}}</string>
@@ -368,7 +368,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_29.png</key>
+            <key>Mon_29.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{218,66},{28,30}}</string>
@@ -381,7 +381,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_30.png</key>
+            <key>Mon_30.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,98},{28,30}}</string>
@@ -394,7 +394,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_31.png</key>
+            <key>Mon_31.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{32,98},{22,24}}</string>
@@ -407,7 +407,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_32.png</key>
+            <key>Mon_32.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{56,98},{22,24}}</string>
@@ -420,7 +420,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_33.png</key>
+            <key>Mon_33.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{80,98},{22,24}}</string>
@@ -433,7 +433,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_34.png</key>
+            <key>Mon_34.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{104,98},{22,24}}</string>
@@ -446,7 +446,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_35.png</key>
+            <key>Mon_35.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{128,98},{22,24}}</string>
@@ -459,7 +459,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_36.png</key>
+            <key>Mon_36.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{152,98},{22,24}}</string>
@@ -472,7 +472,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_37.png</key>
+            <key>Mon_37.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{176,98},{22,30}}</string>
@@ -485,7 +485,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_38.png</key>
+            <key>Mon_38.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{200,98},{22,26}}</string>
@@ -498,7 +498,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_39.png</key>
+            <key>Mon_39.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{224,98},{24,30}}</string>
@@ -511,7 +511,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_40.png</key>
+            <key>Mon_40.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,130},{22,24}}</string>
@@ -524,7 +524,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_41.png</key>
+            <key>Mon_41.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{26,130},{22,26}}</string>
@@ -537,7 +537,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_42.png</key>
+            <key>Mon_42.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{50,130},{22,24}}</string>
@@ -550,7 +550,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_43.png</key>
+            <key>Mon_43.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{74,130},{16,34}}</string>
@@ -563,7 +563,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_44.png</key>
+            <key>Mon_44.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{92,130},{16,34}}</string>
@@ -576,7 +576,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_45.png</key>
+            <key>Mon_45.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{110,130},{30,26}}</string>
@@ -589,7 +589,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_46.png</key>
+            <key>Mon_46.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{142,130},{28,26}}</string>
@@ -602,7 +602,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_47.png</key>
+            <key>Mon_47.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{172,130},{16,30}}</string>
@@ -615,7 +615,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_48.png</key>
+            <key>Mon_48.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{190,130},{16,30}}</string>
@@ -628,7 +628,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_49.png</key>
+            <key>Mon_49.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{208,130},{26,32}}</string>
@@ -641,7 +641,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_50.png</key>
+            <key>Mon_50.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,166},{24,34}}</string>
@@ -654,7 +654,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_51.png</key>
+            <key>Mon_51.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{28,166},{18,32}}</string>
@@ -667,7 +667,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_52.png</key>
+            <key>Mon_52.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{48,166},{18,34}}</string>
@@ -680,7 +680,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_53.png</key>
+            <key>Mon_53.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{68,166},{26,32}}</string>
@@ -693,7 +693,7 @@
                 <key>sourceSize</key>
                 <string>{40,50}</string>
             </dict>
-            <key>Mon_01_54.png</key>
+            <key>Mon_54.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{96,166},{24,34}}</string>
