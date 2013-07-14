@@ -108,4 +108,46 @@ namespace Utility
         (*animation)->retain();
         return *animation;
     }
+    
+    CCAnimation* ArtworkLoader::mobAnimation(unsigned int mobId, Simulation::Direction dir,CCAffineTransform* outputAdditionalTrans)
+    {
+        CCTextureCache::sharedTextureCache()->addImage("monsters.png");
+        CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("monsters.plist");
+        unsigned int startIndex = 6*mobId + 1;//6 frames per monster.
+        bool isMirror = false;
+        switch (dir) {
+            case Simulation::eDown:
+                break;
+            case Simulation::eLeft:
+                startIndex+=2;
+                isMirror = true;
+                break;
+            case Simulation::eRight:
+                startIndex+=2;
+                break;
+            case Simulation::eUp:
+                startIndex+=4;
+                break;
+            default:
+                break;
+        }
+        char fn[16];
+        CCArray *arr = CCArray::create();
+        snprintf(fn, 16, "Mon_%02d.png",startIndex);
+        arr->addObject(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn));
+        snprintf(fn, 16, "Mon_%02d.png",++startIndex);
+        arr->addObject(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn));
+        if(outputAdditionalTrans)
+        {
+            if(isMirror)
+            {
+                *outputAdditionalTrans = CCAffineTransformScale(CCAffineTransformIdentity, -1.0, 1);
+            }
+            else
+            {
+                *outputAdditionalTrans = CCAffineTransformIdentity;
+            }
+        }
+        return CCAnimation::createWithSpriteFrames(arr,0.2);
+    }
 }

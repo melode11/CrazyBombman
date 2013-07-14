@@ -55,6 +55,11 @@
 		812A946E178E464B00393812 /* b2Rope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 812A9440178E464B00393812 /* b2Rope.cpp */; };
 		812A9472178E7FC900393812 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 812A9471178E7FC900393812 /* Default-568h@2x.png */; };
 		812A9475178FADFD00393812 /* SceneLevelParams.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 812A9473178FADFD00393812 /* SceneLevelParams.cpp */; };
+		812A9478179258C700393812 /* monsters.plist in Resources */ = {isa = PBXBuildFile; fileRef = 812A9476179258C700393812 /* monsters.plist */; };
+		812A9479179258C700393812 /* monsters.png in Resources */ = {isa = PBXBuildFile; fileRef = 812A9477179258C700393812 /* monsters.png */; };
+		812A947D17925B0E00393812 /* MobsSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 812A947B17925B0E00393812 /* MobsSystem.cpp */; };
+		812A948017925CC100393812 /* Mob.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 812A947E17925CC100393812 /* Mob.cpp */; };
+		812A948617929E3E00393812 /* MobPrototype.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 812A948417929E3C00393812 /* MobPrototype.cpp */; };
 		8163EFD9177D65A600B92A00 /* TileUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8163EFD8177D65A600B92A00 /* TileUtils.cpp */; };
 		818A3CFE1771380D0015431F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 818A3CFD1771380D0015431F /* QuartzCore.framework */; };
 		818A3D001771380D0015431F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 818A3CFF1771380D0015431F /* OpenGLES.framework */; };
@@ -407,6 +412,14 @@
 		812A9471178E7FC900393812 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		812A9473178FADFD00393812 /* SceneLevelParams.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SceneLevelParams.cpp; sourceTree = "<group>"; };
 		812A9474178FADFD00393812 /* SceneLevelParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneLevelParams.h; sourceTree = "<group>"; };
+		812A9476179258C700393812 /* monsters.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = monsters.plist; path = Resources/monsters.plist; sourceTree = "<group>"; };
+		812A9477179258C700393812 /* monsters.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = monsters.png; path = Resources/monsters.png; sourceTree = "<group>"; };
+		812A947B17925B0E00393812 /* MobsSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MobsSystem.cpp; sourceTree = "<group>"; };
+		812A947C17925B0E00393812 /* MobsSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobsSystem.h; sourceTree = "<group>"; };
+		812A947E17925CC100393812 /* Mob.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mob.cpp; sourceTree = "<group>"; };
+		812A947F17925CC100393812 /* Mob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mob.h; sourceTree = "<group>"; };
+		812A948417929E3C00393812 /* MobPrototype.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MobPrototype.cpp; sourceTree = "<group>"; };
+		812A948517929E3D00393812 /* MobPrototype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobPrototype.h; sourceTree = "<group>"; };
 		8163EFD8177D65A600B92A00 /* TileUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TileUtils.cpp; sourceTree = "<group>"; };
 		818A3CFA1771380D0015431F /* CrazyBombman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrazyBombman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		818A3CFD1771380D0015431F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -1134,6 +1147,19 @@
 			path = Rope;
 			sourceTree = "<group>";
 		};
+		812A947A17925AD900393812 /* Mobs */ = {
+			isa = PBXGroup;
+			children = (
+				812A947B17925B0E00393812 /* MobsSystem.cpp */,
+				812A947C17925B0E00393812 /* MobsSystem.h */,
+				812A947E17925CC100393812 /* Mob.cpp */,
+				812A947F17925CC100393812 /* Mob.h */,
+				812A948417929E3C00393812 /* MobPrototype.cpp */,
+				812A948517929E3D00393812 /* MobPrototype.h */,
+			);
+			path = Mobs;
+			sourceTree = "<group>";
+		};
 		818A3CF11771380D0015431F = {
 			isa = PBXGroup;
 			children = (
@@ -1182,6 +1208,8 @@
 		818A3D0E1771380D0015431F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				812A9476179258C700393812 /* monsters.plist */,
+				812A9477179258C700393812 /* monsters.png */,
 				81DA83BB178C546A00E80037 /* tilemap.tmx */,
 				81DA83BC178C546A00E80037 /* tilesetpack.png */,
 				81DA834D178B9B2400E80037 /* bombman.plist */,
@@ -2228,6 +2256,7 @@
 		818A40AA177139300015431F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				812A947A17925AD900393812 /* Mobs */,
 				818A40FE1774AB310015431F /* Utility */,
 				818A40AB177139310015431F /* AppDelegate.cpp */,
 				818A40AC177139310015431F /* AppDelegate.h */,
@@ -2337,6 +2366,8 @@
 				81DA83BD178C546A00E80037 /* tilemap.tmx in Resources */,
 				81DA83BE178C546A00E80037 /* tilesetpack.png in Resources */,
 				812A9472178E7FC900393812 /* Default-568h@2x.png in Resources */,
+				812A9478179258C700393812 /* monsters.plist in Resources */,
+				812A9479179258C700393812 /* monsters.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2620,6 +2651,9 @@
 				812A946D178E464B00393812 /* b2WheelJoint.cpp in Sources */,
 				812A946E178E464B00393812 /* b2Rope.cpp in Sources */,
 				812A9475178FADFD00393812 /* SceneLevelParams.cpp in Sources */,
+				812A947D17925B0E00393812 /* MobsSystem.cpp in Sources */,
+				812A948017925CC100393812 /* Mob.cpp in Sources */,
+				812A948617929E3E00393812 /* MobPrototype.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -28,11 +28,30 @@ namespace Utility
         
         static cocos2d::CCAnimation* walkingAnimation(Simulation::Direction dir);
         
+        /**
+         * outputAdditionalTrans indicates if there's an additional transform need to apply to CCSprite to make the animation correct.
+         */
+        static cocos2d::CCAnimation* mobAnimation(unsigned int mobId,Simulation::Direction dir,cocos2d::CCAffineTransform* outputAdditionalTrans);
+        
         static cocos2d::CCSprite* playerSprite()
         {
             cocos2d::CCTextureCache::sharedTextureCache() -> addImage("bombman.png");
             cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("bombman.plist");
             return cocos2d::CCSprite::createWithSpriteFrame(cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("ds-01.png"));
+        }
+        
+        static cocos2d::CCTexture2D* mobsTexture()
+        {
+            return cocos2d::CCTextureCache::sharedTextureCache() -> addImage("monsters.png");
+        }
+        
+        static cocos2d::CCSprite* mobSprite(unsigned int mobId)
+        {
+            cocos2d::CCTextureCache::sharedTextureCache() -> addImage("monsters.png");
+            cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("monsters.plist");
+            char fn[16];
+            snprintf(fn, 16, "Mon_%02d.png",mobId*6+1);
+            return cocos2d::CCSprite::createWithSpriteFrame(cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(fn));
         }
         
         static cocos2d::CCSprite* bombSprite()

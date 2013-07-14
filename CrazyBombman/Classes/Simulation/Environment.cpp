@@ -15,6 +15,22 @@ using namespace cocos2d;
 
 namespace Simulation
 {
+    
+    Environment* Environment::create(SceneLevelParams const& slp)
+    {
+        Environment* env = new Environment(slp);
+        if(env->init())
+        {
+            env->autorelease();
+            return env;
+        }
+        else
+        {
+            CC_SAFE_DELETE(env);
+            return NULL;
+        }
+    }
+    
     void Environment::spawnPlayer()
     {
         Player* player = Player::create();
@@ -37,6 +53,8 @@ namespace Simulation
         _bombs->retain();
         _explosions = CCArray::create();
         _explosions->retain();
+        _mobsSystem = MobsSystem::create();
+        _mobsSystem->retain();
         return true;
     }
     
@@ -71,7 +89,7 @@ namespace Simulation
                 _ppDelegate -> updatePlayerPostion(newP);
             }
         }
-        
+        updateMob(dt);
     }
     
     void Environment::updateExplosions(float dt)
@@ -122,6 +140,12 @@ namespace Simulation
         }
     }
     
+    void Environment::updateMob(float dt)
+    {
+        _mobsSystem->update(dt);
+        _mobsSystem->updateMobsOnMap(_tileMap, _ppDelegate);
+    }
+    
     bool testTileCollidable(CCTMXTiledMap *tilemap,CCPoint const& mapCoord,CCRect* tileRect)
     {
         CCTMXLayer *blocks = tilemap->layerNamed(TILE_MAP_MATERIAL_LAYER);
@@ -160,33 +184,6 @@ namespace Simulation
 
     bool Environment::checkCollision(CCPoint& p, CCPoint const& prevP)
     {
-//        CCTMXLayer *blocks = _tileMap->layerNamed(TILE_MAP_MATERIAL_LAYER);
-//
-//        //calculate heading tile
-//        CCPoint mapCoord = Utility::GetMapCoords(_tileMap, p);
-//        CCSize mapSize = blocks->getLayerSize();
-//        if(mapCoord.x<0||mapCoord.x>=mapSize.width || mapCoord.y<0 || mapCoord.y>=mapSize.height)
-//        {
-//            //collide with map border.
-//            return true;
-//        }
-//        int gid = blocks->tileGIDAt(mapCoord);
-//    
-//        CCLOGINFO("tileGid %d",gid);
-//        if(gid)
-//        {
-//            CCDictionary *dictionary = _tileMap->propertiesForGID(gid);
-//            CCString* mat = (CCString*)dictionary->objectForKey(TILE_MAP_MATERIAL_KEY);
-//            if(mat)
-//            {
-//                Material material = static_cast<Material>(mat->intValue());
-//                if(material == eDestroyable || material == eSolid)
-//                {
-//                    return true;
-//                }
-//            }
-//        }
-//        return false;
         CCPoint dir = p- prevP;
         CCSize playerSize = _player->getNode()->getContentSize();
         CCPoint playerVec = ccp(playerSize.width/2,playerSize.height/2);

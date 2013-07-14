@@ -13,6 +13,8 @@
 
 #define BOMB_DURATION 3.0
 
+#define MOB_KEEP_DIR_INTERVAL 5.0
+
 //initial SLPs
 #define INITIAL_EXPLOSION_RANGE 128.0
 
@@ -22,9 +24,13 @@
 
 #define INITIAL_TIMELIMIT 120.0
 
+#define INITIAL_MOB_SPAWN_INTERVAL 3.0
+
+#define INITIAL_MAX_MOB_COUNT 10
 //z_order
 #define Z_EXPLOSION 3
 #define Z_PLAYER 2
+#define Z_MOBS 2
 #define Z_BOMB 1
 
 namespace Simulation

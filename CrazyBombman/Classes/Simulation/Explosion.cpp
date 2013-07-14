@@ -13,7 +13,7 @@
 
 namespace Simulation
 {
-    Explosion::Explosion():_animateNodes(),_range(EXPLOSION_RANGE),_isFinished(false),_destroyMapcoords()
+    Explosion::Explosion():_animateNodes(),_range(INITIAL_EXPLOSION_RANGE),_isFinished(false),_destroyMapcoords()
     {
         
     }

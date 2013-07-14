@@ -14,7 +14,7 @@
 #define TILE_MAP_MATERIAL_LAYER "Material"
 #define TILE_MAP_BLOCKS_LAYER "Blocks"
 #define TILE_MAP_OBJ_LAYER "Obj"
+#define TILE_MAP_MOB_LAYER "Mobs"
 #define TILE_MAP_MATERIAL_KEY "M"
 #define TILE_MAP_SPAWN_OBJ "Spawn"
-
 #endif

@@ -15,6 +15,7 @@
 #include "Delegations.h"
 #include <vector>
 #include "Bomb.h"
+#include "MobsSystem.h"
 #include "SceneLevelParams.h"
 
 namespace Simulation
@@ -39,6 +40,7 @@ namespace Simulation
         cocos2d::CCTMXTiledMap *_tileMap;
         cocos2d::CCArray *_bombs;
         cocos2d::CCArray *_explosions;
+        MobsSystem* _mobsSystem;
         SceneLevelParams _slp;
         //hide copy constructor
         Environment(Environment const &env);
@@ -47,12 +49,14 @@ namespace Simulation
     protected:
         void updateBombs(float dt);
         void updateExplosions(float dt);
+        void updateMob(float dt);
+        
         bool checkCollision(cocos2d::CCPoint& newP, cocos2d::CCPoint const& prevP);
     public:
-        Environment():_player(0),_ppDelegate(0),_tileMap(0),_bombs(0),_slp()
+        Environment():_player(0),_ppDelegate(0),_tileMap(0),_bombs(0),_slp(),_mobsSystem(0)
         {};
         
-        Environment(SceneLevelParams const& slp):_player(0),_ppDelegate(0),_tileMap(0),_bombs(0),_slp(slp)
+        Environment(SceneLevelParams const& slp):_player(0),_ppDelegate(0),_tileMap(0),_bombs(0),_slp(slp),_mobsSystem(0)
         {};
         
         ~Environment();
@@ -73,8 +77,7 @@ namespace Simulation
         
         CREATE_FUNC(Environment);
         
-        static Environment* create(SceneLevelParams const& slp){Environment* env = new Environment(slp);env->autorelease();return env;}
-        
+        static Environment* create(SceneLevelParams const& slp);
         
     };
 }
