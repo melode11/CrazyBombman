@@ -29,9 +29,11 @@ namespace Utility
         static cocos2d::CCAnimation* walkingAnimation(Simulation::Direction dir);
         
         /**
-         * outputAdditionalTrans indicates if there's an additional transform need to apply to CCSprite to make the animation correct.
+         * outputIsFlipped indicates if there's an additional flipped transform need to apply to CCSprite 
+         * to make the animation correct. since the CCNode's additional transform not working as expected,
+         * we set the bool flag instead of constructing the transform.
          */
-        static cocos2d::CCAnimation* mobAnimation(unsigned int mobId,Simulation::Direction dir,cocos2d::CCAffineTransform* outputAdditionalTrans);
+        static cocos2d::CCAnimation* mobAnimation(unsigned int mobId,Simulation::Direction dir,bool* outputIsFlipped);
         
         static cocos2d::CCSprite* playerSprite()
         {

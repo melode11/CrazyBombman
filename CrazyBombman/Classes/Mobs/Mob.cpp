@@ -16,10 +16,10 @@ namespace Simulation {
         _node = Utility::ArtworkLoader::mobSprite(mobId);
         _node->retain();
         
-        moveAnimation[0] = Utility::ArtworkLoader::mobAnimation(mobId, eDown, transform);
-        moveAnimation[1] = Utility::ArtworkLoader::mobAnimation(mobId, eLeft, transform+1);
-        moveAnimation[2] = Utility::ArtworkLoader::mobAnimation(mobId, eRight, transform+2);
-        moveAnimation[3] = Utility::ArtworkLoader::mobAnimation(mobId, eUp, transform+3);
+        moveAnimation[0] = Utility::ArtworkLoader::mobAnimation(mobId, eDown, isFlipped);
+        moveAnimation[1] = Utility::ArtworkLoader::mobAnimation(mobId, eLeft, isFlipped+1);
+        moveAnimation[2] = Utility::ArtworkLoader::mobAnimation(mobId, eRight, isFlipped+2);
+        moveAnimation[3] = Utility::ArtworkLoader::mobAnimation(mobId, eUp, isFlipped+3);
         for (int i = 0; i<4; ++i) {
             moveAnimation[i]->retain();
         }
@@ -53,11 +53,17 @@ namespace Simulation {
     void Mob::freeMove()
     {
         int randIndex = (int)((rand()/(RAND_MAX+1.0))*4);
-        printf("rand:%d",randIndex);
         Direction dirs[] = {eDown,eLeft,eRight,eUp};
         if(_dir != dirs[randIndex])
         {
-            _node->setAdditionalTransform(transform[1]);
+            if(isFlipped[randIndex])
+            {
+                _node->setScaleX(-1.0f);
+            }
+            else
+            {
+                _node->setScaleX(1.0f);
+            }
             _node->stopAllActions();
             _node->runAction(CCRepeatForever::create(CCAnimate::create(moveAnimation[randIndex])));
             _dir = dirs[randIndex];

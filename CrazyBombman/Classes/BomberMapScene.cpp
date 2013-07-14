@@ -73,6 +73,7 @@ bool BomberMapScene::init()
     CCDirector::sharedDirector()->getScheduler()->scheduleUpdateForTarget(_env, 0, false);
     this->setAccelerometerEnabled(true);
     this->setTouchEnabled(true);
+    srand((unsigned int)time(NULL));
     return true;
 }
 

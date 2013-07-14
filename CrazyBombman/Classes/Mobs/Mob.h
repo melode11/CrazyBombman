@@ -29,7 +29,7 @@ namespace Simulation
     private:
         Direction _dir;
         CCAnimation* moveAnimation[4];
-        CCAffineTransform transform[4];
+        bool isFlipped[4];
         float _timeSinceLastFreeMove;
     public:
         Mob(unsigned int mobId,Level lvl,float hp,std::string const& name);
