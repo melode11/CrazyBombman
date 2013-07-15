@@ -22,7 +22,7 @@ namespace Simulation
         
         CC_SYNTHESIZE(unsigned int, _maxMobCount, MaxMobCount);
         CC_SYNTHESIZE(float, _spawnInterval, SpawnInterval);
-        
+        CC_SYNTHESIZE(CollisionDetectDelegate*, _collider, CollisionDetector);
     private:
         cocos2d::CCArray* _spawnMobs;
         cocos2d::CCArray* _mobs;

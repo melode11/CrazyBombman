@@ -27,12 +27,13 @@ namespace Simulation
         CC_SYNTHESIZE_READONLY(CCNode*, _node, Node);
         CC_SYNTHESIZE_READONLY(unsigned int, _id, Id);
     private:
+        float _velocity;
         Direction _dir;
         CCAnimation* moveAnimation[4];
         bool isFlipped[4];
         float _timeSinceLastFreeMove;
     public:
-        Mob(unsigned int mobId,Level lvl,float hp,std::string const& name);
+        Mob(unsigned int mobId,Level lvl,float hp,std::string const& name,float velocity);
         
         ~Mob();
         
@@ -42,9 +43,9 @@ namespace Simulation
         
         void freeMove();
         
-        static Mob* create(unsigned int mobId,Level lvl,float hp,std::string const& name)
+        static Mob* create(unsigned int mobId,Level lvl,float hp,std::string const& name,float velocity)
         {
-            Mob* mob = new Mob(mobId,lvl,hp,name);
+            Mob* mob = new Mob(mobId,lvl,hp,name,velocity);
             if(mob->init())
             {
                 mob->autorelease();

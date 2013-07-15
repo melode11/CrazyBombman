@@ -112,6 +112,11 @@ namespace Utility {
         bool isCollidable = colTester(tileMap,GetMapCoords(tileMap, dest),&tileRect);
         if(isCollidable)
         {
+            if(tileRect.equals(CCRectZero))
+            {
+                *contactVec = CCPointZero;
+                return true;
+            }
             b2Vec2 vecStart(start.x,start.y),vecDest(dest.x,dest.y);
             b2Vec2 edgeCenter = (vecStart + vecDest);
             edgeCenter *= 0.5;

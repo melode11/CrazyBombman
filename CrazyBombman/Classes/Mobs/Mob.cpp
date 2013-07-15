@@ -10,7 +10,7 @@
 
 namespace Simulation {
     
-    Mob::Mob(unsigned int mobId,Level lvl,float hp,std::string const& name):_id(mobId),_lvl(lvl),_hp(hp),_name(name),_dir(eNone),_timeSinceLastFreeMove(0)
+    Mob::Mob(unsigned int mobId,Level lvl,float hp,std::string const& name,float velocity):_id(mobId),_lvl(lvl),_hp(hp),_name(name),_dir(eNone),_timeSinceLastFreeMove(0),_velocity(velocity)
     {
         
         _node = Utility::ArtworkLoader::mobSprite(mobId);
@@ -48,6 +48,28 @@ namespace Simulation {
             freeMove();
             _timeSinceLastFreeMove = 0;
         }
+        float dx,dy;
+        switch (_dir) {
+            case eLeft:
+                dx = - (dt* _velocity);
+                break;
+            case eUp:
+                dy = (dt* _velocity);
+                break;
+            case eRight:
+                dx = (dt* _velocity);
+                break;
+            case eDown:
+                dy = - (dt* _velocity);
+                break;
+                
+            default:
+                break;
+        }
+        cocos2d::CCPoint p = _node -> getPosition();
+        p.x += dx;
+        p.y += dy;
+        _node->setPosition(p);
     }
     
     void Mob::freeMove()

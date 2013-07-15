@@ -55,6 +55,7 @@ namespace Simulation
         _explosions->retain();
         _mobsSystem = MobsSystem::create();
         _mobsSystem->retain();
+        _mobsSystem->setCollisionDetector(this);
         return true;
     }
     
@@ -182,17 +183,30 @@ namespace Simulation
         return false;
     }
 
-    bool Environment::checkCollision(CCPoint& p, CCPoint const& prevP)
+    bool Environment::checkMoveCollision(cocos2d::CCPoint& dest,cocos2d::CCPoint const& start,cocos2d::CCSize const& subjectSize)
     {
-        CCPoint dir = p- prevP;
-        CCSize playerSize = _player->getNode()->getContentSize();
-        CCPoint playerVec = ccp(playerSize.width/2,playerSize.height/2);
-        float dot = dir.dot(playerVec);
+        CCPoint dir = dest- start;
+        CCPoint aspectVec = ccp(subjectSize.width/2,subjectSize.height/2);
+        float dot = dir.dot(aspectVec);
         dir = dir * (fabs(dot)/dir.getLengthSq());
         CCPoint contactVec;
-        bool collide = Utility::TestSegCollision(_tileMap, p, p+dir, testTileCollidable,&contactVec);
-        p = p+contactVec;
+        bool collide = Utility::TestSegCollision(_tileMap, dest, dest+dir, testTileCollidable,&contactVec);
+        if (collide) {
+            if(!contactVec.equals(CCPointZero))
+            {
+                dest = dest+contactVec;
+            }
+            else
+            {
+                dest = start;
+            }
+        }
         return collide;
+    }
+    
+    bool Environment::checkCollision(CCPoint& p, CCPoint const& prevP)
+    {
+        return this->checkMoveCollision(p, prevP, _player->getNode()->getContentSize());
     }
     
     

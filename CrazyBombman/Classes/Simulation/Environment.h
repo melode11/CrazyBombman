@@ -34,7 +34,7 @@ namespace Simulation
     //        return cocos2d::CCRectZero;
     //    }
     
-    class Environment :public cocos2d::CCObject
+    class Environment :public cocos2d::CCObject,public CollisionDetectDelegate
     {
     private:
         cocos2d::CCTMXTiledMap *_tileMap;
@@ -70,6 +70,8 @@ namespace Simulation
         void addBomb(Bomb* bomb);
         
         void spawnPlayer();
+        
+        virtual bool checkMoveCollision(cocos2d::CCPoint& dest,cocos2d::CCPoint const& start,cocos2d::CCSize const& subjectSize);
         
         CC_SYNTHESIZE_RETAIN(Player*, _player, Player);
         

@@ -15,7 +15,7 @@ namespace Simulation
     {
         MobPrototype proto(lvl);
         unsigned int mobId = proto.randomMobId();
-        Mob* mob = Mob::create(mobId, proto.getLevel(), proto.hitpoint(), "mob");
+        Mob* mob = Mob::create(mobId, proto.getLevel(), proto.hitpoint(), "mob",MOB_VELOCITY);
         return mob;
     }
     
@@ -29,7 +29,19 @@ namespace Simulation
         CCObject* obj;
         CCARRAY_FOREACH(_mobs, obj)
         {
-            ((Mob*)obj)->update(dt);
+            Mob* mob = (Mob*)obj;
+            CCPoint p = mob->getNode()->getPosition();
+            mob->update(dt);
+            CCPoint newP = mob->getNode()->getPosition();
+            if(_collider)
+            {
+                bool isCollide = _collider->checkMoveCollision(newP, p, mob->getNode()->getContentSize());
+                if(isCollide)
+                {
+                    mob->getNode()->setPosition(newP);
+                    mob->freeMove();
+                }
+            }
         }
         this->spawnMob(dt);
         //FIXME: add mob destroy detection.

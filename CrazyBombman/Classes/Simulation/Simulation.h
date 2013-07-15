@@ -15,6 +15,8 @@
 
 #define MOB_KEEP_DIR_INTERVAL 5.0
 
+#define MOB_VELOCITY 50.0
+
 //initial SLPs
 #define INITIAL_EXPLOSION_RANGE 128.0
 
