@@ -31,25 +31,25 @@ namespace Utility{
     static inline CCPoint GetGLPosition(const CCTMXTiledMap *tileMap,const CCPoint& point)
     {
         CCSize tileSize = tileMap->getTileSize();
-        int y = (tileMap->getMapSize().height * tileSize.height) - point.y;
-        int x = point.x;
+        float y = (tileMap->getMapSize().height * tileSize.height) - point.y;
+        float x = point.x;
         return ccp(x,y);
     }
     
     static inline CCPoint GetMapPosition(const CCTMXTiledMap *tileMap,const CCPoint& point)
     {
         CCSize tileSize = tileMap->getTileSize();
-        int y = (tileMap->getMapSize().height * tileSize.height) - point.y;
-        int x = point.x;
+        float y = (tileMap->getMapSize().height * tileSize.height) - point.y;
+        float x = point.x;
         return ccp(x,y);
     }
     
     static inline CCPoint GetMapCoords(const CCTMXTiledMap *tileMap,const CCPoint& point)
     {
         CCSize tileSize = tileMap->getTileSize();
-        int y = ((tileMap->getMapSize().height * tileSize.height) - point.y) / tileSize.height;
-        int x = point.x/tileSize.width;
-        return ccp(x,y);
+        float y = ((tileMap->getMapSize().height * tileSize.height) - point.y) / tileSize.height;
+        float x = point.x/tileSize.width;
+        return ccp(x<0?((int)x)-1:(int)x,y<0?((int)y)-1:(int)y);
     }
     
     //output coords need to multiply tilesize to get the intersection point.
