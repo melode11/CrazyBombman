@@ -60,6 +60,7 @@
 		812A947D17925B0E00393812 /* MobsSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 812A947B17925B0E00393812 /* MobsSystem.cpp */; };
 		812A948017925CC100393812 /* Mob.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 812A947E17925CC100393812 /* Mob.cpp */; };
 		812A948617929E3E00393812 /* MobPrototype.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 812A948417929E3C00393812 /* MobPrototype.cpp */; };
+		816152171795369F00B0B6D6 /* PhysicsUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 816152151795369E00B0B6D6 /* PhysicsUtil.cpp */; };
 		8163EFD9177D65A600B92A00 /* TileUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8163EFD8177D65A600B92A00 /* TileUtils.cpp */; };
 		818A3CFE1771380D0015431F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 818A3CFD1771380D0015431F /* QuartzCore.framework */; };
 		818A3D001771380D0015431F /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 818A3CFF1771380D0015431F /* OpenGLES.framework */; };
@@ -316,6 +317,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8102850417982FD200227AFD /* AttachInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttachInfo.h; sourceTree = "<group>"; };
 		812866E117845DCD00873860 /* ArtworkLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ArtworkLoader.cpp; sourceTree = "<group>"; };
 		812866E217845DCD00873860 /* ArtworkLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtworkLoader.h; sourceTree = "<group>"; };
 		812A93E0178E464B00393812 /* Box2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box2D.h; sourceTree = "<group>"; };
@@ -420,6 +422,8 @@
 		812A947F17925CC100393812 /* Mob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mob.h; sourceTree = "<group>"; };
 		812A948417929E3C00393812 /* MobPrototype.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MobPrototype.cpp; sourceTree = "<group>"; };
 		812A948517929E3D00393812 /* MobPrototype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobPrototype.h; sourceTree = "<group>"; };
+		816152151795369E00B0B6D6 /* PhysicsUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PhysicsUtil.cpp; sourceTree = "<group>"; };
+		816152161795369F00B0B6D6 /* PhysicsUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicsUtil.h; sourceTree = "<group>"; };
 		8163EFD8177D65A600B92A00 /* TileUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TileUtils.cpp; sourceTree = "<group>"; };
 		818A3CFA1771380D0015431F /* CrazyBombman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CrazyBombman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		818A3CFD1771380D0015431F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -2284,6 +2288,7 @@
 				818A410B177722B10015431F /* Explosion.h */,
 				812A9473178FADFD00393812 /* SceneLevelParams.cpp */,
 				812A9474178FADFD00393812 /* SceneLevelParams.h */,
+				8102850417982FD200227AFD /* AttachInfo.h */,
 			);
 			path = Simulation;
 			sourceTree = "<group>";
@@ -2295,6 +2300,8 @@
 				8163EFD8177D65A600B92A00 /* TileUtils.cpp */,
 				812866E117845DCD00873860 /* ArtworkLoader.cpp */,
 				812866E217845DCD00873860 /* ArtworkLoader.h */,
+				816152151795369E00B0B6D6 /* PhysicsUtil.cpp */,
+				816152161795369F00B0B6D6 /* PhysicsUtil.h */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -2654,6 +2661,7 @@
 				812A947D17925B0E00393812 /* MobsSystem.cpp in Sources */,
 				812A948017925CC100393812 /* Mob.cpp in Sources */,
 				812A948617929E3E00393812 /* MobPrototype.cpp in Sources */,
+				816152171795369F00B0B6D6 /* PhysicsUtil.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

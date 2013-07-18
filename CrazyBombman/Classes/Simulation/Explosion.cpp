@@ -160,6 +160,7 @@ namespace Simulation
 
     }
     
+    
     void Explosion::removeTile(cocos2d::CCNode *tile, void *callbackObj)
     {
         cocos2d::CCArray* callbackArr = static_cast<cocos2d::CCArray*>(callbackObj);

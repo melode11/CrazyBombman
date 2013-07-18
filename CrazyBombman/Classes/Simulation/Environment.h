@@ -17,22 +17,23 @@
 #include "Bomb.h"
 #include "MobsSystem.h"
 #include "SceneLevelParams.h"
+#include "Box2D.h"
 
 namespace Simulation
-{
+{    
     
-    
-    //    static inline cocos2d::CCRect getCCRectForLeftBottomAligned(cocos2d::CCNode* node)
-    //    {
-    //        if(node)
-    //        {
-    //            cocos2d::CCSize size = node->getContentSize();
-    //            cocos2d::CCPoint p = node->getPosition();
-    //            using namespace cocos2d;
-    //            return CCRectMake(p.x, p.y, size.width, size.height);
-    //        }
-    //        return cocos2d::CCRectZero;
-    //    }
+    class TileInfo:public CCObject
+    {
+    public:
+        TileInfo():material(ePlain),mapcoord(0,0)
+        {
+            
+        }
+        
+        Material material;
+        
+        cocos2d::CCPoint mapcoord;
+    };
     
     class Environment :public cocos2d::CCObject,public CollisionDetectDelegate
     {
@@ -45,11 +46,13 @@ namespace Simulation
         //hide copy constructor
         Environment(Environment const &env);
         Environment& operator= (Environment const &env);
-        
+        b2World *_world;
     protected:
         void updateBombs(float dt);
         void updateExplosions(float dt);
         void updateMob(float dt);
+        
+        void buildPhysicalMap(cocos2d::CCTMXTiledMap* tilemap);
         
         bool checkCollision(cocos2d::CCPoint& newP, cocos2d::CCPoint const& prevP);
     public:

@@ -9,7 +9,9 @@
 #include "Environment.h"
 #include "Player.h"
 #include "TileUtils.h"
+#include "PhysicsUtil.h"
 #include "Explosion.h"
+#include "AttachInfo.h"
 
 using namespace cocos2d;
 
@@ -56,6 +58,8 @@ namespace Simulation
         _mobsSystem = MobsSystem::create();
         _mobsSystem->retain();
         _mobsSystem->setCollisionDetector(this);
+        _world = new b2World(b2Vec2(0.0,0.0));
+        _world->SetAllowSleeping(true);
         return true;
     }
     
@@ -66,7 +70,43 @@ namespace Simulation
             CC_SAFE_RETAIN(tileMap);
             CC_SAFE_RELEASE(_tileMap);
             _tileMap = tileMap;
+ 
         }
+    }
+    
+    void Environment::buildPhysicalMap(CCTMXTiledMap *tilemap)
+    {
+        CCTMXLayer* layer = tilemap->layerNamed(TILE_MAP_MATERIAL_LAYER);
+        CCSize size = layer->getLayerSize();
+        CCPoint mapcoord;
+        for (int i = 0; i<size.height; ++i) {
+            for (int j = 0; j<size.width; ++j) {
+                mapcoord.x = j;
+                mapcoord.y = i;
+                int gid = layer->tileGIDAt(mapcoord);
+                if (gid) {
+                    CCDictionary* dic = tilemap->propertiesForGID(gid);
+                    CCString* matStr =(CCString*)dic->objectForKey(TILE_MAP_MATERIAL_KEY);
+                    if (matStr) {
+                        int mat = matStr->intValue();
+                        if(mat == eSolid || mat == eDestroyable || mat == eNonBlock)
+                        {
+                            CCRect tileRect;
+                            tileRect.size = layer->getMapTileSize();
+                            tileRect.origin = layer->positionAt(mapcoord);
+                            b2Body* body = Utility::CreateBodyForRect(_world, tileRect);
+                            TileInfo* tileInfo = new TileInfo();
+                            tileInfo->mapcoord = mapcoord;
+                            tileInfo->material = static_cast<Material>(mat);
+                            AttachInfo *ai = new AttachInfo(AttachTile,tileInfo);
+                            body->SetUserData(ai);
+                            
+                        }
+                    }
+                }
+            }
+        }
+        
     }
     
     void Environment::update(float dt)
@@ -229,6 +269,19 @@ namespace Simulation
         CC_SAFE_RELEASE(_player);
         CC_SAFE_RELEASE(_bombs);
         CC_SAFE_RELEASE(_explosions);
+        if(_world)
+        {
+            int bodycount = _world->GetBodyCount();
+            int i = 0;
+            for (b2Body* b=_world->GetBodyList(); i < bodycount; ++i,++b) {
+                AttachInfo* info = static_cast<AttachInfo*>(b->GetUserData());
+                b->SetUserData(NULL);
+                CC_SAFE_RELEASE(info->userObj);
+                delete info;
+                _world->DestroyBody(b);
+            }
+            delete _world;
+        }
     }
     
 }

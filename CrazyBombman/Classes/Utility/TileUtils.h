@@ -21,7 +21,7 @@ namespace Utility{
         {
             cocos2d::CCSize size = node->getContentSize();
             cocos2d::CCPoint p = node->getPosition();
-            cocos2d::CCPoint anchor = node->getAnchorPoint();;
+            cocos2d::CCPoint anchor = node->getAnchorPoint();
             using namespace cocos2d;
             return CCRectMake(p.x - anchor.x*size.width, p.y - anchor.y*size.height, size.width, size.height);
         }
