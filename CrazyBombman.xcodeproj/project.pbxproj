@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8102852A179C2FF000227AFD /* PhysicsHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81028528179C2FF000227AFD /* PhysicsHandler.cpp */; };
+		8102852D179C345200227AFD /* PhysicsObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8102852B179C345200227AFD /* PhysicsObject.cpp */; };
 		812866E317845DCD00873860 /* ArtworkLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 812866E117845DCD00873860 /* ArtworkLoader.cpp */; };
 		812A9442178E464B00393812 /* b2BroadPhase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 812A93E2178E464B00393812 /* b2BroadPhase.cpp */; };
 		812A9443178E464B00393812 /* b2CollideCircle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 812A93E4178E464B00393812 /* b2CollideCircle.cpp */; };
@@ -318,6 +320,10 @@
 
 /* Begin PBXFileReference section */
 		8102850417982FD200227AFD /* AttachInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttachInfo.h; sourceTree = "<group>"; };
+		81028528179C2FF000227AFD /* PhysicsHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PhysicsHandler.cpp; sourceTree = "<group>"; };
+		81028529179C2FF000227AFD /* PhysicsHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicsHandler.h; sourceTree = "<group>"; };
+		8102852B179C345200227AFD /* PhysicsObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PhysicsObject.cpp; sourceTree = "<group>"; };
+		8102852C179C345200227AFD /* PhysicsObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicsObject.h; sourceTree = "<group>"; };
 		812866E117845DCD00873860 /* ArtworkLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ArtworkLoader.cpp; sourceTree = "<group>"; };
 		812866E217845DCD00873860 /* ArtworkLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtworkLoader.h; sourceTree = "<group>"; };
 		812A93E0178E464B00393812 /* Box2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box2D.h; sourceTree = "<group>"; };
@@ -2289,6 +2295,10 @@
 				812A9473178FADFD00393812 /* SceneLevelParams.cpp */,
 				812A9474178FADFD00393812 /* SceneLevelParams.h */,
 				8102850417982FD200227AFD /* AttachInfo.h */,
+				81028528179C2FF000227AFD /* PhysicsHandler.cpp */,
+				81028529179C2FF000227AFD /* PhysicsHandler.h */,
+				8102852B179C345200227AFD /* PhysicsObject.cpp */,
+				8102852C179C345200227AFD /* PhysicsObject.h */,
 			);
 			path = Simulation;
 			sourceTree = "<group>";
@@ -2662,6 +2672,8 @@
 				812A948017925CC100393812 /* Mob.cpp in Sources */,
 				812A948617929E3E00393812 /* MobPrototype.cpp in Sources */,
 				816152171795369F00B0B6D6 /* PhysicsUtil.cpp in Sources */,
+				8102852A179C2FF000227AFD /* PhysicsHandler.cpp in Sources */,
+				8102852D179C345200227AFD /* PhysicsObject.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,8 @@
 #define __CrazyBombman__AttachInfo__
 
 #include <iostream>
+#include "cocos2d.h"
+
 namespace Simulation
 {
     enum AttachType
@@ -24,7 +26,7 @@ namespace Simulation
     
     struct AttachInfo
     {
-        AttachInfo(AttachType type,CCObject* obj):type(type),userObj(obj)
+        AttachInfo(AttachType type,cocos2d::CCObject* obj):type(type),userObj(obj)
         {
             CC_SAFE_RETAIN(userObj);
         }
@@ -40,7 +42,7 @@ namespace Simulation
         }
         
         AttachType type;
-        CCObject *userObj;
+        cocos2d::CCObject *userObj;
         
     private:
         void operator= (AttachInfo const& ai);

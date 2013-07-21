@@ -60,6 +60,7 @@ namespace Simulation
         _mobsSystem->setCollisionDetector(this);
         _world = new b2World(b2Vec2(0.0,0.0));
         _world->SetAllowSleeping(true);
+
         return true;
     }
     
@@ -70,12 +71,21 @@ namespace Simulation
             CC_SAFE_RETAIN(tileMap);
             CC_SAFE_RELEASE(_tileMap);
             _tileMap = tileMap;
+            if(tileMap)
+            {
+                buildPhysicalMap(tileMap);
+            }
  
         }
     }
     
     void Environment::buildPhysicalMap(CCTMXTiledMap *tilemap)
     {
+        if(tilemap == NULL)
+        {
+
+        }
+        
         CCTMXLayer* layer = tilemap->layerNamed(TILE_MAP_MATERIAL_LAYER);
         CCSize size = layer->getLayerSize();
         CCPoint mapcoord;

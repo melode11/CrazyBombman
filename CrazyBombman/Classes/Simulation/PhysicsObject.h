@@ -1,0 +1,36 @@
+//
+//  PhysicsObject.h
+//  CrazyBombman
+//
+//  Created by Yao Melo on 7/21/13.
+//
+//
+
+#ifndef __CrazyBombman__PhysicsObject__
+#define __CrazyBombman__PhysicsObject__
+
+#include <iostream>
+#include "cocos2d.h"
+#include "Box2D.h"
+#include "AttachInfo.h"
+
+namespace Simulation
+{
+class PhysicsObject :public cocos2d::CCObject
+{
+private:
+    b2Body* _body;
+public:
+    b2Body* getBody()
+    {
+        return _body;
+    }
+    
+    void setBody(b2Body* body);
+    
+    virtual AttachType getAttachType() = 0;
+    
+    virtual ~PhysicsObject();
+};
+}
+#endif /* defined(__CrazyBombman__PhysicsObject__) */
