@@ -11,7 +11,6 @@ namespace Simulation
 {
     void ContactLisenter::BeginContact(b2Contact *contact)
     {
-//        contact->get
                 printf("begin contact" );
     }
     

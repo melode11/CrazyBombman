@@ -21,6 +21,11 @@ class PhysicsObject :public cocos2d::CCObject
 private:
     b2Body* _body;
 public:
+    PhysicsObject():_body(0)
+    {
+        
+    }
+    
     b2Body* getBody()
     {
         return _body;
