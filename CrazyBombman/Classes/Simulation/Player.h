@@ -12,10 +12,10 @@
 #include <iostream>
 #include "cocos2d.h"
 #include "Simulation.h"
-
+#include "PhysicsObject.h"
 
 namespace Simulation{
-    class Player : public cocos2d::CCObject
+    class Player : public PhysicsObject
     {
 //    private:
 //        Direction _direction;
@@ -28,7 +28,7 @@ namespace Simulation{
 
         Player();
         
-        ~Player();
+        virtual ~Player();
         
 //        void setPlayerNode(cocos2d::CCNode *playerNode);
         
@@ -41,6 +41,10 @@ namespace Simulation{
         void setDirection(Direction var);
         
         void createNode();
+        
+        virtual AttachType getAttachType();
+        
+        virtual b2Body* createBody(b2World *_world);
         
         CREATE_FUNC(Player);
     };

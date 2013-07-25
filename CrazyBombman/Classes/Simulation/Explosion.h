@@ -12,6 +12,7 @@
 #include <iostream>
 #include "cocos2d.h"
 #include <vector>
+#include "PhysicsObject.h"
 
 namespace Simulation {
     
@@ -47,7 +48,7 @@ namespace Simulation {
         }
     };
     
-    class Explosion : public cocos2d::CCObject
+    class Explosion : public PhysicsObject
     {
     private:
         std::vector<AnimatedNode> _animateNodes;
@@ -65,13 +66,14 @@ namespace Simulation {
         
         Explosion();
         
-        ~Explosion();
         
         virtual bool init();
         
         virtual void update(float dt);
         
         bool isFinished();
+        
+        virtual AttachType getAttachType();
         
         CC_SYNTHESIZE(float, _range, Range);
         

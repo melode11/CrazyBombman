@@ -18,11 +18,12 @@
 #include "MobsSystem.h"
 #include "SceneLevelParams.h"
 #include "Box2D.h"
+#include "PhysicsObject.h"
 
 namespace Simulation
 {    
     
-    class TileInfo:public CCObject
+    class TileInfo:public PhysicsObject
     {
     public:
         TileInfo():material(ePlain),mapcoord(0,0)
@@ -30,9 +31,12 @@ namespace Simulation
             
         }
         
+        virtual AttachType getAttachType();
+        
         Material material;
         
         cocos2d::CCPoint mapcoord;
+        
     };
     
     class Environment :public cocos2d::CCObject,public CollisionDetectDelegate
@@ -41,6 +45,8 @@ namespace Simulation
         cocos2d::CCTMXTiledMap *_tileMap;
         cocos2d::CCArray *_bombs;
         cocos2d::CCArray *_explosions;
+        cocos2d::CCArray *_blockTiles;
+        b2ContactListener* _contactListener;
         MobsSystem* _mobsSystem;
         SceneLevelParams _slp;
         //hide copy constructor
@@ -51,6 +57,8 @@ namespace Simulation
         void updateBombs(float dt);
         void updateExplosions(float dt);
         void updateMob(float dt);
+        void updatePlayer(float dt);
+        
         
         void buildPhysicalMap(cocos2d::CCTMXTiledMap* tilemap);
         

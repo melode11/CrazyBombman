@@ -312,6 +312,7 @@
 		818A41091777225A0015431F /* Bomb.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818A4107177722580015431F /* Bomb.cpp */; };
 		818A410C177722B20015431F /* Explosion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818A410A177722B00015431F /* Explosion.cpp */; };
 		818A41151778383B0015431F /* explode.png in Resources */ = {isa = PBXBuildFile; fileRef = 818A41141778383B0015431F /* explode.png */; };
+		81CB0F1F17A0102C00425333 /* ContactListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81CB0F1D17A0102A00425333 /* ContactListener.cpp */; };
 		81DA834F178B9B2400E80037 /* bombman.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81DA834D178B9B2400E80037 /* bombman.plist */; };
 		81DA8350178B9B2400E80037 /* bombman.png in Resources */ = {isa = PBXBuildFile; fileRef = 81DA834E178B9B2400E80037 /* bombman.png */; };
 		81DA83BD178C546A00E80037 /* tilemap.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 81DA83BB178C546A00E80037 /* tilemap.tmx */; };
@@ -973,6 +974,8 @@
 		818A410A177722B00015431F /* Explosion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Explosion.cpp; sourceTree = "<group>"; };
 		818A410B177722B10015431F /* Explosion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Explosion.h; sourceTree = "<group>"; };
 		818A41141778383B0015431F /* explode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = explode.png; path = Resources/explode.png; sourceTree = "<group>"; };
+		81CB0F1D17A0102A00425333 /* ContactListener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ContactListener.cpp; sourceTree = "<group>"; };
+		81CB0F1E17A0102B00425333 /* ContactListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactListener.h; sourceTree = "<group>"; };
 		81DA834D178B9B2400E80037 /* bombman.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = bombman.plist; path = Resources/bombman.plist; sourceTree = "<group>"; };
 		81DA834E178B9B2400E80037 /* bombman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bombman.png; path = Resources/bombman.png; sourceTree = "<group>"; };
 		81DA83BB178C546A00E80037 /* tilemap.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = tilemap.tmx; path = Resources/tilemap.tmx; sourceTree = "<group>"; };
@@ -2299,6 +2302,8 @@
 				81028529179C2FF000227AFD /* PhysicsHandler.h */,
 				8102852B179C345200227AFD /* PhysicsObject.cpp */,
 				8102852C179C345200227AFD /* PhysicsObject.h */,
+				81CB0F1D17A0102A00425333 /* ContactListener.cpp */,
+				81CB0F1E17A0102B00425333 /* ContactListener.h */,
 			);
 			path = Simulation;
 			sourceTree = "<group>";
@@ -2674,6 +2679,7 @@
 				816152171795369F00B0B6D6 /* PhysicsUtil.cpp in Sources */,
 				8102852A179C2FF000227AFD /* PhysicsHandler.cpp in Sources */,
 				8102852D179C345200227AFD /* PhysicsObject.cpp in Sources */,
+				81CB0F1F17A0102C00425333 /* ContactListener.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

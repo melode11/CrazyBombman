@@ -18,10 +18,6 @@ namespace Simulation
         
     }
     
-    Explosion::~Explosion()
-    {
-
-    }
     
     void Explosion::update(float dt)
     {
@@ -191,5 +187,10 @@ namespace Simulation
     bool Explosion::isFinished()
     {
         return _isFinished;
+    }
+    
+    AttachType Explosion::getAttachType()
+    {
+        return AttachExplosion;
     }
 }

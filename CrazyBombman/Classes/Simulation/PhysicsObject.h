@@ -28,9 +28,19 @@ public:
     
     void setBody(b2Body* body);
     
-    virtual AttachType getAttachType() = 0;
+    void initBody(b2World *_world);
+    
+    void clearBody(b2World*_world);
     
     virtual ~PhysicsObject();
+    
+    
+protected:
+    virtual b2Body* createBody(b2World *_world) {CC_UNUSED_PARAM(_world); return NULL; };
+    
+    virtual AttachType getAttachType() {return AttachNone;};
+    
+
 };
 }
 #endif /* defined(__CrazyBombman__PhysicsObject__) */

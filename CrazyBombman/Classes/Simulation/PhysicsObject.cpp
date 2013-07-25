@@ -49,4 +49,23 @@ namespace Simulation
         }
     }
     
+    void PhysicsObject::clearBody(b2World* _world)
+    {
+        if(_body)
+        {
+            b2Body* body = _body;
+            setBody(NULL);
+            _world->DestroyBody(body);
+        }
+    }
+    
+    void PhysicsObject::initBody(b2World* world)
+    {
+        b2Body* body = this->createBody(world);
+        if(body)
+        {
+            this->setBody(body);
+        }
+    }
+    
 }

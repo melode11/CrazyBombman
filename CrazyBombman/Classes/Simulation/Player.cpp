@@ -8,6 +8,8 @@
 
 #include "Player.h"
 #include "ArtworkLoader.h"
+#include "PhysicsUtil.h"
+#include "TileUtils.h"
 
 namespace Simulation
 {
@@ -53,7 +55,7 @@ namespace Simulation
         p.x += dx;
         p.y += dy;
         _node->setPosition(p);
-        
+        getBody()->SetTransform(b2Vec2(p.x,p.y), 0);
     }
     
     cocos2d::CCNode* Player::getNode()
@@ -101,4 +103,15 @@ namespace Simulation
         cocos2d::CCSprite* sprite = Utility::ArtworkLoader::playerSprite();
         setNode(sprite);
     }
+    
+    AttachType Player::getAttachType()
+    {
+        return AttachPlayer;
+    }
+    
+    b2Body* Player::createBody(b2World *_world)
+    {
+        return  Utility::CreateBodyForRect(_world, Utility::GetBoundingBox(this->getNode()));
+    }
+    
 }

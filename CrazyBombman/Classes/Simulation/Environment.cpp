@@ -12,11 +12,17 @@
 #include "PhysicsUtil.h"
 #include "Explosion.h"
 #include "AttachInfo.h"
+#include "ContactListener.h"
 
 using namespace cocos2d;
 
 namespace Simulation
 {
+    
+    AttachType TileInfo::getAttachType()
+    {
+        return AttachTile;
+    }
     
     Environment* Environment::create(SceneLevelParams const& slp)
     {
@@ -46,21 +52,25 @@ namespace Simulation
         player->getNode()->setPosition(p);
         _ppDelegate->addNode(player->getNode(),Z_PLAYER);
         _ppDelegate->updatePlayerPostion(p);
+        
+        player->initBody(_world);
+        
         setPlayer(player);
     }
     
     bool Environment::init()
     {
-        _bombs = CCArray::create();
-        _bombs->retain();
-        _explosions = CCArray::create();
-        _explosions->retain();
+        _bombs = new CCArray();
+        _explosions = new CCArray();
+        _blockTiles = new CCArray();
+        _contactListener = new ContactLisenter();
         _mobsSystem = MobsSystem::create();
         _mobsSystem->retain();
         _mobsSystem->setCollisionDetector(this);
+        
         _world = new b2World(b2Vec2(0.0,0.0));
         _world->SetAllowSleeping(true);
-
+        _world->SetContactListener(_contactListener);
         return true;
     }
     
@@ -71,20 +81,28 @@ namespace Simulation
             CC_SAFE_RETAIN(tileMap);
             CC_SAFE_RELEASE(_tileMap);
             _tileMap = tileMap;
-            if(tileMap)
+            if(_world)
             {
-                buildPhysicalMap(tileMap);
+                if(tileMap)
+                {
+                    buildPhysicalMap(tileMap);
+                }
+                else
+                {
+                    CCObject *obj;
+                    CCARRAY_FOREACH(_blockTiles, obj)
+                    {
+                        ((PhysicsObject*)obj)->clearBody(_world);
+                    }
+                    
+                }
             }
- 
+            
         }
     }
     
     void Environment::buildPhysicalMap(CCTMXTiledMap *tilemap)
     {
-        if(tilemap == NULL)
-        {
-
-        }
         
         CCTMXLayer* layer = tilemap->layerNamed(TILE_MAP_MATERIAL_LAYER);
         CCSize size = layer->getLayerSize();
@@ -108,8 +126,9 @@ namespace Simulation
                             TileInfo* tileInfo = new TileInfo();
                             tileInfo->mapcoord = mapcoord;
                             tileInfo->material = static_cast<Material>(mat);
-                            AttachInfo *ai = new AttachInfo(AttachTile,tileInfo);
-                            body->SetUserData(ai);
+                            tileInfo->setBody(body);
+                            _blockTiles->addObject(tileInfo);
+                            tileInfo->release();
                             
                         }
                     }
@@ -125,22 +144,32 @@ namespace Simulation
         
         updateBombs(dt);
         updateExplosions(dt);
-        CCPoint p = _player->getPlayerPosition();
-        _player ->update(dt);
-        CCPoint newP = _player->getPlayerPosition();
-        if(!p.equals(newP))
-        {//collision happen, back to the old position.
-            if(checkCollision(newP, p))
-            {
-                _player->getNode()->setPosition(newP);
-            }
-            
-            if(_ppDelegate)
-            {
-                _ppDelegate -> updatePlayerPostion(newP);
-            }
-        }
+        updatePlayer(dt);
         updateMob(dt);
+        if(_world)
+        {
+            _world->Step(dt, 10, 10);
+        }
+    }
+    
+    void Environment::updatePlayer(float dt)
+    {
+        //        CCPoint p = _player->getPlayerPosition();
+        _player ->update(dt);
+        //        CCPoint newP = _player->getPlayerPosition();
+        //        if(!p.equals(newP))
+        //        {//collision happen, back to the old position.
+        //            if(checkCollision(newP, p))
+        //                    {
+        //                        _player->getNode()->setPosition(newP);
+        //                    }
+        //
+        //                    if(_ppDelegate)
+        //                    {
+        //                        _ppDelegate -> updatePlayerPostion(newP);
+        //                    }
+        //                }
+        
     }
     
     void Environment::updateExplosions(float dt)
@@ -166,7 +195,7 @@ namespace Simulation
         std::vector<int> indecies;
         for (int i = 0;i<_bombs->count();i++) {
             Bomb* bomb = (Bomb*)(_bombs->objectAtIndex(i));
-
+            
             bomb->update(dt);
             if(bomb->isExplode())
             {
@@ -212,7 +241,7 @@ namespace Simulation
         }
         int gid = blocks->tileGIDAt(mapCoord);
         
-
+        
         if(gid)
         {
             CCDictionary *dictionary = tilemap->propertiesForGID(gid);
@@ -232,7 +261,7 @@ namespace Simulation
         }
         return false;
     }
-
+    
     bool Environment::checkMoveCollision(cocos2d::CCPoint& dest,cocos2d::CCPoint const& start,cocos2d::CCSize const& subjectSize)
     {
         CCPoint dir = dest- start;
@@ -276,22 +305,21 @@ namespace Simulation
     
     Environment::~Environment()
     {
-        CC_SAFE_RELEASE(_player);
-        CC_SAFE_RELEASE(_bombs);
-        CC_SAFE_RELEASE(_explosions);
         if(_world)
         {
             int bodycount = _world->GetBodyCount();
             int i = 0;
             for (b2Body* b=_world->GetBodyList(); i < bodycount; ++i,++b) {
                 AttachInfo* info = static_cast<AttachInfo*>(b->GetUserData());
-                b->SetUserData(NULL);
-                CC_SAFE_RELEASE(info->userObj);
-                delete info;
+                ((PhysicsObject*)info->userObj)->setBody(NULL);
                 _world->DestroyBody(b);
             }
             delete _world;
         }
+        CC_SAFE_RELEASE(_player);
+        CC_SAFE_RELEASE(_bombs);
+        CC_SAFE_RELEASE(_explosions);
+        CC_SAFE_RELEASE(_blockTiles);
+        CC_SAFE_DELETE(_contactListener);
     }
-    
 }

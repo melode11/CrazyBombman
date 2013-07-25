@@ -11,9 +11,11 @@
 
 #include <iostream>
 #include "cocos2d.h"
+#include "PhysicsObject.h"
 
 namespace Simulation
 {
+ 
     enum AttachType
     {
         AttachNone,
@@ -26,6 +28,9 @@ namespace Simulation
     
     struct AttachInfo
     {
+        AttachType type;
+        cocos2d::CCObject *userObj;
+        
         AttachInfo(AttachType type,cocos2d::CCObject* obj):type(type),userObj(obj)
         {
             CC_SAFE_RETAIN(userObj);
@@ -40,10 +45,6 @@ namespace Simulation
         {
             CC_SAFE_RETAIN(userObj);
         }
-        
-        AttachType type;
-        cocos2d::CCObject *userObj;
-        
     private:
         void operator= (AttachInfo const& ai);
         
