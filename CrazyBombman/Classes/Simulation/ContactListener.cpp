@@ -18,4 +18,9 @@ namespace Simulation
     {
         printf("end contact" );
     }
+    
+    bool ContactLisenter::ShouldCollide(b2Fixture *fixtureA, b2Fixture *fixtureB)
+    {
+        return true;
+    }
 }

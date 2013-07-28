@@ -13,13 +13,18 @@ namespace Utility
     
     b2Body* CreateBodyForRect(b2World* world,CCRect const& rect)
     {
+        return CreateBodyForRect(world, rect, b2_dynamicBody);
+    }
+    
+    b2Body* CreateBodyForRect(b2World* world,cocos2d::CCRect const& rect,b2BodyType bodyType)
+    {
         b2PolygonShape shape;
         CCSize size = rect.size;
         CCPoint p = rect.origin + ccp(0.5*size.width,0.5*size.height);
         
         shape.SetAsBox(size.width*0.5, size.height*0.5);
         b2BodyDef bodyDef;
-        bodyDef.type = b2_staticBody;
+        bodyDef.type = bodyType;
         bodyDef.position = b2Vec2(p.x,p.y);
         b2Body *body = world->CreateBody(&bodyDef);
         body->CreateFixture(&shape, 0);

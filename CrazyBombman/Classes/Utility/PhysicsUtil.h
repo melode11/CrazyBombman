@@ -16,6 +16,6 @@
 namespace Utility
 {
     b2Body* CreateBodyForRect(b2World* world,cocos2d::CCRect const& rect);
-   
+    b2Body* CreateBodyForRect(b2World* world,cocos2d::CCRect const& rect,b2BodyType bodyType);
 }
 #endif /* defined(__CrazyBombman__PhysicsUtil__) */

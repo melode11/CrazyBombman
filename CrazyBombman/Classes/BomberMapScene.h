@@ -14,12 +14,16 @@
 #include "Player.h"
 #include "Environment.h"
 #include "Delegations.h"
+#include "GLES-Render.h"
 
 class BomberMapScene : public cocos2d::CCLayer, public Simulation::GameModelDelegate
 {
 private:
     cocos2d::CCTMXTiledMap *_tileMap;
     Simulation::Environment *_env;
+#ifdef PHYSICS_DEBUG
+    cocos2d::extension::GLESDebugDraw* _debugDraw;
+#endif
     
 public:
     static cocos2d::CCScene* scene();
@@ -35,6 +39,8 @@ public:
     virtual void removeNode(cocos2d::CCNode *node);
     
     virtual void ccTouchesEnded(cocos2d::CCSet *pTouch, cocos2d::CCEvent *pEvent);
+    
+    virtual void draw();
     
     ~BomberMapScene();
     

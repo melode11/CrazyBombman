@@ -11,6 +11,7 @@
 #include "Simulation.h"
 #include "ArtworkLoader.h"
 #include "SceneLevelParams.h"
+#include <OpenGLES/ES1/gl.h>
 
 using namespace cocos2d;
 
@@ -61,7 +62,7 @@ bool BomberMapScene::init()
     this->_tileMap = CCTMXTiledMap::create(TILE_MAP_FILE);
     this->_tileMap->retain();
     this->_tileMap->layerNamed(TILE_MAP_MATERIAL_LAYER)->setVisible(false);
-    this->addChild(this->_tileMap,-1);
+//    this->addChild(this->_tileMap,-1);
 
     this->_tileMap->setContentSize(CCDirector::sharedDirector()->getWinSize());
 
@@ -70,6 +71,13 @@ bool BomberMapScene::init()
     _env->setTileMap(this->_tileMap);
     _env->setDelegate(this);
     _env->spawnPlayer();
+#ifdef PHYSICS_DEBUG
+    _debugDraw = new cocos2d::extension::GLESDebugDraw(1.0);
+    uint32 flags = 0;
+    flags|=cocos2d::extension::GLESDebugDraw::e_shapeBit;
+    _debugDraw->SetFlags(flags);
+    _env->setDebugDraw(_debugDraw);
+#endif
     CCDirector::sharedDirector()->getScheduler()->scheduleUpdateForTarget(_env, 0, false);
     this->setAccelerometerEnabled(true);
     this->setTouchEnabled(true);
@@ -157,5 +165,17 @@ BomberMapScene::~BomberMapScene()
     }
     CC_SAFE_RELEASE(_env);
     CC_SAFE_RELEASE(_tileMap);
+#ifdef PHYSICS_DEBUG
+    CC_SAFE_DELETE(_debugDraw);
+#endif
+}
+
+void BomberMapScene::draw()
+{
+    CCLayer::draw();
+#ifdef PHYSICS_DEBUG
+    _env->drawDebugInfo();
+#endif
+    
 }
 

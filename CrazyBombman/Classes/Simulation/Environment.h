@@ -19,6 +19,7 @@
 #include "SceneLevelParams.h"
 #include "Box2D.h"
 #include "PhysicsObject.h"
+#include "GLES-Render.h"
 
 namespace Simulation
 {    
@@ -83,6 +84,10 @@ namespace Simulation
         void spawnPlayer();
         
         virtual bool checkMoveCollision(cocos2d::CCPoint& dest,cocos2d::CCPoint const& start,cocos2d::CCSize const& subjectSize);
+        
+        void setDebugDraw(cocos2d::extension::GLESDebugDraw* debugDraw);
+        
+        void drawDebugInfo();
         
         CC_SYNTHESIZE_RETAIN(Player*, _player, Player);
         

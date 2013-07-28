@@ -13,6 +13,8 @@
 #include "Explosion.h"
 #include "AttachInfo.h"
 #include "ContactListener.h"
+#include <OpenGLES/ES2/gl.h>
+
 
 using namespace cocos2d;
 
@@ -51,7 +53,7 @@ namespace Simulation
         CCPoint p = ccp(x,y);
         player->getNode()->setPosition(p);
         _ppDelegate->addNode(player->getNode(),Z_PLAYER);
-        _ppDelegate->updatePlayerPostion(p);
+//        _ppDelegate->updatePlayerPostion(p);
         
         player->initBody(_world);
         
@@ -101,6 +103,31 @@ namespace Simulation
         }
     }
     
+    void Environment::setDebugDraw(cocos2d::extension::GLESDebugDraw *debugDraw)
+    {
+        if(_world)
+        {
+            _world->SetDebugDraw(debugDraw);
+        }
+    }
+    
+    void Environment::drawDebugInfo()
+    {
+        if(_world)
+        {
+            ccGLEnableVertexAttribs( kCCVertexAttribFlag_Position );
+            kmGLPushMatrix();
+            _world->DrawDebugData();
+            kmGLPopMatrix();
+//            glDisableClientState(GL_COLOR_ARRAY);
+//            glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+
+
+//            glEnableClientState(GL_COLOR_ARRAY);
+//            glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+        }
+    }
+    
     void Environment::buildPhysicalMap(CCTMXTiledMap *tilemap)
     {
         
@@ -122,7 +149,7 @@ namespace Simulation
                             CCRect tileRect;
                             tileRect.size = layer->getMapTileSize();
                             tileRect.origin = layer->positionAt(mapcoord);
-                            b2Body* body = Utility::CreateBodyForRect(_world, tileRect);
+                            b2Body* body = Utility::CreateBodyForRect(_world, tileRect,b2_staticBody);
                             TileInfo* tileInfo = new TileInfo();
                             tileInfo->mapcoord = mapcoord;
                             tileInfo->material = static_cast<Material>(mat);
