@@ -11,7 +11,6 @@
 #include "TileUtils.h"
 #include "PhysicsUtil.h"
 #include "Explosion.h"
-#include "AttachInfo.h"
 #include "ContactListener.h"
 #include <OpenGLES/ES2/gl.h>
 
@@ -21,9 +20,9 @@ using namespace cocos2d;
 namespace Simulation
 {
     
-    AttachType TileInfo::getAttachType()
+    PhysicalType TileInfo::getPhysicalType()
     {
-        return AttachTile;
+        return PhysTile;
     }
     
     Environment* Environment::create(SceneLevelParams const& slp)
@@ -53,7 +52,7 @@ namespace Simulation
         CCPoint p = ccp(x,y);
         player->getNode()->setPosition(p);
         _ppDelegate->addNode(player->getNode(),Z_PLAYER);
-//        _ppDelegate->updatePlayerPostion(p);
+        _ppDelegate->updatePlayerPostion(p);
         
         player->initBody(_world);
         
@@ -149,7 +148,7 @@ namespace Simulation
                             CCRect tileRect;
                             tileRect.size = layer->getMapTileSize();
                             tileRect.origin = layer->positionAt(mapcoord);
-                            b2Body* body = Utility::CreateBodyForRect(_world, tileRect,b2_staticBody);
+                            b2Body* body = Utility::CreateBodyOutlined(_world, tileRect,b2_staticBody);
                             TileInfo* tileInfo = new TileInfo();
                             tileInfo->mapcoord = mapcoord;
                             tileInfo->material = static_cast<Material>(mat);
@@ -183,6 +182,8 @@ namespace Simulation
     {
         //        CCPoint p = _player->getPlayerPosition();
         _player ->update(dt);
+        CCPoint p = _player->getNode()->getPosition();
+        _ppDelegate -> updatePlayerPostion(p);
         //        CCPoint newP = _player->getPlayerPosition();
         //        if(!p.equals(newP))
         //        {//collision happen, back to the old position.
@@ -337,8 +338,8 @@ namespace Simulation
             int bodycount = _world->GetBodyCount();
             int i = 0;
             for (b2Body* b=_world->GetBodyList(); i < bodycount; ++i,++b) {
-                AttachInfo* info = static_cast<AttachInfo*>(b->GetUserData());
-                ((PhysicsObject*)info->userObj)->setBody(NULL);
+                PhysicsObject* phyObj = static_cast<PhysicsObject*>(b->GetUserData());
+                phyObj->setBody(NULL);
                 _world->DestroyBody(b);
             }
             delete _world;

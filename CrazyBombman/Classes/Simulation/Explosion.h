@@ -73,7 +73,7 @@ namespace Simulation {
         
         bool isFinished();
         
-        virtual AttachType getAttachType();
+        virtual PhysicalType getPhysicalType();
         
         CC_SYNTHESIZE(float, _range, Range);
         

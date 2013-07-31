@@ -350,7 +350,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8102850417982FD200227AFD /* AttachInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttachInfo.h; sourceTree = "<group>"; };
 		81028528179C2FF000227AFD /* PhysicsHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PhysicsHandler.cpp; sourceTree = "<group>"; };
 		81028529179C2FF000227AFD /* PhysicsHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicsHandler.h; sourceTree = "<group>"; };
 		8102852B179C345200227AFD /* PhysicsObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PhysicsObject.cpp; sourceTree = "<group>"; };
@@ -2532,7 +2531,6 @@
 				818A410B177722B10015431F /* Explosion.h */,
 				812A9473178FADFD00393812 /* SceneLevelParams.cpp */,
 				812A9474178FADFD00393812 /* SceneLevelParams.h */,
-				8102850417982FD200227AFD /* AttachInfo.h */,
 				81028528179C2FF000227AFD /* PhysicsHandler.cpp */,
 				81028529179C2FF000227AFD /* PhysicsHandler.h */,
 				8102852B179C345200227AFD /* PhysicsObject.cpp */,

@@ -12,10 +12,19 @@
 #include <iostream>
 #include "cocos2d.h"
 #include "Box2D.h"
-#include "AttachInfo.h"
 
 namespace Simulation
 {
+    enum PhysicalType
+    {
+        PhysNone,
+        PhysPlayer,
+        PhysMob,
+        PhysTile,
+        PhysBomb,
+        PhysExplosion,
+    };
+    
 class PhysicsObject :public cocos2d::CCObject
 {
 private:
@@ -39,11 +48,12 @@ public:
     
     virtual ~PhysicsObject();
     
+    virtual PhysicalType getPhysicalType() {return PhysNone;};
+    
+    virtual void collideWith(PhysicsObject* other){};
     
 protected:
     virtual b2Body* createBody(b2World *_world) {CC_UNUSED_PARAM(_world); return NULL; };
-    
-    virtual AttachType getAttachType() {return AttachNone;};
     
 
 };

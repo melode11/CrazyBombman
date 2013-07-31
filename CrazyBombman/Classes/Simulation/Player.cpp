@@ -10,10 +10,11 @@
 #include "ArtworkLoader.h"
 #include "PhysicsUtil.h"
 #include "TileUtils.h"
+#include "Environment.h"
 
 namespace Simulation
 {
-    Player::Player():_node(0),_direction(eNone)
+    Player::Player():_node(0),_direction(eNone),_lastPoint()
     {
         
     }
@@ -33,7 +34,8 @@ namespace Simulation
         if(!_node)
             return;
         double dx = 0,dy = 0;
-
+        cocos2d::CCPoint p = _node -> getPosition();
+        _lastPoint = p;
         switch (_direction) {
             case eLeft:
                 dx = - (time_inteval* PLAYER_VELOCITY);
@@ -47,11 +49,11 @@ namespace Simulation
             case eDown:
                 dy = - (time_inteval* PLAYER_VELOCITY);
                 break;
-
+                
             default:
                 break;
         }
-        cocos2d::CCPoint p = _node -> getPosition();
+        
         p.x += dx;
         p.y += dy;
         _node->setPosition(p);
@@ -104,14 +106,29 @@ namespace Simulation
         setNode(sprite);
     }
     
-    AttachType Player::getAttachType()
+    PhysicalType Player::getPhysicalType()
     {
-        return AttachPlayer;
+        return PhysPlayer;
     }
     
     b2Body* Player::createBody(b2World *_world)
     {
-        return  Utility::CreateBodyForRect(_world, Utility::GetBoundingBox(this->getNode()));
+        return  Utility::CreateBodyFilled(_world, Utility::GetBoundingBox(this->getNode()),b2_dynamicBody);
+    }
+    
+    void Player::collideWith(Simulation::PhysicsObject *other)
+    {
+        if(_node)
+        {   
+            if(other->getPhysicalType() == PhysTile)
+            {
+                TileInfo* ti = static_cast<TileInfo*>(other);
+                if(ti->material == eSolid || ti->material == eDestroyable)
+                {
+                    _node->setPosition(_lastPoint);
+                }
+            }
+        }
     }
     
 }

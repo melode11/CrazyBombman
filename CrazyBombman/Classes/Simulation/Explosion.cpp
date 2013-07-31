@@ -189,8 +189,8 @@ namespace Simulation
         return _isFinished;
     }
     
-    AttachType Explosion::getAttachType()
+    PhysicalType Explosion::getPhysicalType()
     {
-        return AttachExplosion;
+        return PhysExplosion;
     }
 }

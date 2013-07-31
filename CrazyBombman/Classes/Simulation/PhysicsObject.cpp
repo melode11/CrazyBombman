@@ -7,7 +7,7 @@
 //
 
 #include "PhysicsObject.h"
-#include "AttachInfo.h"
+
 namespace Simulation
 {
     void PhysicsObject::setBody(b2Body *body)
@@ -19,17 +19,11 @@ namespace Simulation
         }
         if(_body)
         {
-            void* userData = _body->GetUserData();
-            if(userData)
-            {
-                _body->SetUserData(NULL);
-                delete (AttachInfo*)userData;
-            }
+            _body->SetUserData(NULL);
         }
         if(body)
         {
-            AttachInfo* ai = new AttachInfo(getAttachType(), this);
-            body->SetUserData(ai);
+            body->SetUserData(this);
         }
         _body = body;
     }
@@ -39,12 +33,9 @@ namespace Simulation
         if(_body)
         {
             void* userData = _body->GetUserData();
-            if(userData)
+            if(userData == this)
             {
                 _body->SetUserData(NULL);
-
-                delete (AttachInfo*)userData;
-
             }
         }
     }

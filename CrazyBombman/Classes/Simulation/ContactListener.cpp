@@ -7,20 +7,22 @@
 //
 
 #include "ContactListener.h"
+#include "PhysicsObject.h"
+
 namespace Simulation
 {
     void ContactLisenter::BeginContact(b2Contact *contact)
     {
-                printf("begin contact" );
+        PhysicsObject* phyObj =static_cast<PhysicsObject*>(contact->GetFixtureA()->GetBody()->GetUserData());
+        PhysicsObject* phyObj2 =static_cast<PhysicsObject*>(contact->GetFixtureB()->GetBody()->GetUserData());
+        phyObj->collideWith(phyObj2);
+        phyObj2->collideWith(phyObj);
+        printf("begin contact\n" );
     }
     
     void ContactLisenter::EndContact(b2Contact *contact)
     {
-        printf("end contact" );
+        printf("end contact\n" );
     }
-    
-    bool ContactLisenter::ShouldCollide(b2Fixture *fixtureA, b2Fixture *fixtureB)
-    {
-        return true;
-    }
+   
 }

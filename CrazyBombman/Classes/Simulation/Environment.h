@@ -32,7 +32,7 @@ namespace Simulation
             
         }
         
-        virtual AttachType getAttachType();
+        virtual PhysicalType getPhysicalType();
         
         Material material;
         

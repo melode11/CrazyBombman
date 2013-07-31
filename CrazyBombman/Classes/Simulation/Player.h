@@ -17,10 +17,9 @@
 namespace Simulation{
     class Player : public PhysicsObject
     {
-//    private:
-//        Direction _direction;
-//        cocos2d::CCNode *_playerNode;
-    CC_PROPERTY(cocos2d::CCNode*, _node, Node);
+
+        CC_PROPERTY(cocos2d::CCNode*, _node, Node);
+        cocos2d::CCPoint _lastPoint;
         
     public:
         
@@ -42,9 +41,11 @@ namespace Simulation{
         
         void createNode();
         
-        virtual AttachType getAttachType();
+        virtual PhysicalType getPhysicalType();
         
         virtual b2Body* createBody(b2World *_world);
+        
+        virtual void collideWith(PhysicsObject* other);
         
         CREATE_FUNC(Player);
     };
