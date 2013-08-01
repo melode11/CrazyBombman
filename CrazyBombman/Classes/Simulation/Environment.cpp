@@ -147,7 +147,7 @@ namespace Simulation
                     CCString* matStr =(CCString*)dic->objectForKey(TILE_MAP_MATERIAL_KEY);
                     if (matStr) {
                         int mat = matStr->intValue();
-                        if(mat == eSolid || mat == eDestroyable || mat == eNonBlock)
+                        if(mat == eSolid || mat == eDestroyable)
                         {
                             CCRect tileRect;
                             tileRect.size = layer->getMapTileSize();
@@ -238,7 +238,7 @@ namespace Simulation
                 indecies.push_back(i);
                 Explosion *exp = Explosion::create();
                 exp->createNodesAt(bombNode->getPosition(),_tileMap);
-                exp->destroyBlocks(_tileMap);
+                exp->destroyBlocks(_tileMap,_blockTiles,_world);
                 _explosions->addObject(exp);
                 for(int i =0;i<exp->getNodesCount();i++)
                 {

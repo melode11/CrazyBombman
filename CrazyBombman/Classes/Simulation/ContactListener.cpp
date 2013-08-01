@@ -22,7 +22,7 @@ namespace Simulation
     
     void ContactLisenter::EndContact(b2Contact *contact)
     {
-        printf("end contact\n" );
+
     }
    
 }

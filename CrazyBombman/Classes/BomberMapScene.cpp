@@ -62,8 +62,9 @@ bool BomberMapScene::init()
     this->_tileMap = CCTMXTiledMap::create(TILE_MAP_FILE);
     this->_tileMap->retain();
     this->_tileMap->layerNamed(TILE_MAP_MATERIAL_LAYER)->setVisible(false);
-//    this->addChild(this->_tileMap,-1);
-
+#ifndef PHYSICS_DEBUG
+    this->addChild(this->_tileMap,-1);
+#endif
     this->_tileMap->setContentSize(CCDirector::sharedDirector()->getWinSize());
 
     _env = Simulation::Environment::create(*(Simulation::SceneLevelParams::globalSceneLevelParams()));

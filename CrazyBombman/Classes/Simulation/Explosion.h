@@ -13,6 +13,7 @@
 #include "cocos2d.h"
 #include <vector>
 #include "PhysicsObject.h"
+#include "Box2D.h"
 
 namespace Simulation {
     
@@ -58,7 +59,7 @@ namespace Simulation {
     public:
         void createNodesAt(cocos2d::CCPoint const& center, cocos2d::CCTMXTiledMap *tileMap);
         
-        void destroyBlocks(cocos2d::CCTMXTiledMap *tileMap);
+        void destroyBlocks(cocos2d::CCTMXTiledMap *tileMap,cocos2d::CCArray* tileBodyArr,b2World* world);
         
         unsigned int getNodesCount();
         

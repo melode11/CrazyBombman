@@ -10,6 +10,7 @@
 #include "Simulation.h"
 #include "TileUtils.h"
 #include "ArtworkLoader.h"
+#include "Environment.h"
 
 namespace Simulation
 {
@@ -133,7 +134,7 @@ namespace Simulation
     
 
     
-    void Explosion::destroyBlocks(cocos2d::CCTMXTiledMap *tileMap)
+    void Explosion::destroyBlocks(cocos2d::CCTMXTiledMap *tileMap, cocos2d::CCArray *tileBodyArr,b2World* world)
     {
         using namespace cocos2d;
         CCTMXLayer *layer = tileMap->layerNamed(TILE_MAP_MATERIAL_LAYER);
@@ -151,9 +152,19 @@ namespace Simulation
 //                tile->runAction(seq);
                 blockLayer->removeTileAt(*it);
                 layer->removeTileAt(*it);
+                for(int i=tileBodyArr->count()-1;i>=0;--i)
+                {
+                    TileInfo *physObj = static_cast<TileInfo*>(tileBodyArr->objectAtIndex(i));
+                    if(physObj->mapcoord.equals(*it))
+                    {                        
+                        physObj->clearBody(world);
+                        tileBodyArr->removeObjectAtIndex(i);
+                    }
+
+                }
             }
         }
-
+        _destroyMapcoords.clear();
     }
     
     
