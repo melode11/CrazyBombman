@@ -20,6 +20,8 @@
 #include "Box2D.h"
 #include "PhysicsObject.h"
 #include "GLES-Render.h"
+#include "ContactFilter.h"
+#include "ContactListener.h"
 
 namespace Simulation
 {    
@@ -47,7 +49,8 @@ namespace Simulation
         cocos2d::CCArray *_bombs;
         cocos2d::CCArray *_explosions;
         cocos2d::CCArray *_blockTiles;
-        b2ContactListener* _contactListener;
+        ContactLisenter _contactListener;
+        ContactFilter _contactFilter;
         MobsSystem* _mobsSystem;
         SceneLevelParams _slp;
         //hide copy constructor
@@ -65,7 +68,7 @@ namespace Simulation
         
         bool checkCollision(cocos2d::CCPoint& newP, cocos2d::CCPoint const& prevP);
     public:
-        Environment():_player(0),_ppDelegate(0),_tileMap(0),_bombs(0),_slp(),_mobsSystem(0)
+        Environment():_player(0),_ppDelegate(0),_tileMap(0),_bombs(0),_slp(),_mobsSystem(0),_contactFilter(),_contactListener()
         {};
         
         Environment(SceneLevelParams const& slp):_player(0),_ppDelegate(0),_tileMap(0),_bombs(0),_slp(slp),_mobsSystem(0)

@@ -33,31 +33,33 @@ namespace Simulation
     {
         if(!_node)
             return;
-        double dx = 0,dy = 0;
-        cocos2d::CCPoint p = _node -> getPosition();
-        _lastPoint = p;
-        switch (_direction) {
-            case eLeft:
-                dx = - (time_inteval* PLAYER_VELOCITY);
-                break;
-            case eUp:
-                dy = (time_inteval* PLAYER_VELOCITY);
-                break;
-            case eRight:
-                dx = (time_inteval* PLAYER_VELOCITY);
-                break;
-            case eDown:
-                dy = - (time_inteval* PLAYER_VELOCITY);
-                break;
-                
-            default:
-                break;
-        }
-        
-        p.x += dx;
-        p.y += dy;
-        _node->setPosition(p);
-        getBody()->SetTransform(b2Vec2(p.x,p.y), 0);
+//        double dx = 0,dy = 0;
+//        cocos2d::CCPoint p = _node -> getPosition();
+//        _lastPoint = p;
+//        switch (_direction) {
+//            case eLeft:
+//                dx = - (time_inteval* PLAYER_VELOCITY);
+//                break;
+//            case eUp:
+//                dy = (time_inteval* PLAYER_VELOCITY);
+//                break;
+//            case eRight:
+//                dx = (time_inteval* PLAYER_VELOCITY);
+//                break;
+//            case eDown:
+//                dy = - (time_inteval* PLAYER_VELOCITY);
+//                break;
+//                
+//            default:
+//                break;
+//        }
+//        
+//        p.x += dx;
+//        p.y += dy;
+        b2Vec2 pos = getBody()->GetPosition();
+        _node->setPosition(ccp(pos.x,pos.y));
+//        getBody()->SetTransform(b2Vec2(p.x,p.y), 0);
+
     }
     
     cocos2d::CCNode* Player::getNode()
@@ -93,6 +95,26 @@ namespace Simulation
             }
         }
         _direction = var;
+        float dx = 0,dy = 0;
+        switch (var) {
+            case eLeft:
+                dx = - PLAYER_VELOCITY;
+                break;
+            case eUp:
+                dy =  PLAYER_VELOCITY;
+                break;
+            case eRight:
+                dx =  PLAYER_VELOCITY;
+                break;
+            case eDown:
+                dy = -PLAYER_VELOCITY;
+                break;
+                
+            default:
+                break;
+        }
+
+        getBody()->SetLinearVelocity(b2Vec2(dx,dy));
     }
     
     cocos2d::CCPoint Player::getPlayerPosition()
@@ -118,17 +140,17 @@ namespace Simulation
     
     void Player::collideWith(Simulation::PhysicsObject *other)
     {
-        if(_node)
-        {   
-            if(other->getPhysicalType() == PhysTile)
-            {
-                TileInfo* ti = static_cast<TileInfo*>(other);
-                if(ti->material == eSolid || ti->material == eDestroyable)
-                {
-                    _node->setPosition(_lastPoint);
-                }
-            }
-        }
+//        if(_node)
+//        {   
+//            if(other->getPhysicalType() == PhysTile)
+//            {
+//                TileInfo* ti = static_cast<TileInfo*>(other);
+//                if(ti->material == eSolid || ti->material == eDestroyable)
+//                {
+//                    _node->setPosition(_lastPoint);
+//                }
+//            }
+//        }
     }
     
 }

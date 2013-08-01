@@ -14,6 +14,7 @@
 #include "cocos2d.h"
 #include "Simulation.h"
 #include "Delegations.h"
+#include "Box2D.h"
 
 namespace Simulation
 {
@@ -23,6 +24,7 @@ namespace Simulation
         CC_SYNTHESIZE(unsigned int, _maxMobCount, MaxMobCount);
         CC_SYNTHESIZE(float, _spawnInterval, SpawnInterval);
         CC_SYNTHESIZE(CollisionDetectDelegate*, _collider, CollisionDetector);
+        CC_SYNTHESIZE(b2World*, _world, World);
     private:
         cocos2d::CCArray* _spawnMobs;
         cocos2d::CCArray* _mobs;
@@ -32,7 +34,7 @@ namespace Simulation
     protected:
         void spawnMob(float dt);
     public:
-        MobsSystem():_spawnMobs(NULL), _mobs(NULL),_destoryMobs(NULL),_batchNode(NULL), _maxMobCount(INITIAL_MAX_MOB_COUNT),_spawnInterval(INITIAL_MOB_SPAWN_INTERVAL),_timeIntervalFromLastSpawn(0)
+        MobsSystem():_spawnMobs(NULL), _mobs(NULL),_destoryMobs(NULL),_batchNode(NULL), _maxMobCount(INITIAL_MAX_MOB_COUNT),_spawnInterval(INITIAL_MOB_SPAWN_INTERVAL),_timeIntervalFromLastSpawn(0),_world(0)
         {
             _spawnMobs = new CCArray(1);
             _mobs = new CCArray(20);

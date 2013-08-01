@@ -7,6 +7,8 @@
 //
 
 #include "Mob.h"
+#include "PhysicsUtil.h"
+#include "TileUtils.h"
 
 namespace Simulation {
     
@@ -23,7 +25,6 @@ namespace Simulation {
         for (int i = 0; i<4; ++i) {
             moveAnimation[i]->retain();
         }
-        freeMove();
     }
     
     Mob::~Mob()
@@ -48,28 +49,29 @@ namespace Simulation {
             freeMove();
             _timeSinceLastFreeMove = 0;
         }
-        float dx,dy;
-        switch (_dir) {
-            case eLeft:
-                dx = - (dt* _velocity);
-                break;
-            case eUp:
-                dy = (dt* _velocity);
-                break;
-            case eRight:
-                dx = (dt* _velocity);
-                break;
-            case eDown:
-                dy = - (dt* _velocity);
-                break;
-                
-            default:
-                break;
-        }
-        cocos2d::CCPoint p = _node -> getPosition();
-        p.x += dx;
-        p.y += dy;
-        _node->setPosition(p);
+//        float dx,dy;
+//        switch (_dir) {
+//            case eLeft:
+//                dx = - (dt* _velocity);
+//                break;
+//            case eUp:
+//                dy = (dt* _velocity);
+//                break;
+//            case eRight:
+//                dx = (dt* _velocity);
+//                break;
+//            case eDown:
+//                dy = - (dt* _velocity);
+//                break;
+//                
+//            default:
+//                break;
+//        }
+//        cocos2d::CCPoint p = _node -> getPosition();
+//        p.x += dx;
+//        p.y += dy;
+        b2Vec2 p = getBody()->GetPosition();
+        _node->setPosition(ccp(p.x,p.y));
     }
     
     void Mob::freeMove()
@@ -89,7 +91,41 @@ namespace Simulation {
             _node->stopAllActions();
             _node->runAction(CCRepeatForever::create(CCAnimate::create(moveAnimation[randIndex])));
             _dir = dirs[randIndex];
+            float dx,dy;
+            switch (_dir) {
+                case eLeft:
+                    dx = - (_velocity);
+                    break;
+                case eUp:
+                    dy = (_velocity);
+                    break;
+                case eRight:
+                    dx = (_velocity);
+                    break;
+                case eDown:
+                    dy = - (_velocity);
+                    break;
+                    
+                default:
+                    break;
+            }
+            getBody()->SetLinearVelocity(b2Vec2(dx,dy));
+            
         }
 
+    }
+    
+    void Mob::collideWith(Simulation::PhysicsObject *other)
+    {
+        if(other->getPhysicalType() == PhysTile)
+        {
+            this->freeMove();
+        }
+    }
+    
+    b2Body* Mob::createBody(b2World *world)
+    {
+        CCAssert(_node!=NULL, "_node is null");
+        return Utility::CreateBodyFilled(world, Utility::GetBoundingBox(_node), b2_dynamicBody);
     }
 }

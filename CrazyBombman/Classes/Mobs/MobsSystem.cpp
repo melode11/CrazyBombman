@@ -11,11 +11,12 @@
 
 namespace Simulation
 {
-    Mob* randomMob(Level lvl)
+    Mob* randomMob(Level lvl,b2World* world)
     {
         MobPrototype proto(lvl);
         unsigned int mobId = proto.randomMobId();
         Mob* mob = Mob::create(mobId, proto.getLevel(), proto.hitpoint(), "mob",MOB_VELOCITY);
+       
         return mob;
     }
     
@@ -32,16 +33,16 @@ namespace Simulation
             Mob* mob = (Mob*)obj;
             CCPoint p = mob->getNode()->getPosition();
             mob->update(dt);
-            CCPoint newP = mob->getNode()->getPosition();
-            if(_collider)
-            {
-                bool isCollide = _collider->checkMoveCollision(newP, p, mob->getNode()->getContentSize());
-                if(isCollide)
-                {
-                    mob->getNode()->setPosition(newP);
-                    mob->freeMove();
-                }
-            }
+//            CCPoint newP = mob->getNode()->getPosition();
+//            if(_collider)
+//            {
+//                bool isCollide = _collider->checkMoveCollision(newP, p, mob->getNode()->getContentSize());
+//                if(isCollide)
+//                {
+//                    mob->getNode()->setPosition(newP);
+//                    mob->freeMove();
+//                }
+//            }
         }
         this->spawnMob(dt);
         //FIXME: add mob destroy detection.
@@ -57,7 +58,7 @@ namespace Simulation
         _timeIntervalFromLastSpawn = 0;
         if(_mobs->count()<_maxMobCount)
         {
-            Mob* mob = randomMob(1);
+            Mob* mob = randomMob(1,_world);
             _mobs->addObject(mob);
             _spawnMobs->addObject(mob);
         }
@@ -93,6 +94,8 @@ namespace Simulation
             float y = ((CCString*)dic->objectForKey("y"))->floatValue();
             Mob* mob = (Mob*)obj;
             mob->getNode()->setPosition(ccp(x,y));
+            mob->initBody(_world);
+            mob->freeMove();
             _batchNode->addChild(mob->getNode(), Z_MOBS);
         }
         _spawnMobs->removeAllObjects();
@@ -101,6 +104,7 @@ namespace Simulation
         {
             Mob* mob = (Mob*)obj;
             _batchNode->removeChild(mob->getNode(), true);
+            mob->clearBody(_world);
         }
         _destoryMobs->removeAllObjects();
     }

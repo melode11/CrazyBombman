@@ -13,13 +13,14 @@
 #include "cocos2d.h"
 #include "MobPrototype.h"
 #include "ArtworkLoader.h"
+#include "PhysicsObject.h"
 
 using namespace cocos2d;
 
 namespace Simulation
 {
     
-    class Mob:public CCObject
+    class Mob:public PhysicsObject
     {
         CC_SYNTHESIZE_READONLY(Level, _lvl, Level);
         CC_SYNTHESIZE_READONLY(float, _hp, Hitpoint);
@@ -56,6 +57,13 @@ namespace Simulation
                 return NULL;
             }
         }
+        
+        virtual PhysicalType getPhysicalType() {return PhysMob;};
+        
+        virtual void collideWith(PhysicsObject* other);
+        
+    protected:
+        virtual b2Body* createBody(b2World *world);
     };
 }
 #endif /* defined(__CrazyBombman__Mob__) */

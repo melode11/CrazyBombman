@@ -64,14 +64,16 @@ namespace Simulation
         _bombs = new CCArray();
         _explosions = new CCArray();
         _blockTiles = new CCArray();
-        _contactListener = new ContactLisenter();
+
         _mobsSystem = MobsSystem::create();
         _mobsSystem->retain();
         _mobsSystem->setCollisionDetector(this);
         
         _world = new b2World(b2Vec2(0.0,0.0));
         _world->SetAllowSleeping(true);
-        _world->SetContactListener(_contactListener);
+        _world->SetContactListener(&_contactListener);
+        _world->SetContactFilter(&_contactFilter);
+        _mobsSystem->setWorld(_world);
         return true;
     }
     
@@ -118,12 +120,6 @@ namespace Simulation
             kmGLPushMatrix();
             _world->DrawDebugData();
             kmGLPopMatrix();
-//            glDisableClientState(GL_COLOR_ARRAY);
-//            glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-
-
-//            glEnableClientState(GL_COLOR_ARRAY);
-//            glEnableClientState(GL_TEXTURE_COORD_ARRAY);
         }
     }
     
@@ -167,15 +163,15 @@ namespace Simulation
     void Environment::update(float dt)
     {
         CCObject::update(dt);
-        
-        updateBombs(dt);
-        updateExplosions(dt);
-        updatePlayer(dt);
-        updateMob(dt);
         if(_world)
         {
             _world->Step(dt, 10, 10);
         }
+        updateBombs(dt);
+        updateExplosions(dt);
+        updatePlayer(dt);
+        updateMob(dt);
+     
     }
     
     void Environment::updatePlayer(float dt)
@@ -348,6 +344,8 @@ namespace Simulation
         CC_SAFE_RELEASE(_bombs);
         CC_SAFE_RELEASE(_explosions);
         CC_SAFE_RELEASE(_blockTiles);
-        CC_SAFE_DELETE(_contactListener);
+        CC_SAFE_RELEASE(_mobsSystem);
+//        CC_SAFE_DELETE(_contactListener);
+
     }
 }
