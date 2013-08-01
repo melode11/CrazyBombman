@@ -142,7 +142,7 @@ namespace Simulation
     {
 //        if(_node)
 //        {   
-//            if(other->getPhysicalType() == PhysTile)
+//            if(other->getPhysicalType() == PhysTerrain)
 //            {
 //                TileInfo* ti = static_cast<TileInfo*>(other);
 //                if(ti->material == eSolid || ti->material == eDestroyable)

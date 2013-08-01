@@ -20,7 +20,7 @@ namespace Simulation
         PhysNone,
         PhysPlayer,
         PhysMob,
-        PhysTile,
+        PhysTerrain,
         PhysBomb,
         PhysExplosion,
     };

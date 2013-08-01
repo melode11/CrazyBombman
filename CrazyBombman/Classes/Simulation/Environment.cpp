@@ -22,7 +22,7 @@ namespace Simulation
     
     PhysicalType TileInfo::getPhysicalType()
     {
-        return PhysTile;
+        return PhysTerrain;
     }
     
     Environment* Environment::create(SceneLevelParams const& slp)
@@ -128,6 +128,14 @@ namespace Simulation
         
         CCTMXLayer* layer = tilemap->layerNamed(TILE_MAP_MATERIAL_LAYER);
         CCSize size = layer->getLayerSize();
+        CCSize tilesize = tilemap->getTileSize();
+        b2Body* body = Utility::CreateBodyOutlined(_world, CCRectMake(0, 0, size.width*tilesize.width, size.height*tilesize.height),b2_staticBody);
+        TileInfo* tileInfo = new TileInfo();
+        tileInfo->material = eSolid;
+        tileInfo->setBody(body);
+        _blockTiles->addObject(tileInfo);
+        tileInfo->release();
+
         CCPoint mapcoord;
         for (int i = 0; i<size.height; ++i) {
             for (int j = 0; j<size.width; ++j) {

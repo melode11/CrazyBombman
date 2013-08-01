@@ -117,7 +117,7 @@ namespace Simulation {
     
     void Mob::collideWith(Simulation::PhysicsObject *other)
     {
-        if(other->getPhysicalType() == PhysTile)
+        if(other->getPhysicalType() == PhysTerrain)
         {
             this->freeMove();
         }
