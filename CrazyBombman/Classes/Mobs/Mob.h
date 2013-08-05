@@ -62,6 +62,8 @@ namespace Simulation
         
         virtual void collideWith(PhysicsObject* other);
         
+        virtual bool acceptCollide(Simulation::PhysicsObject *other);
+        
     protected:
         virtual b2Body* createBody(b2World *world);
     };

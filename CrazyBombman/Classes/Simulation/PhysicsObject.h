@@ -52,6 +52,8 @@ public:
     
     virtual void collideWith(PhysicsObject* other){};
     
+    virtual bool acceptCollide(PhysicsObject* other){return true;};
+    
 protected:
     virtual b2Body* createBody(b2World *_world) {CC_UNUSED_PARAM(_world); return NULL; };
     

@@ -11,12 +11,14 @@
 
 #include <iostream>
 #include "cocos2d.h"
+#include "Simulation.h"
 namespace Simulation
 {
     
     class GameModelDelegate
     {
     public:
+        virtual void onGameResult(GameResult result) = 0;
         virtual void updatePlayerPostion(cocos2d::CCPoint& postion) = 0;
         virtual void addNode(cocos2d::CCNode *node,int z_order) = 0;
         virtual void removeNode(cocos2d::CCNode *node) = 0;

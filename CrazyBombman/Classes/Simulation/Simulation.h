@@ -53,6 +53,13 @@ namespace Simulation
         eDestroyable = 2,
         eSolid = 3
     } Material;
+    
+    typedef enum _GameResult
+    {
+        eWin = 0,
+        eLostDead = 1,
+        eLostTimeout = 2
+    } GameResult;
 }
 
 #endif

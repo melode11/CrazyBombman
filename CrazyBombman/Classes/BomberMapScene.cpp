@@ -11,7 +11,7 @@
 #include "Simulation.h"
 #include "ArtworkLoader.h"
 #include "SceneLevelParams.h"
-#include <OpenGLES/ES1/gl.h>
+#include "GameOverScene.h"
 
 using namespace cocos2d;
 
@@ -143,6 +143,14 @@ void BomberMapScene::removeNode(cocos2d::CCNode *node)
     if(node)
     {
         this->removeNode(node);
+    }
+}
+
+void BomberMapScene::onGameResult(Simulation::GameResult result)
+{
+    if(result == Simulation::eLostDead)
+    {
+        CCDirector::sharedDirector()->replaceScene(GameOverScene::scene());
     }
 }
 

@@ -19,7 +19,7 @@ namespace Simulation{
     {
 
         CC_PROPERTY(cocos2d::CCNode*, _node, Node);
-        cocos2d::CCPoint _lastPoint;
+        CC_SYNTHESIZE(bool, _isDamaged, Damaged);
         
     public:
         
@@ -46,6 +46,8 @@ namespace Simulation{
         virtual b2Body* createBody(b2World *_world);
         
         virtual void collideWith(PhysicsObject* other);
+        
+        virtual bool acceptCollide(PhysicsObject* other);
         
         CREATE_FUNC(Player);
     };

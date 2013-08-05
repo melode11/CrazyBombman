@@ -168,13 +168,20 @@ namespace Simulation
         
     }
     
+#pragma mark - update game model.
     void Environment::update(float dt)
     {
         CCObject::update(dt);
+        if(checkGameResult())
+        {
+            return ;
+        }
+        
         if(_world)
         {
             _world->Step(dt, 10, 10);
         }
+        
         updateBombs(dt);
         updateExplosions(dt);
         updatePlayer(dt);
@@ -184,24 +191,9 @@ namespace Simulation
     
     void Environment::updatePlayer(float dt)
     {
-        //        CCPoint p = _player->getPlayerPosition();
         _player ->update(dt);
         CCPoint p = _player->getNode()->getPosition();
         _ppDelegate -> updatePlayerPostion(p);
-        //        CCPoint newP = _player->getPlayerPosition();
-        //        if(!p.equals(newP))
-        //        {//collision happen, back to the old position.
-        //            if(checkCollision(newP, p))
-        //                    {
-        //                        _player->getNode()->setPosition(newP);
-        //                    }
-        //
-        //                    if(_ppDelegate)
-        //                    {
-        //                        _ppDelegate -> updatePlayerPostion(newP);
-        //                    }
-        //                }
-        
     }
     
     void Environment::updateExplosions(float dt)
@@ -258,6 +250,29 @@ namespace Simulation
         _mobsSystem->updateMobsOnMap(_tileMap, _ppDelegate);
     }
     
+    bool Environment::checkGameResult()
+    {
+        if(_player->getDamaged())
+        {
+            if(!_isGameover)
+            {
+                _player->getNode()->runAction(CCSequence::create(
+                                                             CCDelayTime::create(0.3f),
+                                                             CCCallFunc::create(this, callfunc_selector(Environment::gameOverPlayerDead)),NULL
+                                          ));
+                _isGameover = true;
+            }
+            return true;
+        }
+        return false;
+    }
+    
+    void Environment::gameOverPlayerDead()
+    {
+        _ppDelegate->onGameResult(eLostDead);
+    }
+    
+#pragma mark - collision helper.
     bool testTileCollidable(CCTMXTiledMap *tilemap,CCPoint const& mapCoord,CCRect* tileRect)
     {
         CCTMXLayer *blocks = tilemap->layerNamed(TILE_MAP_MATERIAL_LAYER);

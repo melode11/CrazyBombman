@@ -38,6 +38,8 @@ public:
     
     virtual void removeNode(cocos2d::CCNode *node);
     
+    virtual void onGameResult(Simulation::GameResult result);
+    
     virtual void ccTouchesEnded(cocos2d::CCSet *pTouch, cocos2d::CCEvent *pEvent);
     
     virtual void draw();

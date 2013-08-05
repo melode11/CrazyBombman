@@ -26,6 +26,7 @@
 namespace Simulation
 {    
     
+    
     class TileInfo:public PhysicsObject
     {
     public:
@@ -57,21 +58,22 @@ namespace Simulation
         Environment(Environment const &env);
         Environment& operator= (Environment const &env);
         b2World *_world;
+        bool _isGameover;
     protected:
         void updateBombs(float dt);
         void updateExplosions(float dt);
         void updateMob(float dt);
         void updatePlayer(float dt);
         
-        
+        void gameOverPlayerDead();
         void buildPhysicalMap(cocos2d::CCTMXTiledMap* tilemap);
         
         bool checkCollision(cocos2d::CCPoint& newP, cocos2d::CCPoint const& prevP);
     public:
-        Environment():_player(0),_ppDelegate(0),_tileMap(0),_bombs(0),_slp(),_mobsSystem(0),_contactFilter(),_contactListener()
+        Environment():_player(0),_ppDelegate(0),_tileMap(0),_bombs(0),_slp(),_mobsSystem(0),_contactFilter(),_contactListener(),_isGameover(false)
         {};
         
-        Environment(SceneLevelParams const& slp):_player(0),_ppDelegate(0),_tileMap(0),_bombs(0),_slp(slp),_mobsSystem(0)
+        Environment(SceneLevelParams const& slp):_player(0),_ppDelegate(0),_tileMap(0),_bombs(0),_slp(slp),_mobsSystem(0),_isGameover(false)
         {};
         
         ~Environment();
@@ -85,6 +87,8 @@ namespace Simulation
         void addBomb(Bomb* bomb);
         
         void spawnPlayer();
+        
+        bool checkGameResult();
         
         virtual bool checkMoveCollision(cocos2d::CCPoint& dest,cocos2d::CCPoint const& start,cocos2d::CCSize const& subjectSize);
         

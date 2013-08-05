@@ -123,9 +123,21 @@ namespace Simulation {
         }
     }
     
+    bool Mob::acceptCollide(Simulation::PhysicsObject *other)
+    {
+        PhysicalType type = other->getPhysicalType();
+        if(type == PhysMob || type == PhysPlayer)
+        {
+            return false;
+        }
+        return true;
+    }
+    
     b2Body* Mob::createBody(b2World *world)
     {
         CCAssert(_node!=NULL, "_node is null");
-        return Utility::CreateBodyFilled(world, Utility::GetBoundingBox(_node), b2_dynamicBody);
+        CCRect nodeRect = Utility::GetBoundingBox(_node);
+        Utility::CropRect(nodeRect);
+        return Utility::CreateBodyFilled(world, nodeRect, b2_dynamicBody);
     }
 }

@@ -14,7 +14,7 @@
 
 namespace Simulation
 {
-    Player::Player():_node(0),_direction(eNone),_lastPoint()
+    Player::Player():_node(0),_direction(eNone),_isDamaged(false)
     {
         
     }
@@ -135,7 +135,10 @@ namespace Simulation
     
     b2Body* Player::createBody(b2World *_world)
     {
-        return  Utility::CreateBodyFilled(_world, Utility::GetBoundingBox(this->getNode()),b2_dynamicBody);
+        CCRect nodeRect = Utility::GetBoundingBox(this->getNode());
+        //shrink a little
+        Utility::CropRect(nodeRect,PLAYER_MAX_COLLIDE_SIZE,PLAYER_MAX_COLLIDE_SIZE);
+        return  Utility::CreateBodyFilled(_world, nodeRect ,b2_dynamicBody);
     }
     
     void Player::collideWith(Simulation::PhysicsObject *other)
@@ -151,6 +154,17 @@ namespace Simulation
 //                }
 //            }
 //        }
+    }
+    
+    bool Player::acceptCollide(Simulation::PhysicsObject *other)
+    {
+        if(other->getPhysicalType() == PhysMob)
+        {
+            //catched with mob
+            _isDamaged = true;
+            return false;
+        }
+        return true;
     }
     
 }

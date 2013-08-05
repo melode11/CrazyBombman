@@ -342,6 +342,8 @@
 		818A410C177722B20015431F /* Explosion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 818A410A177722B00015431F /* Explosion.cpp */; };
 		818A41151778383B0015431F /* explode.png in Resources */ = {isa = PBXBuildFile; fileRef = 818A41141778383B0015431F /* explode.png */; };
 		819EEF4317A9FAF90069C694 /* ContactFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 819EEF4117A9FAF90069C694 /* ContactFilter.cpp */; };
+		819EEF4D17ACEC630069C694 /* GameOverScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 819EEF4B17ACEC610069C694 /* GameOverScene.cpp */; };
+		819EEF5617AFEF8C0069C694 /* blocks.png in Resources */ = {isa = PBXBuildFile; fileRef = 819EEF5517AFEF8C0069C694 /* blocks.png */; };
 		81CB0F1F17A0102C00425333 /* ContactListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81CB0F1D17A0102A00425333 /* ContactListener.cpp */; };
 		81DA834F178B9B2400E80037 /* bombman.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81DA834D178B9B2400E80037 /* bombman.plist */; };
 		81DA8350178B9B2400E80037 /* bombman.png in Resources */ = {isa = PBXBuildFile; fileRef = 81DA834E178B9B2400E80037 /* bombman.png */; };
@@ -1070,6 +1072,9 @@
 		818A41141778383B0015431F /* explode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = explode.png; path = Resources/explode.png; sourceTree = "<group>"; };
 		819EEF4117A9FAF90069C694 /* ContactFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ContactFilter.cpp; sourceTree = "<group>"; };
 		819EEF4217A9FAF90069C694 /* ContactFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactFilter.h; sourceTree = "<group>"; };
+		819EEF4B17ACEC610069C694 /* GameOverScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameOverScene.cpp; sourceTree = "<group>"; };
+		819EEF4C17ACEC620069C694 /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
+		819EEF5517AFEF8C0069C694 /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
 		81CB0F1D17A0102A00425333 /* ContactListener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ContactListener.cpp; sourceTree = "<group>"; };
 		81CB0F1E17A0102B00425333 /* ContactListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactListener.h; sourceTree = "<group>"; };
 		81DA834D178B9B2400E80037 /* bombman.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = bombman.plist; path = Resources/bombman.plist; sourceTree = "<group>"; };
@@ -1455,6 +1460,7 @@
 		818A3D0E1771380D0015431F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				819EEF5517AFEF8C0069C694 /* blocks.png */,
 				812A9476179258C700393812 /* monsters.plist */,
 				812A9477179258C700393812 /* monsters.png */,
 				81DA83BB178C546A00E80037 /* tilemap.tmx */,
@@ -2511,6 +2517,8 @@
 				818A40AE177139310015431F /* BomberMapScene.h */,
 				818A40AF177139310015431F /* Simulation */,
 				81DA83BF178C548600E80037 /* Constants.h */,
+				819EEF4B17ACEC610069C694 /* GameOverScene.cpp */,
+				819EEF4C17ACEC620069C694 /* GameOverScene.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -2628,6 +2636,7 @@
 				81334A9A17A3ABD5004EE1B2 /* json_internalmap.inl in Resources */,
 				81334A9D17A3ABD5004EE1B2 /* json_valueiterator.inl in Resources */,
 				81334A9F17A3ABD5004EE1B2 /* sconscript in Resources */,
+				819EEF5617AFEF8C0069C694 /* blocks.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2945,6 +2954,7 @@
 				81334AA617A3ABD5004EE1B2 /* CCTweenFunction.cpp in Sources */,
 				81334AA717A3ABD5004EE1B2 /* CCUtilMath.cpp in Sources */,
 				819EEF4317A9FAF90069C694 /* ContactFilter.cpp in Sources */,
+				819EEF4D17ACEC630069C694 /* GameOverScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

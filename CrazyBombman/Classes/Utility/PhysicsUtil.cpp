@@ -55,4 +55,24 @@ namespace Utility
         
         return body;
     }
+    
+    bool CropRect(cocos2d::CCRect& rect,float maxWidth,float maxHeight)
+    {
+        bool isCropped = false;
+        if(rect.size.width>maxWidth)
+        {
+            float offset = rect.size.width - maxWidth;
+            rect.origin.x+=0.5*offset;
+            rect.size.width-=offset;
+            isCropped = true;
+        }
+        if(rect.size.height>maxHeight)
+        {
+            float offset = rect.size.height - maxHeight;
+            rect.origin.y+=0.5*offset;
+            rect.size.height-=offset;
+            isCropped = true;
+        }
+        return isCropped;
+    }
 }
