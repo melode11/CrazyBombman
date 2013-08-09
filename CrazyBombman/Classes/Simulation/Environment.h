@@ -65,7 +65,6 @@ namespace Simulation
         void updateMob(float dt);
         void updatePlayer(float dt);
         
-        void gameOverPlayerDead();
         void buildPhysicalMap(cocos2d::CCTMXTiledMap* tilemap);
         
         bool checkCollision(cocos2d::CCPoint& newP, cocos2d::CCPoint const& prevP);

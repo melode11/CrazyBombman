@@ -11,6 +11,8 @@
 #include "TileUtils.h"
 #include "ArtworkLoader.h"
 #include "Environment.h"
+#include "PhysicsUtil.h"
+
 
 namespace Simulation
 {
@@ -19,6 +21,10 @@ namespace Simulation
         
     }
     
+    Explosion::~Explosion()
+    {
+        
+    }
     
     void Explosion::update(float dt)
     {
@@ -84,7 +90,7 @@ namespace Simulation
     void Explosion::createNodesAt(cocos2d::CCPoint const& center, cocos2d::CCTMXTiledMap *tileMap)
     {
         using namespace cocos2d;
-
+        _center = center;
         CCSprite *explode = CCSprite::create();
         explode->setPosition(center);
         explode->setVisible(false);
@@ -146,10 +152,8 @@ namespace Simulation
             if(tile)
             {
                 printf("destory tile(%d,%d) with animation, tile addr:%d\n",(int)(*it).x,(int)(*it).y, reinterpret_cast<unsigned int>(tile));
-//                CCArray *callbackinfo = CCArray::create(layer,CCInteger::create(it - _destroyMapcoords.begin()),NULL);
-//                callbackinfo->retain();
-//                CCSequence* seq = CCSequence::create(CCDelayTime::create(0.3),CCCallFuncND::create(this, callfuncND_selector(Simulation::Explosion::removeTile), callbackinfo),NULL);
-//                tile->runAction(seq);
+
+
                 blockLayer->removeTileAt(*it);
                 layer->removeTileAt(*it);
                 for(int i=tileBodyArr->count()-1;i>=0;--i)
@@ -168,22 +172,6 @@ namespace Simulation
     }
     
     
-    void Explosion::removeTile(cocos2d::CCNode *tile, void *callbackObj)
-    {
-        cocos2d::CCArray* callbackArr = static_cast<cocos2d::CCArray*>(callbackObj);
-        if (tile->getParent()) {
-//            std::type_info ti = typeid(*tile);
-           
-            printf("destory tile addr:%d\n",reinterpret_cast<unsigned int>(tile));
-            cocos2d::CCTMXLayer* layer = static_cast<cocos2d::CCTMXLayer*>(callbackArr->objectAtIndex(0));
-            int coordIndex = static_cast<cocos2d::CCInteger*>(callbackArr->objectAtIndex(1))->getValue();
-            if(_destroyMapcoords.size() > coordIndex)
-            {
-                layer->removeTileAt(_destroyMapcoords[coordIndex]);
-            }
-        }
-        callbackArr->release();
-    }
     
     unsigned int Explosion::getNodesCount()
     {
@@ -203,5 +191,39 @@ namespace Simulation
     PhysicalType Explosion::getPhysicalType()
     {
         return PhysExplosion;
+    }
+    
+  
+    
+    b2Body* Explosion::createBody(b2World *world)
+    {
+        
+        b2PolygonShape shape;
+        float size = EXPLOSION_MAX_COLLIDE_SIZE;
+        float hs = 0.5*size;
+        CCRect rect;
+        rect.setRect(_center.x - hs, _center.y+hs, size, _range);
+        b2BodyDef def;
+        def.type = b2_dynamicBody;
+        def.position = CCPoint2Vec(_center);
+        b2Body* body = world->CreateBody(&def);
+        Utility::AddFixturesFilled(body, rect, _center);
+        rect.setRect(_center.x - hs, _center.y-hs - _range, size, _range);
+        Utility::AddFixturesFilled(body, rect, _center);
+        rect.setRect(_center.x + hs, _center.y-hs , _range, size);
+        Utility::AddFixturesFilled(body, rect, _center);
+        rect.setRect(_center.x - hs-_range, _center.y-hs, _range, size);
+        Utility::AddFixturesFilled(body, rect, _center);
+        return body;
+    }
+    
+    void Explosion::collideWith(Simulation::PhysicsObject *other)
+    {
+        
+    }
+    
+    bool Explosion::acceptCollide(Simulation::PhysicsObject *other)
+    {
+        return false;
     }
 }

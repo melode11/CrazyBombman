@@ -52,6 +52,7 @@ namespace Simulation {
     class Explosion : public PhysicsObject
     {
     private:
+        cocos2d::CCPoint _center;
         std::vector<AnimatedNode> _animateNodes;
         std::vector<cocos2d::CCPoint> _destroyMapcoords;
         bool _isFinished;
@@ -67,18 +68,27 @@ namespace Simulation {
         
         Explosion();
         
+        ~Explosion();
         
         virtual bool init();
         
         virtual void update(float dt);
         
+        
         bool isFinished();
         
         virtual PhysicalType getPhysicalType();
         
+        virtual void collideWith(PhysicsObject* other);
+        
+        virtual bool acceptCollide(PhysicsObject* other);
+        
         CC_SYNTHESIZE(float, _range, Range);
         
         CREATE_FUNC(Explosion);
+        
+    protected:
+        virtual b2Body* createBody(b2World *_world);
     };
 }
 

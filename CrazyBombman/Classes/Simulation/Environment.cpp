@@ -210,6 +210,8 @@ namespace Simulation
         }
         for(std::vector<int>::iterator it = indecies.begin();it!=indecies.end();it++)
         {
+            Explosion* exp = (Explosion*)_explosions->objectAtIndex(*it);
+            exp->clearBody(_world);
             _explosions->removeObjectAtIndex(*it);
         }
     }
@@ -230,6 +232,7 @@ namespace Simulation
                 indecies.push_back(i);
                 Explosion *exp = Explosion::create();
                 exp->createNodesAt(bombNode->getPosition(),_tileMap);
+                exp->initBody(_world);
                 exp->destroyBlocks(_tileMap,_blockTiles,_world);
                 _explosions->addObject(exp);
                 for(int i =0;i<exp->getNodesCount();i++)
@@ -256,20 +259,14 @@ namespace Simulation
         {
             if(!_isGameover)
             {
-                _player->getNode()->runAction(CCSequence::create(
-                                                             CCDelayTime::create(0.3f),
-                                                             CCCallFunc::create(this, callfunc_selector(Environment::gameOverPlayerDead)),NULL
-                                          ));
+                _player->getNode()->stopAllActions();
+                
+                _ppDelegate->onGameResult(eLostDead);
                 _isGameover = true;
             }
             return true;
         }
         return false;
-    }
-    
-    void Environment::gameOverPlayerDead()
-    {
-        _ppDelegate->onGameResult(eLostDead);
     }
     
 #pragma mark - collision helper.
@@ -354,11 +351,14 @@ namespace Simulation
     {
         if(_world)
         {
-            int bodycount = _world->GetBodyCount();
-            int i = 0;
-            for (b2Body* b=_world->GetBodyList(); i < bodycount; ++i,++b) {
+//            int bodycount = _world->GetBodyCount();
+//            int i = 0;
+            for (b2Body* b=_world->GetBodyList();b!=NULL;b=b->GetNext()) {
                 PhysicsObject* phyObj = static_cast<PhysicsObject*>(b->GetUserData());
-                phyObj->setBody(NULL);
+                if(phyObj)
+                {
+                    phyObj->setBody(NULL);
+                }
                 _world->DestroyBody(b);
             }
             delete _world;

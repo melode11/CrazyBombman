@@ -44,6 +44,8 @@ namespace Simulation
         
         void freeMove();
         
+        bool isDead();
+        
         static Mob* create(unsigned int mobId,Level lvl,float hp,std::string const& name,float velocity)
         {
             Mob* mob = new Mob(mobId,lvl,hp,name,velocity);

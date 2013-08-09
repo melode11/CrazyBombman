@@ -24,7 +24,8 @@ private:
 #ifdef PHYSICS_DEBUG
     cocos2d::extension::GLESDebugDraw* _debugDraw;
 #endif
-    
+protected:
+    void pushGameoverScreen();
 public:
     static cocos2d::CCScene* scene();
     

@@ -14,6 +14,6 @@ namespace Simulation {
     {
         PhysicsObject* phyObj =static_cast<PhysicsObject*>(fixtureA->GetBody()->GetUserData());
         PhysicsObject* phyObj2 =static_cast<PhysicsObject*>(fixtureB->GetBody()->GetUserData());
-        return phyObj->acceptCollide(phyObj2) && phyObj2->acceptCollide(phyObj);
+        return phyObj->acceptCollide(phyObj2) & phyObj2->acceptCollide(phyObj);//use '&' instead of '&&' to make sure both routines are called.
     }
 }

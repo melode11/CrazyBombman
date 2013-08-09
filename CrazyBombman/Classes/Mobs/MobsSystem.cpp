@@ -28,23 +28,27 @@ namespace Simulation
     void MobsSystem::update(float dt)
     {
         CCObject* obj;
+        vector<int> removeIndex;
+        int index = 0;
         CCARRAY_FOREACH(_mobs, obj)
         {
             Mob* mob = (Mob*)obj;
-            CCPoint p = mob->getNode()->getPosition();
-            mob->update(dt);
-//            CCPoint newP = mob->getNode()->getPosition();
-//            if(_collider)
-//            {
-//                bool isCollide = _collider->checkMoveCollision(newP, p, mob->getNode()->getContentSize());
-//                if(isCollide)
-//                {
-//                    mob->getNode()->setPosition(newP);
-//                    mob->freeMove();
-//                }
-//            }
+            if(mob->isDead())
+            {
+                _destoryMobs->addObject(mob);
+                removeIndex.push_back(index);
+            }
+            else
+            {
+                CCPoint p = mob->getNode()->getPosition();
+                mob->update(dt);
+            }
+            ++index;
         }
         this->spawnMob(dt);
+        for (vector<int>::iterator it = removeIndex.begin(); it<removeIndex.end(); ++it) {
+            _mobs->removeObjectAtIndex(*it);
+        }
         //FIXME: add mob destroy detection.
     }
     

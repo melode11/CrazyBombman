@@ -11,6 +11,7 @@
 
 //tile map constants
 #define TILE_MAP_FILE "tilemap.tmx"
+#define TILE_MAP_BACKGROUND_LAYER "Background"
 #define TILE_MAP_MATERIAL_LAYER "Material"
 #define TILE_MAP_BLOCKS_LAYER "Blocks"
 #define TILE_MAP_OBJ_LAYER "Obj"

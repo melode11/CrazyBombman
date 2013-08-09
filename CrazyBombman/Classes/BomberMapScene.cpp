@@ -62,8 +62,9 @@ bool BomberMapScene::init()
     this->_tileMap = CCTMXTiledMap::create(TILE_MAP_FILE);
     this->_tileMap->retain();
     this->_tileMap->layerNamed(TILE_MAP_MATERIAL_LAYER)->setVisible(false);
-#ifndef PHYSICS_DEBUG
     this->addChild(this->_tileMap,-1);
+#ifdef PHYSICS_DEBUG
+    this->_tileMap->layerNamed(TILE_MAP_BACKGROUND_LAYER)->setVisible(false);
 #endif
     this->_tileMap->setContentSize(CCDirector::sharedDirector()->getWinSize());
 
@@ -150,8 +151,14 @@ void BomberMapScene::onGameResult(Simulation::GameResult result)
 {
     if(result == Simulation::eLostDead)
     {
-        CCDirector::sharedDirector()->replaceScene(GameOverScene::scene());
+        
+        this->runAction(CCSequence::create(CCDelayTime::create(0.5f),CCCallFunc::create(this, callfunc_selector(BomberMapScene::pushGameoverScreen)),NULL));
     }
+}
+
+void BomberMapScene::pushGameoverScreen()
+{
+    CCDirector::sharedDirector()->replaceScene(GameOverScene::scene());
 }
 
 void BomberMapScene::ccTouchesEnded(cocos2d::CCSet *pTouch, cocos2d::CCEvent *pEvent)
@@ -172,6 +179,7 @@ BomberMapScene::~BomberMapScene()
     {
         _env->setDelegate(NULL);
     }
+    CCDirector::sharedDirector()->getScheduler()->unscheduleAllForTarget(_env);
     CC_SAFE_RELEASE(_env);
     CC_SAFE_RELEASE(_tileMap);
 #ifdef PHYSICS_DEBUG

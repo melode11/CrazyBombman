@@ -74,6 +74,11 @@ namespace Simulation {
         _node->setPosition(ccp(p.x,p.y));
     }
     
+    bool Mob::isDead()
+    {
+        return _hp<=0;
+    }
+    
     void Mob::freeMove()
     {
         int randIndex = (int)((rand()/(RAND_MAX+1.0))*4);
@@ -128,6 +133,11 @@ namespace Simulation {
         PhysicalType type = other->getPhysicalType();
         if(type == PhysMob || type == PhysPlayer)
         {
+            return false;
+        }
+        else if(type == PhysExplosion)
+        {
+            --_hp;
             return false;
         }
         return true;
