@@ -23,18 +23,19 @@ namespace Simulation
         
         CC_SYNTHESIZE(unsigned int, _maxMobCount, MaxMobCount);
         CC_SYNTHESIZE(float, _spawnInterval, SpawnInterval);
-        CC_SYNTHESIZE(CollisionDetectDelegate*, _collider, CollisionDetector);
         CC_SYNTHESIZE(b2World*, _world, World);
+
     private:
         cocos2d::CCArray* _spawnMobs;
         cocos2d::CCArray* _mobs;
         cocos2d::CCArray* _destoryMobs;
         cocos2d::CCSpriteBatchNode* _batchNode;
         float _timeIntervalFromLastSpawn;
+        unsigned int _waitingMobCount;
     protected:
         void spawnMob(float dt);
     public:
-        MobsSystem():_spawnMobs(NULL), _mobs(NULL),_destoryMobs(NULL),_batchNode(NULL), _maxMobCount(INITIAL_MAX_MOB_COUNT),_spawnInterval(INITIAL_MOB_SPAWN_INTERVAL),_timeIntervalFromLastSpawn(0),_world(0)
+        MobsSystem():_spawnMobs(NULL), _mobs(NULL),_destoryMobs(NULL),_batchNode(NULL), _maxMobCount(INITIAL_MAX_MOB_COUNT),_waitingMobCount(INITIAL_MAX_MOB_COUNT),_spawnInterval(INITIAL_MOB_SPAWN_INTERVAL),_timeIntervalFromLastSpawn(0),_world(0)
         {
             _spawnMobs = new CCArray(1);
             _mobs = new CCArray(20);
@@ -42,6 +43,16 @@ namespace Simulation
         }
         
         ~MobsSystem();
+        
+        void setWaitingMobCount(unsigned int waitingMobCount)
+        {
+            _waitingMobCount = waitingMobCount;
+        }
+        
+        unsigned int getRestMobCount()
+        {
+            return _waitingMobCount + _mobs->count();
+        }
         
         virtual bool init();
         virtual void update(float dt);

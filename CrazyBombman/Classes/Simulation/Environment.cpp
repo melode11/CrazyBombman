@@ -52,7 +52,11 @@ namespace Simulation
         CCPoint p = ccp(x,y);
         player->getNode()->setPosition(p);
         _ppDelegate->addNode(player->getNode(),Z_PLAYER);
-        _ppDelegate->updatePlayerPostion(p);
+        GameStatus status;
+        status.mobCount = _mobsSystem->getRestMobCount();
+        status.playerHP = _slp.hitPoints;
+        status.playerPosition = p;
+        _ppDelegate->updateGameStatus(status);
         
         player->initBody(_world);
         
@@ -67,8 +71,8 @@ namespace Simulation
 
         _mobsSystem = MobsSystem::create();
         _mobsSystem->retain();
-        _mobsSystem->setCollisionDetector(this);
-        
+        _mobsSystem->setWaitingMobCount(30);
+        _mobsSystem->setMaxMobCount(10);
         _world = new b2World(b2Vec2(0.0,0.0));
         _world->SetAllowSleeping(true);
         _world->SetContactListener(&_contactListener);
@@ -186,14 +190,20 @@ namespace Simulation
         updateExplosions(dt);
         updatePlayer(dt);
         updateMob(dt);
+        if(_ppDelegate)
+        {
+            GameStatus status;
+            status.playerHP = _slp.hitPoints;
+            status.mobCount = _mobsSystem->getRestMobCount();
+            status.playerPosition = _player->getNode()->getPosition();
+            _ppDelegate->updateGameStatus(status);
+        }
      
     }
     
     void Environment::updatePlayer(float dt)
     {
         _player ->update(dt);
-        CCPoint p = _player->getNode()->getPosition();
-        _ppDelegate -> updatePlayerPostion(p);
     }
     
     void Environment::updateExplosions(float dt)

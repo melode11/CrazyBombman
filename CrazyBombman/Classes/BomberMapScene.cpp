@@ -12,6 +12,7 @@
 #include "ArtworkLoader.h"
 #include "SceneLevelParams.h"
 #include "GameOverScene.h"
+#include "StatusBarLayer.h"
 
 using namespace cocos2d;
 
@@ -96,8 +97,12 @@ CCScene* BomberMapScene::scene()
     BomberMapScene *layer = BomberMapScene::create();
     
     // add layer as a child to scene
-    scene->addChild(layer);
-    
+    scene->addChild(layer,-1);
+    StatusBar* statusBar = StatusBar::create();
+    statusBar->setAnchorPoint(ccp(0.0, 0.0));
+    statusBar->setPosition(ccp(0.0,0.0));
+    scene->addChild(statusBar, 0);
+    layer->_statusBarWeakRef = statusBar;
     // return the scene
     return scene;
 }
@@ -126,9 +131,14 @@ void BomberMapScene::didAccelerate(CCAcceleration* pAccelerationValue)
     }
 }
 
-void BomberMapScene::updatePlayerPostion(CCPoint &postion)
+
+void BomberMapScene::updateGameStatus(const Simulation::GameStatus &status)
 {
-    setViewPointCenter(this, postion, _tileMap->getMapSize(), _tileMap->getTileSize());
+    if(_statusBarWeakRef)
+    {
+        _statusBarWeakRef->updateStatus(status.mobCount, (int)status.playerHP);
+    }
+    setViewPointCenter(this, status.playerPosition, _tileMap->getMapSize(), _tileMap->getTileSize());
 }
 
 void BomberMapScene::addNode(cocos2d::CCNode *node, int z_order)
@@ -172,6 +182,10 @@ void BomberMapScene::ccTouchesEnded(cocos2d::CCSet *pTouch, cocos2d::CCEvent *pE
     _env->addBomb(bomb);
 }
 
+BomberMapScene::BomberMapScene():_tileMap(0),_env(0),_statusBarWeakRef(0)
+{
+    
+}
 
 BomberMapScene::~BomberMapScene()
 {

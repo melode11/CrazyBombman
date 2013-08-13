@@ -60,6 +60,11 @@ namespace Utility
         {
             return cocos2d::CCSprite::create("bomb.png");
         };
+        
+        static cocos2d::CCSprite* statusBarSprite()
+        {
+            return cocos2d::CCSprite::create("bottom-bar.png");
+        }
     };
 }
 #endif /* defined(__CrazyBombman__ArtworkLoader__) */

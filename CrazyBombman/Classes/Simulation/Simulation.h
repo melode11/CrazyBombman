@@ -60,6 +60,7 @@ namespace Simulation
         eLostDead = 1,
         eLostTimeout = 2
     } GameResult;
+    
 }
 
 #endif

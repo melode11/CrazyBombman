@@ -388,7 +388,6 @@ void CCSequence::update(float t)
     {
         m_pActions[found]->startWithTarget(m_pTarget);
     }
-    printf("current run-%d\n",found);
     m_pActions[found]->update(new_t);
     m_last = found;
 }

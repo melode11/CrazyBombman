@@ -77,7 +77,7 @@ namespace Simulation
         
         ~Environment();
         
-        virtual void update(float dt);
+        void update(float dt);
         
         bool init();
         

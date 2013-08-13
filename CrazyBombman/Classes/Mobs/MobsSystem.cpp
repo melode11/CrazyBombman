@@ -55,7 +55,7 @@ namespace Simulation
     void MobsSystem::spawnMob(float dt)
     {
         _timeIntervalFromLastSpawn+=dt;
-        if(_timeIntervalFromLastSpawn<_spawnInterval)
+        if( _timeIntervalFromLastSpawn<_spawnInterval||_waitingMobCount == 0)
         {
             return;
         }
@@ -65,6 +65,7 @@ namespace Simulation
             Mob* mob = randomMob(1,_world);
             _mobs->addObject(mob);
             _spawnMobs->addObject(mob);
+            _waitingMobCount--;
         }
     }
     

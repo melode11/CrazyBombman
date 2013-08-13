@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8102852A179C2FF000227AFD /* PhysicsHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81028528179C2FF000227AFD /* PhysicsHandler.cpp */; };
 		8102852D179C345200227AFD /* PhysicsObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8102852B179C345200227AFD /* PhysicsObject.cpp */; };
+		811159E317B9CCF70089D6F3 /* StatusBarLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 811159E117B9CCF60089D6F3 /* StatusBarLayer.cpp */; };
+		811159E617BA067C0089D6F3 /* bottom-bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 811159E417BA067C0089D6F3 /* bottom-bar.png */; };
 		812866E317845DCD00873860 /* ArtworkLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 812866E117845DCD00873860 /* ArtworkLoader.cpp */; };
 		812A9442178E464B00393812 /* b2BroadPhase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 812A93E2178E464B00393812 /* b2BroadPhase.cpp */; };
 		812A9443178E464B00393812 /* b2CollideCircle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 812A93E4178E464B00393812 /* b2CollideCircle.cpp */; };
@@ -356,6 +358,9 @@
 		81028529179C2FF000227AFD /* PhysicsHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicsHandler.h; sourceTree = "<group>"; };
 		8102852B179C345200227AFD /* PhysicsObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PhysicsObject.cpp; sourceTree = "<group>"; };
 		8102852C179C345200227AFD /* PhysicsObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicsObject.h; sourceTree = "<group>"; };
+		811159E117B9CCF60089D6F3 /* StatusBarLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StatusBarLayer.cpp; sourceTree = "<group>"; };
+		811159E217B9CCF60089D6F3 /* StatusBarLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusBarLayer.h; sourceTree = "<group>"; };
+		811159E417BA067C0089D6F3 /* bottom-bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bottom-bar.png"; path = "Resources/bottom-bar.png"; sourceTree = "<group>"; };
 		812866E117845DCD00873860 /* ArtworkLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ArtworkLoader.cpp; sourceTree = "<group>"; };
 		812866E217845DCD00873860 /* ArtworkLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtworkLoader.h; sourceTree = "<group>"; };
 		812A93E0178E464B00393812 /* Box2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box2D.h; sourceTree = "<group>"; };
@@ -1460,6 +1465,7 @@
 		818A3D0E1771380D0015431F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				811159E417BA067C0089D6F3 /* bottom-bar.png */,
 				819EEF5517AFEF8C0069C694 /* blocks.png */,
 				812A9476179258C700393812 /* monsters.plist */,
 				812A9477179258C700393812 /* monsters.png */,
@@ -2519,6 +2525,8 @@
 				81DA83BF178C548600E80037 /* Constants.h */,
 				819EEF4B17ACEC610069C694 /* GameOverScene.cpp */,
 				819EEF4C17ACEC620069C694 /* GameOverScene.h */,
+				811159E117B9CCF60089D6F3 /* StatusBarLayer.cpp */,
+				811159E217B9CCF60089D6F3 /* StatusBarLayer.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -2637,6 +2645,7 @@
 				81334A9D17A3ABD5004EE1B2 /* json_valueiterator.inl in Resources */,
 				81334A9F17A3ABD5004EE1B2 /* sconscript in Resources */,
 				819EEF5617AFEF8C0069C694 /* blocks.png in Resources */,
+				811159E617BA067C0089D6F3 /* bottom-bar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2955,6 +2964,7 @@
 				81334AA717A3ABD5004EE1B2 /* CCUtilMath.cpp in Sources */,
 				819EEF4317A9FAF90069C694 /* ContactFilter.cpp in Sources */,
 				819EEF4D17ACEC630069C694 /* GameOverScene.cpp in Sources */,
+				811159E317B9CCF70089D6F3 /* StatusBarLayer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
