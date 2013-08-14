@@ -12,7 +12,7 @@
 
 namespace Simulation {
     
-    Mob::Mob(unsigned int mobId,Level lvl,float hp,std::string const& name,float velocity):_id(mobId),_lvl(lvl),_hp(hp),_name(name),_dir(eNone),_timeSinceLastFreeMove(0),_velocity(velocity)
+    Mob::Mob(unsigned int mobId,Level lvl,float hp,std::string const& name,float velocity):_id(mobId),_lvl(lvl),_hp(hp),_name(name),_dir(eNone),_timeSinceLastFreeMove(0),_velocity(velocity),_dirDirty(false)
     {
         
         _node = Utility::ArtworkLoader::mobSprite(mobId);
@@ -43,6 +43,30 @@ namespace Simulation {
     
     void Mob::update(float dt)
     {
+        if(_dirDirty)
+        {
+            _dirDirty = false;
+            float dx,dy;
+            switch (_dir) {
+                case eLeft:
+                    dx = - (_velocity);
+                    break;
+                case eUp:
+                    dy = (_velocity);
+                    break;
+                case eRight:
+                    dx = (_velocity);
+                    break;
+                case eDown:
+                    dy = - (_velocity);
+                    break;
+                    
+                default:
+                    break;
+            }
+
+            getBody()->SetLinearVelocity(b2Vec2(dx,dy));
+        }
         _timeSinceLastFreeMove+=dt;
         if(_timeSinceLastFreeMove>MOB_KEEP_DIR_INTERVAL)
         {
@@ -79,11 +103,17 @@ namespace Simulation {
         return _hp<=0;
     }
     
-    void Mob::freeMove()
+    void Mob::freeMove(Direction avoidDir)
     {
-        int randIndex = (int)((rand()/(RAND_MAX+1.0))*4);
+        Direction dir;
         Direction dirs[] = {eDown,eLeft,eRight,eUp};
-        if(_dir != dirs[randIndex])
+        int randIndex;
+        do {
+            randIndex = (int)((rand()/(RAND_MAX+1.0))*4);
+            dir = dirs[randIndex];
+        } while (dir == avoidDir);
+        
+        if(_dir != dir)
         {
             if(isFlipped[randIndex])
             {
@@ -96,25 +126,7 @@ namespace Simulation {
             _node->stopAllActions();
             _node->runAction(CCRepeatForever::create(CCAnimate::create(moveAnimation[randIndex])));
             _dir = dirs[randIndex];
-            float dx,dy;
-            switch (_dir) {
-                case eLeft:
-                    dx = - (_velocity);
-                    break;
-                case eUp:
-                    dy = (_velocity);
-                    break;
-                case eRight:
-                    dx = (_velocity);
-                    break;
-                case eDown:
-                    dy = - (_velocity);
-                    break;
-                    
-                default:
-                    break;
-            }
-            getBody()->SetLinearVelocity(b2Vec2(dx,dy));
+            _dirDirty = true;
             
         }
 
@@ -124,7 +136,8 @@ namespace Simulation {
     {
         if(other->getPhysicalType() == PhysTerrain)
         {
-            this->freeMove();
+            _timeSinceLastFreeMove = 0;
+            this->freeMove(_dir);
         }
     }
     

@@ -45,10 +45,11 @@ namespace Simulation
             }
             ++index;
         }
-        this->spawnMob(dt);
-        for (vector<int>::iterator it = removeIndex.begin(); it<removeIndex.end(); ++it) {
+        
+        for (vector<int>::reverse_iterator it = removeIndex.rbegin(); it!=removeIndex.rend(); ++it) {
             _mobs->removeObjectAtIndex(*it);
         }
+        this->spawnMob(dt);
         //FIXME: add mob destroy detection.
     }
     

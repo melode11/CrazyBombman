@@ -33,6 +33,7 @@ namespace Simulation
         CCAnimation* moveAnimation[4];
         bool isFlipped[4];
         float _timeSinceLastFreeMove;
+        bool _dirDirty;
     public:
         Mob(unsigned int mobId,Level lvl,float hp,std::string const& name,float velocity);
         
@@ -42,7 +43,7 @@ namespace Simulation
         
         virtual void update(float dt);
         
-        void freeMove();
+        void freeMove(Direction avoidDir = eNone);
         
         bool isDead();
         
