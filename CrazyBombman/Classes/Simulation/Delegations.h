@@ -17,8 +17,14 @@ namespace Simulation
 {
     struct GameStatus
     {
+        GameStatus():playerHP(0),mobCount(0),bombCount(0),playerPosition()
+        {
+            
+        }
+        
         float playerHP;
         unsigned int mobCount;
+        unsigned int bombCount;
         cocos2d::CCPoint playerPosition;
     };
     

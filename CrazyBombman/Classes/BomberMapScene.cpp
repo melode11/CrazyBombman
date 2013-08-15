@@ -136,7 +136,7 @@ void BomberMapScene::updateGameStatus(const Simulation::GameStatus &status)
 {
     if(_statusBarWeakRef)
     {
-        _statusBarWeakRef->updateStatus(status.mobCount, (int)status.playerHP);
+        _statusBarWeakRef->updateStatus(status.mobCount, (int)status.playerHP,status.bombCount);
     }
     setViewPointCenter(this, status.playerPosition, _tileMap->getMapSize(), _tileMap->getTileSize());
 }
@@ -173,13 +173,9 @@ void BomberMapScene::pushGameoverScreen()
 
 void BomberMapScene::ccTouchesEnded(cocos2d::CCSet *pTouch, cocos2d::CCEvent *pEvent)
 {
-    CCSprite* bombNode = Utility::ArtworkLoader::bombSprite();
     CCPoint position = _env->getPlayer()->getPlayerPosition();
     CCSize size = _tileMap->getTileSize();
-    bombNode->setPosition(ccp(((int)(position.x/size.width) + 0.5)*size.width, (ceil(position.y/size.height)-0.5)*size.width));
-    Simulation::Bomb *bomb = Simulation::Bomb::create();
-    bomb->setNode(bombNode);
-    _env->addBomb(bomb);
+    _env->addBombAt(ccp(((int)(position.x/size.width) + 0.5)*size.width, (ceil(position.y/size.height)-0.5)*size.width));
 }
 
 BomberMapScene::BomberMapScene():_tileMap(0),_env(0),_statusBarWeakRef(0)

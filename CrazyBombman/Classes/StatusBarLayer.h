@@ -17,10 +17,11 @@ class StatusBar :public CCLayer
 private:
     CCLabelAtlas *_labelMobCount;
     CCLabelAtlas *_labelRestHP;
+    CCLabelAtlas *_labelRestBombs;
 public:
     StatusBar();
     ~StatusBar();
-    void updateStatus(unsigned int restMobCount,int restHP);
+    void updateStatus(unsigned int restMobCount,int restHP,int restBombs = 0);
     bool init();
     CREATE_FUNC(StatusBar);
 };

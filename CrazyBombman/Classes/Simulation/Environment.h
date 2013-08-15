@@ -83,7 +83,7 @@ namespace Simulation
         
         void setTileMap(cocos2d::CCTMXTiledMap *tileMap);
         
-        void addBomb(Bomb* bomb);
+        void addBombAt(cocos2d::CCPoint const& p);
         
         void spawnPlayer();
         

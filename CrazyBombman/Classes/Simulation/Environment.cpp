@@ -55,6 +55,7 @@ namespace Simulation
         GameStatus status;
         status.mobCount = _mobsSystem->getRestMobCount();
         status.playerHP = _slp.hitPoints;
+        status.bombCount = _slp.bombAmount;
         status.playerPosition = p;
         _ppDelegate->updateGameStatus(status);
         
@@ -195,6 +196,7 @@ namespace Simulation
             GameStatus status;
             status.playerHP = _slp.hitPoints;
             status.mobCount = _mobsSystem->getRestMobCount();
+            status.bombCount = _slp.bombAmount;
             status.playerPosition = _player->getNode()->getPosition();
             _ppDelegate->updateGameStatus(status);
         }
@@ -251,7 +253,7 @@ namespace Simulation
                 }
             }
         }
-        for(std::vector<int>::iterator it = indecies.begin();it!=indecies.end();it++)
+        for(std::vector<int>::reverse_iterator it = indecies.rbegin();it!=indecies.rend();it++)
         {
             _bombs->removeObjectAtIndex(*it);
         }
@@ -343,16 +345,25 @@ namespace Simulation
     }
     
     
-    void Environment::addBomb(Simulation::Bomb *bomb)
+    void Environment::addBombAt(const cocos2d::CCPoint &p)
     {
+        if(_slp.bombAmount == 0)
+        {
+            return;
+        }
         CCObject *b;
         CCARRAY_FOREACH(_bombs, b)
         {
-            if(((Bomb*)b)->getNode()->getPosition().equals(bomb->getNode()->getPosition()))
+            if(((Bomb*)b)->getNode()->getPosition().equals(p))
             {
                 return;
             }
         }
+        _slp.bombAmount--;
+        CCSprite* bombNode = Utility::ArtworkLoader::bombSprite();
+        bombNode->setPosition(p);
+        Simulation::Bomb *bomb = Simulation::Bomb::create();
+        bomb->setNode(bombNode);
         _bombs->addObject(bomb);
         _ppDelegate->addNode(bomb->getNode(), Z_BOMB);
     }
