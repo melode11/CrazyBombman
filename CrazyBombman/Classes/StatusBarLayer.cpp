@@ -47,7 +47,7 @@ StatusBar::StatusBar()
     _labelRestHP->setScale(factor);
     container->addChild(_labelRestHP);
     xpos+=80;
-    CCSprite* mob = Utility::ArtworkLoader::mobSprite(0);
+    CCSprite* mob = Utility::ArtworkLoader::mobIconSprite();
     mob->setAnchorPoint(anchor);
     mob->setPosition(ccp(xpos,10));
     container->addChild(mob);

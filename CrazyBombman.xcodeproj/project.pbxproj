@@ -351,6 +351,7 @@
 		81DA8350178B9B2400E80037 /* bombman.png in Resources */ = {isa = PBXBuildFile; fileRef = 81DA834E178B9B2400E80037 /* bombman.png */; };
 		81DA83BD178C546A00E80037 /* tilemap.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 81DA83BB178C546A00E80037 /* tilemap.tmx */; };
 		81DA83BE178C546A00E80037 /* tilesetpack.png in Resources */ = {isa = PBXBuildFile; fileRef = 81DA83BC178C546A00E80037 /* tilesetpack.png */; };
+		CEAFAD1617C3B6F5009DFA77 /* mob-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CEAFAD1517C3B6F5009DFA77 /* mob-icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1087,6 +1088,7 @@
 		81DA83BB178C546A00E80037 /* tilemap.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = tilemap.tmx; path = Resources/tilemap.tmx; sourceTree = "<group>"; };
 		81DA83BC178C546A00E80037 /* tilesetpack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tilesetpack.png; path = Resources/tilesetpack.png; sourceTree = "<group>"; };
 		81DA83BF178C548600E80037 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		CEAFAD1517C3B6F5009DFA77 /* mob-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "mob-icon.png"; path = "Resources/mob-icon.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1467,6 +1469,7 @@
 			children = (
 				811159E417BA067C0089D6F3 /* bottom-bar.png */,
 				819EEF5517AFEF8C0069C694 /* blocks.png */,
+				CEAFAD1517C3B6F5009DFA77 /* mob-icon.png */,
 				812A9476179258C700393812 /* monsters.plist */,
 				812A9477179258C700393812 /* monsters.png */,
 				81DA83BB178C546A00E80037 /* tilemap.tmx */,
@@ -2646,6 +2649,7 @@
 				81334A9F17A3ABD5004EE1B2 /* sconscript in Resources */,
 				819EEF5617AFEF8C0069C694 /* blocks.png in Resources */,
 				811159E617BA067C0089D6F3 /* bottom-bar.png in Resources */,
+				CEAFAD1617C3B6F5009DFA77 /* mob-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

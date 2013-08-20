@@ -65,6 +65,11 @@ namespace Utility
         {
             return cocos2d::CCSprite::create("bottom-bar.png");
         }
+        
+        static cocos2d::CCSprite* mobIconSprite()
+        {
+            return cocos2d::CCSprite::create("mob-icon.png");
+        }
     };
 }
 #endif /* defined(__CrazyBombman__ArtworkLoader__) */
